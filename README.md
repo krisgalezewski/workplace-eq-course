@@ -28,9 +28,14 @@ The standalone englishvoiced.com lesson (Practical use of English) covers the sa
 - Rules panels end with a `🌍 Elsewhere` tip box for US and international notes.
 - Tests have an `after_section` key, so a section can have zero or more tests.
 
+## Design
+
+The look follows the Claude Design handoff "Annual Report · Bottle" (6b): Archivo with its width axis, paper `#F4F1E8`, ink `#14231C`, bottle `#1D4A35`, green `#1E6B47`, square corners, thin ink rules, a 12-column grid. All the styling is in `shared/theme.css`; the course home layout (hero, stats strip, lesson table) is in `build.py → build_index()`. Tips render as "Key finding" rows, the blunt/stiff comparison as tone cells (`Course.renderToneCells`), and the UK / US / elsewhere notes come from `culture_notes.py`.
+
 ## Build
 
 ```bash
 python3 build.py            # generates lesson/test/index/glossary/dashboard HTML (+ standalone versions)
+python3 build.py --preview ../krisgalezewski.github.io/courses/workplace-eq   # public preview (Lesson 1 only) for englishvoiced.com/courses
 python3 generate_audio.py   # optional: Google TTS audio (needs GOOGLE_TTS_API_KEY); the browser's voice is used until then
 ```

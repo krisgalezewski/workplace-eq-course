@@ -25,9 +25,8 @@ SHARED = os.path.join(ROOT, "shared")
 FONT_LINK = (
     '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
     '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
-    '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700'
-    '&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500'
-    '&display=swap" rel="stylesheet">'
+    '<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900'
+    '&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">'
 )
 SUPABASE_CDN = '<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>'
 
@@ -37,28 +36,56 @@ def j(data):
     return json.dumps(data, ensure_ascii=False)
 
 
-def nav_header(eyebrow, title, sub, is_test=False):
-    links = (
-        '<a id="all-lessons-link" href="index-standalone.html" class="pill" '
-        'style="text-decoration:none;font-size:12.5px;border-radius:var(--radius-sm)">📚 All Lessons</a>'
-    )
-    if not is_test:
-        links += (
-            '\n      <a id="glossary-link" href="glossary-standalone.html" class="pill" '
-            'style="text-decoration:none;font-size:12.5px;border-radius:var(--radius-sm)">📖 My Glossary</a>'
+STEP_TABS = [
+    ("sec-warmup", "1 Warm-up"), ("sec-diagnostic", "2 Check"), ("sec-concept", "3 Concept"),
+    ("sec-reading", "4 Reading"), ("sec-vocab", "5 Vocab"), ("sec-practice", "6 Practice"),
+    ("sec-speaking", "7 Speaking"), ("sec-listening", "8 Listening"),
+]
+
+
+def top_nav(left="Workplace EQ", links_html=None):
+    """The bottle-green bar at the top of every page."""
+    if links_html is None:
+        links_html = (
+            '<a id="all-lessons-link" href="index-standalone.html">All lessons</a>'
+            '<a id="glossary-link" href="glossary-standalone.html">My glossary</a>'
         )
-    return f'''  <header class="lesson-header">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
-      <div class="lesson-eyebrow">{eyebrow}</div>
-      <div style="display:flex;gap:8px">
-      {links}
+    return f'''<div class="eq-nav"><div class="eq-wrap">
+  <span>{left}</span><span class="eq-nav-links">{links_html}</span>
+</div></div>'''
+
+
+ON_ATTR = ' class="on"'
+
+
+def nav_header(eyebrow, title, sub, is_test=False, section_name="", steps=None):
+    """Nav bar + green header band (+ step tabs for lessons).
+    Keeps the ids the engine relies on: all-lessons-link, glossary-link,
+    overall-progress, sync-status."""
+    links = '<a id="all-lessons-link" href="index-standalone.html">All lessons</a>'
+    if not is_test:
+        links += '<a id="glossary-link" href="glossary-standalone.html">My glossary</a>'
+    steps = STEP_TABS if steps is None else steps
+    tabs = ""
+    if steps:
+        tabs = '<nav class="eq-steps" aria-label="Lesson sections"><div class="eq-wrap">' + "".join(
+            f'<a href="#{sid}" data-step="{sid}"{ON_ATTR if i == 0 else ""}>{label}</a>'
+            for i, (sid, label) in enumerate(steps)
+        ) + '</div></nav>'
+    sec_line = f'<br><span class="sec-name">{section_name}</span>' if section_name else ""
+    return f'''{top_nav(links_html=links)}
+  <header class="eq-band"><div class="eq-wrap grid12">
+    <div class="eq-band-meta">
+      <div>{eyebrow}{sec_line}</div>
+      <div><div class="pb-track"><div class="pb-fill" id="overall-progress" style="width:0%"></div></div>
+      <div id="sync-status" style="margin-top:8px"></div></div>
     </div>
+    <div class="eq-band-main">
+      <h1 class="lesson-title">{title}</h1>
+      <p class="lesson-sub">{sub}</p>
     </div>
-    <h1 class="lesson-title">{title}</h1>
-    <p class="lesson-sub">{sub}</p>
-    <div class="pb-track" style="margin-top:16px"><div class="pb-fill" id="overall-progress" style="width:0%"></div></div>
-    <div id="sync-status" style="font-size:11.5px;color:var(--text-tertiary);margin-top:8px"></div>
-  </header>'''
+  </div></header>
+  {tabs}'''
 
 
 def page_shell(*, title, theme_class, body_html, extra_head="", page_script=""):
@@ -75,11 +102,7 @@ def page_shell(*, title, theme_class, body_html, extra_head="", page_script=""):
 <script src="shared/supabase-config.js"></script>
 </head>
 <body class="{theme_class}">
-
-<div class="course-attribution">Workplace EQ · English Voiced with Kris</div>
-<div class="shell">
 {body_html}
-</div>
 
 <script src="shared/course-engine.js"></script>
 <script>

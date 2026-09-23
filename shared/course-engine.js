@@ -266,7 +266,7 @@ const Course = (() => {
       </div>
       ${typeof totalPossible === 'number' ? (autoRows.length < totalPossible ? `
       <div style="background:#FAEEDA;border:1px solid #E8C080;border-radius:8px;padding:10px 14px;margin-bottom:22px;font-size:12px;color:#633806">
-        ⚠ Only ${Math.round((autoRows.length / totalPossible) * 100)}% of the lesson attempted (${autoRows.length} of ${totalPossible} exercises) — this score reflects only what's been answered so far.
+        Note: only ${Math.round((autoRows.length / totalPossible) * 100)}% of the lesson attempted (${autoRows.length} of ${totalPossible} exercises) — this score reflects only what's been answered so far.
       </div>` : `
       <div style="background:#EAF3DE;border:1px solid #C0DD97;border-radius:8px;padding:10px 14px;margin-bottom:22px;font-size:12px;color:#27500A">
         ✓ Every exercise in this lesson has been attempted.
@@ -404,7 +404,7 @@ const Course = (() => {
         const html = `
           <div class="vocab-pop-word">${data.word}</div>
           <div class="vocab-pop-ipa">${data.ipa}</div>
-          <button class="audio-btn vocab-audio-btn" data-speak="${data.word}">🔊 Hear it</button>
+          <button class="audio-btn vocab-audio-btn" data-speak="${data.word}">Hear it</button>
           <div style="font-size:14px;margin-bottom:8px">${data.meaning}</div>
           <div class="vocab-pop-ex">"${data.example}"</div>
           <button class="btn btn-sm glossary-btn" data-word="${key}" ${alreadySaved ? 'disabled' : ''}>${alreadySaved ? 'Saved ✓' : '+ Add to my glossary'}</button>
@@ -1172,12 +1172,12 @@ const Course = (() => {
       const content = document.getElementById('rules-content');
       if (!btn) return;
       if (anyQuizActive){
-        btn.disabled = true; btn.textContent = '📖 Disabled during Quick check';
+        btn.disabled = true; btn.textContent = 'Rules hidden during the quick check';
         if (content) content.classList.remove('open');
       } else {
         btn.disabled = false;
         const isOpen = content && content.classList.contains('open');
-        btn.textContent = isOpen ? '📖 Hide the full rules' : '📖 Show the full rules';
+        btn.textContent = isOpen ? 'Hide the full rules' : 'Show the full rules';
       }
     }
     function switchCat(newCat){
@@ -1272,10 +1272,10 @@ const Course = (() => {
     let finished = false;
 
     function updateButtonLabel(){
-      if (isPlaying){ playBtn.textContent = '⏸ Pause'; return; }
-      if (mode === 'tts' && window.speechSynthesis && window.speechSynthesis.paused){ playBtn.textContent = '▶ Resume'; return; }
-      if (mode === 'audio' && audioEl && audioEl.currentTime > 0 && !finished){ playBtn.textContent = '▶ Resume'; return; }
-      playBtn.textContent = '▶ Play dialogue';
+      if (isPlaying){ playBtn.textContent = 'Pause'; return; }
+      if (mode === 'tts' && window.speechSynthesis && window.speechSynthesis.paused){ playBtn.textContent = 'Resume'; return; }
+      if (mode === 'audio' && audioEl && audioEl.currentTime > 0 && !finished){ playBtn.textContent = 'Resume'; return; }
+      playBtn.textContent = 'Play dialogue';
     }
 
     function setActiveLine(idx){
@@ -1489,7 +1489,7 @@ const Course = (() => {
       gramToggle.addEventListener('click', function(){
         const on = passageEl.classList.toggle('show-grammar');
         this.classList.toggle('on', on);
-        this.textContent = on ? '🔍 Hide key phrases' : '🔍 Show key phrases in this text';
+        this.textContent = on ? 'Hide key phrases' : 'Show key phrases in this text';
       });
     }
     if (vocabData) initVocab(vocabData, lessonId);
@@ -1517,7 +1517,7 @@ const Course = (() => {
       gramToggle.addEventListener('click', function(){
         const on = passageEl.classList.toggle('show-grammar');
         this.classList.toggle('on', on);
-        this.textContent = on ? '🔍 Hide key phrases' : '🔍 Show key phrases in this text';
+        this.textContent = on ? 'Hide key phrases' : 'Show key phrases in this text';
       });
     }
   }
@@ -1542,9 +1542,9 @@ const Course = (() => {
 
   async function initSyncStatus(lessonId){
     const el = document.getElementById('sync-status');
-    if (el) el.textContent = supabaseClient ? `☁ Syncing your progress…` : `⚠ Offline mode — progress is saved on this device only`;
+    if (el) el.textContent = supabaseClient ? `Syncing your progress…` : `Progress is saved on this device`;
     await syncFromSupabase(lessonId);
-    if (el) el.textContent = supabaseClient ? `☁ Synced · Group: ${GROUP_ID}` : `⚠ Offline mode — progress is saved on this device only`;
+    if (el) el.textContent = supabaseClient ? `Synced · Group: ${GROUP_ID}` : `Progress is saved on this device`;
   }
 
   function initSummary({lessonId, totalExercises, sectionPrefixesForProgress}){
@@ -1587,11 +1587,65 @@ const Course = (() => {
     });
   }
 
+
+  /* ---------------- Workplace EQ reskin additions ---------------- */
+  // Tone cells: the "too blunt / just right / too stiff" comparison as
+  // three columns with a formality bar. Items come in groups (groupEnd
+  // closes a group); each group is shown blunt | just right | stiff.
+  // Hover (desktop) or tap (touch) reveals the explanation in place.
+  function renderToneCells(containerId, items){
+    const el = document.getElementById(containerId);
+    if (!el) return;
+    const kindOf = label => { const l = (label || '').toLowerCase(); return l.includes('right') ? 'right' : (l.includes('blunt') ? 'blunt' : 'stiff'); };
+    const width = { blunt: '90%', right: '50%', stiff: '15%' };
+    const order = { blunt: 0, right: 1, stiff: 2 };
+    const groups = []; let cur = [];
+    items.forEach(it => { cur.push(it); if (it.groupEnd){ groups.push(cur); cur = []; } });
+    if (cur.length) groups.push(cur);
+    el.innerHTML = groups.map(g => {
+      const sorted = [...g].sort((a, b) => order[kindOf(a.label)] - order[kindOf(b.label)]);
+      return '<div class="tone-set">' + sorted.map(it => {
+        const k = kindOf(it.label);
+        return `<button type="button" class="tone-cell${k === 'right' ? ' is-right' : ''}" data-key="${it.key}" aria-expanded="false">
+          <span class="tone-lbl">${esc(it.label)}</span>
+          <span class="tone-bar" style="width:${width[k]}"></span>
+          <span class="tone-line">"${esc(it.text)}"</span>
+          <span class="tone-why">${esc(it.explain)}</span>
+        </button>`;
+      }).join('') + '</div>';
+    }).join('');
+    el.querySelectorAll('.tone-cell').forEach(c => c.addEventListener('click', () => {
+      const open = c.classList.toggle('open');
+      c.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }));
+  }
+
+  // Step tabs under the lesson header: highlight the section currently
+  // in view, and keep the active tab visible when the strip scrolls
+  // horizontally on small screens.
+  function initStepTabs(){
+    const tabs = Array.from(document.querySelectorAll('.eq-steps a[data-step]'));
+    if (!tabs.length || !('IntersectionObserver' in window)) return;
+    const byId = {}; tabs.forEach(t => byId[t.dataset.step] = t);
+    let current = tabs[0].dataset.step;
+    function setOn(id){
+      if (!byId[id] || id === current) return;
+      current = id;
+      tabs.forEach(t => t.classList.toggle('on', t.dataset.step === id));
+      const strip = byId[id].parentElement;
+      if (strip && strip.scrollWidth > strip.clientWidth) strip.scrollTo({ left: byId[id].offsetLeft - 20, behavior: 'smooth' });
+    }
+    const obs = new IntersectionObserver(entries => {
+      entries.filter(e => e.isIntersecting).forEach(e => setOn(e.target.id));
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    document.querySelectorAll('section.eq-sec[id]').forEach(s => { if (byId[s.id]) obs.observe(s); });
+  }
+
   return { logProgress, getLessonRows, getCurrentRows, getSectionMap, lessonScore, weakSections, exportReport, exportReportPDF,
            speak, speakSmart, initVocab, initMCQ, initGapFill, initErrorSpot, initMatching, withContractions, renderScoreRing, getStudentName,
            shuffleArray, shuffleOptions, ensureAnswerPositionVariety, showPopup, hidePopup, resetLocalProgress, syncFromSupabase,
            getGlossary, saveToGlossary, removeFromGlossary, syncGlossaryFromSupabase,
-           getGroupId: () => GROUP_ID, isConnected: () => !!supabaseClient,
+           getGroupId: () => GROUP_ID, isConnected: () => !!supabaseClient, renderToneCells, initStepTabs,
            vocabSpan, gramSpan, renderMCQList, renderGapFillList, renderBuilders, renderCategorise,
            renderCompareCard, showCompareTooltip, hideCompareTooltip, renderConceptWidget,
            initListening, initSpeaking, renderDiscussQuestions, initReading, wireGramSpans, initGramToggle,
