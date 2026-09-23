@@ -4,11 +4,11 @@
 
 A 7-lesson B2–C1 course by English Voiced with Kris. It teaches British workplace norms and flags US and international differences as it goes. It's built on the same generator and engine as the English+ B2+/C1 grammar course.
 
-## Course plan
+## Course plan (all lessons and the final test are written)
 
 | # | Section | Lesson | Core content |
 |---|---------|--------|--------------|
-| 1 | Professional Presence | **First Impressions & Small Talk** ✅ | Introductions, names and titles (no "Mr + first name"), safe and unsafe topics, keeping a conversation going, leaving gracefully |
+| 1 | Professional Presence | First Impressions & Small Talk | Introductions, names and titles (no "Mr + first name"), safe and unsafe topics, keeping a conversation going, leaving gracefully |
 | 2 | Professional Presence | Politeness & Register | Indirectness, softening requests ("I was wondering if…"), distancing with past tense, British understatement, and "too blunt / too stiff / just right" |
 | 3 | Communication That Lands | Emails & Messaging | Openings and closings, a formality scale, chasing politely, apologising for delays, CC/BCC/Reply All, Slack/Teams norms |
 | 4 | Communication That Lands | Meetings & Calls | Interrupting politely, taking and handing back the floor, disagreeing diplomatically, keeping on track, video-call etiquette |

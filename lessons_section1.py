@@ -211,3 +211,201 @@ LESSONS.append({
         {"prompt": "A colleague says \"How are you?\" in the lift. The best answer is…", "options": [{"label": "\"Not bad, thanks — you?\"", "value": "right", "correct": True}, {"label": "A detailed account of your weekend", "value": "wrong", "correct": False}]},
     ],
 })
+
+# ============================================================
+# LESSON 2 — Politeness, register and British understatement
+# ============================================================
+LESSONS.append({
+    "id": "weq-lesson-02-politeness-register",
+    "num": 2, "section_name": SECTION_NAME, "theme_class": THEME,
+    "title": "Politeness & Register",
+    "subtitle": "Softening requests, disagreeing without offending, and decoding what British colleagues really mean.",
+    "warmup_intro": "Polish is a precise, fairly direct language, and \"please\" does a lot of the polite work. British English does the politeness in the whole sentence instead: past tenses, modal verbs, little words like \"just\" and \"slightly\". Leave them out and a perfectly correct sentence can sound like an order.",
+    "warmup": [
+        {"prompt": "You need a colleague's slides. Which sounds more natural in a British office?",
+         "options": [{"label": "\"Could you send me the slides when you get a chance?\"", "value": "right", "correct": True},
+                     {"label": "\"Please send me the slides.\"", "value": "wrong", "correct": False}]},
+        {"prompt": "Your British manager says your proposal is \"an interesting idea\". Most likely she means…",
+         "options": [{"label": "She has doubts and probably won't go ahead with it.", "value": "right", "correct": True},
+                     {"label": "She's excited and wants to discuss it further.", "value": "wrong", "correct": False}]},
+        {"prompt": "\"I was wondering if you could help me\" uses the past tense because…",
+         "options": [{"label": "it makes the request softer and less direct", "value": "right", "correct": True},
+                     {"label": "the wondering happened yesterday", "value": "wrong", "correct": False}]},
+    ],
+    "warmup_tip": "Politeness in English is mostly built from distance: past tense (\"I wanted to ask\"), modals (\"could\", \"would\", \"might\"), softeners (\"just\", \"a bit\", \"slightly\") and questions instead of statements. \"Please\" on its own doesn't turn an order into a request.",
+    "diagnostic": [
+        {"prompt": "You disagree with a colleague's figures in a meeting. You say…",
+         "options": [{"label": "\"I'm not sure those figures are quite right.\"", "value": "right", "correct": True},
+                     {"label": "\"Your figures are wrong.\"", "value": "wrong", "correct": False}]},
+        {"prompt": "Which request is softest?",
+         "options": [{"label": "\"Would you mind moving the meeting to Thursday?\"", "value": "right", "correct": True},
+                     {"label": "\"Move the meeting to Thursday, please.\"", "value": "wrong", "correct": False}]},
+        {"prompt": "A British client says: \"With the greatest respect, I think we need to look at this again.\" They are…",
+         "options": [{"label": "fairly annoyed and strongly disagreeing", "value": "right", "correct": True},
+                     {"label": "showing great respect for your work", "value": "wrong", "correct": False}]},
+        {"prompt": "\"It's not bad\" from a British colleague usually means…",
+         "options": [{"label": "it's quite good, maybe even good", "value": "right", "correct": True},
+                     {"label": "it's bad, but they're being kind", "value": "wrong", "correct": False}]},
+    ],
+    "widget": {
+        "heading": "Three kinds of softening",
+        "intro": "British politeness does three jobs: it <b>softens requests</b> so they don't sound like orders, it <b>softens disagreement</b> so people don't lose face, and it uses <b>understatement</b>, saying less than you mean, which listeners are expected to decode. Browse each, then try the quick check.",
+        "tabs": [{"key": "req", "label": "Softening requests"}, {"key": "dis", "label": "Softening disagreement"}, {"key": "under", "label": "Understatement"}, {"key": "quiz", "label": "Quick check"}],
+        "categories": {
+            "req": [
+                {"label": "\"I was wondering if you could take a look at this.\"", "example": "Past continuous + \"if\" = maximum distance. Good for asking a favour of someone senior or someone you don't know well."},
+                {"label": "\"Would you mind sending me the latest version?\"", "example": "\"Would you mind + -ing\" is polite and very common. The expected answer is \"Not at all\" or \"No problem\"."},
+                {"label": "\"Could you just check the dates for me?\"", "example": "\"Just\" makes the task sound small and quick, which makes it easier to say yes to."},
+                {"label": "\"Is there any chance you could get it to me by Friday?\"", "example": "Frames a deadline as a possibility, not a demand, while still making the deadline clear."},
+            ],
+            "dis": [
+                {"label": "\"I'm not sure that's quite right.\"", "example": "Means \"I think that's wrong.\" \"Not sure\" + \"quite\" gives the other person room to check without being embarrassed."},
+                {"label": "\"I see what you mean, but I wonder if…\"", "example": "Acknowledge first, then disagree. \"I wonder if\" turns your objection into a suggestion."},
+                {"label": "\"I'm not entirely convinced.\"", "example": "A polite but firm \"no\". \"Not entirely\" sounds gentle, yet everybody understands it as a real objection."},
+                {"label": "\"Wouldn't it be better to wait until the data's in?\"", "example": "A negative question presents your opinion as something the other person probably agrees with already."},
+            ],
+            "under": [
+                {"label": "\"That's an interesting idea.\"", "example": "Often means \"I don't think that will work.\" Watch the tone and whether any follow-up is suggested."},
+                {"label": "\"It's not bad at all.\"", "example": "Means \"It's good.\" British praise is often expressed through negatives."},
+                {"label": "\"There are just a few minor issues.\"", "example": "Can mean \"This needs serious work.\" In feedback, \"minor\" is sometimes not minor at all."},
+                {"label": "\"With the greatest respect…\"", "example": "Means \"I think you're wrong, and I'm getting irritated.\" The more respect is mentioned, the less there is."},
+            ],
+        },
+        "quiz_labels": {"req": "a softened request", "dis": "softened disagreement", "under": "understatement"},
+        "rules_html": '''
+          <div class="formula" style="border-left-color:var(--c-present)">✅ <b>Distance with tense:</b> "I wanted to ask…", "I was wondering if…", "I was hoping you could…". The past tense means "now", but it sounds less pushy.</div>
+          <div class="formula" style="border-left-color:var(--c-continuous)">✅ <b>Distance with modals and questions:</b> could / would / might, "Would you mind + -ing?", "Is there any chance…?", "Wouldn't it be better to…?"</div>
+          <div class="formula" style="border-left-color:var(--c-future);margin-bottom:20px">✅ <b>Softeners:</b> just, a bit, slightly, quite, perhaps, not entirely, I'm not sure. They shrink the size of the request or the criticism.</div>
+          <div class="warn-box">
+            <span>🎯</span>
+            <span style="flex:1;min-width:0"><b>The tricky part for Polish speakers:</b> translating directly from Polish produces sentences that are correct but sound like orders: "I want…", "Give me…", "You must…", "Send it to me, please." In Polish, <i>proszę</i> does the polite work. In English, "please" + an imperative is still an instruction.<br><br>
+            ❌ "Please send me the report today." (to a colleague) — sounds like a manager giving an order.<br>
+            ✅ "Could you send me the report today, if possible?"<br><br>
+            The opposite mistake exists too: stacking every softener ("I was just wondering if you could possibly perhaps…") sounds nervous or sarcastic. One or two softeners per sentence is enough.</span>
+          </div>
+          <div class="tip-box" style="margin-top:12px">🌍 <span style="flex:1;min-width:0"><b>Elsewhere:</b> Americans are usually more direct in requests but more enthusiastic in praise ("This is awesome!"), so British "not bad" can sound cold to them, and American "quite good" means <i>very</i> good, while British "quite good" means only fairly good. Dutch, German and Israeli colleagues are often more direct than the British and may find heavy softening confusing. In Japan and much of East Asia, disagreement is even more indirect than in the UK.</span></div>'''
+    },
+    "compare": {
+        "title": "Too blunt, too stiff, or just right?",
+        "instruction": "Hover over (or tap) each version to see how a British listener is likely to hear it.",
+        "items": [
+            {"key": "c1", "label": "Too blunt", "text": "Send me the report by Friday.", "explain": "An order. From a peer it sounds rude; even from a manager it sounds cold."},
+            {"key": "c2", "label": "Too stiff", "text": "Would you be so kind as to furnish me with the report at your earliest convenience?", "explain": "So formal it sounds sarcastic, and \"at your earliest convenience\" hides the actual deadline."},
+            {"key": "c3", "label": "Just right", "text": "Could you send me the report by Friday, if that works for you?", "explain": "A clear request with a clear deadline, softened with a modal and a small \"if\" clause.", "groupEnd": True},
+            {"key": "c4", "label": "Too blunt", "text": "That's wrong.", "explain": "Direct disagreement in front of others makes people defensive. In a British meeting it can feel like an attack."},
+            {"key": "c5", "label": "Too stiff", "text": "I must humbly and respectfully register my profound disagreement.", "explain": "So elaborate that it sounds either sarcastic or like a courtroom."},
+            {"key": "c6", "label": "Just right", "text": "I'm not sure that's quite right — could we look at the figures again?", "explain": "The disagreement is clear, but it's framed as uncertainty plus a practical next step, so nobody loses face."},
+        ]
+    },
+    "reading": {
+        "heading": "What They Say, What They Mean",
+        "passage_paragraphs": [
+            f'''Piotr had been in the Manchester office for three months when he realised he had been misunderstanding his manager all along. Whenever he suggested an idea, Claire would smile and say, {gram("g1","“That's an interesting idea, Piotr.”")} He went away pleased and started working on it. It took an {vocab("awkward","awkward")} conversation with a colleague to learn that, in Claire's mouth, \"interesting\" usually meant \"no\".''',
+            f'''Piotr's problem was the reverse of the one many British people have abroad. He came from a culture where being {vocab("candid","candid")} is a sign of respect: if you disagree, you say so, and nobody takes it personally. British professional culture relies far more on {vocab("understatement","understatement")}. Criticism arrives wrapped in softeners, like {gram("g2","“I'm not entirely convinced”")} or {gram("g3","“There are just a few minor points”")}, and the listener is expected to hear the real message underneath.''',
+            f'''The same system works in the other direction. When Piotr emailed Claire, \"I want to take Friday off,\" he meant nothing rude; it was simply a clear statement. To Claire, it sounded {vocab("blunt","blunt")}, almost like a demand. A more {vocab("tactful","tactful")} version would have been {gram("g4","“I was wondering if I could take Friday off?”")} The past tense and the question form do the polite work that \"proszę\" does in Polish.''',
+            f'''None of this means the British are dishonest. Understatement is a shared code, and it is full of {vocab("nuance","nuance")}: {gram("g5","“With the greatest respect”")} signals strong disagreement, while \"not bad at all\" is genuine praise. The skill is to be {vocab("diplomatic","diplomatic")} without being vague. Piotr's colleague summed it up: \"Say what you mean, but put a cushion around it. {gram("g6","“Could we look at the numbers again?”")} gets you further than \"Your numbers are wrong,\" even when the numbers are wrong.\" Once Piotr stopped taking every phrase literally, he stopped being {vocab("misread","misread")} too.''',
+        ],
+        "comprehension": [
+            {"prompt": "What did Piotr eventually learn about Claire's phrase \"That's an interesting idea\"?", "options": [
+                {"label": "It usually meant she wasn't going to accept the idea.", "value": "right", "correct": True},
+                {"label": "It meant she wanted him to develop the idea immediately.", "value": "wrong", "correct": False}]},
+            {"prompt": "Why did Piotr's email about Friday cause a problem?", "options": [
+                {"label": "\"I want…\" sounded like a demand to a British reader.", "value": "right", "correct": True},
+                {"label": "He asked for the wrong day off.", "value": "wrong", "correct": False}]},
+            {"prompt": "What is the main message of the final paragraph?", "options": [
+                {"label": "Be clear about what you mean, but soften how you say it.", "value": "right", "correct": True},
+                {"label": "Avoid disagreeing with British colleagues at all.", "value": "wrong", "correct": False}]},
+        ],
+        "vocab_data": {
+            "awkward": {"word": "awkward", "ipa": "/ˈɔː.kwəd/", "meaning": "causing embarrassment or discomfort", "example": "It was an awkward conversation, but a useful one."},
+            "candid": {"word": "candid", "ipa": "/ˈkæn.dɪd/", "meaning": "honest and direct, even when the truth is unwelcome", "example": "She gave me a candid opinion of my presentation."},
+            "understatement": {"word": "understatement", "ipa": "/ˈʌn.dəˌsteɪt.mənt/", "meaning": "saying that something is less important, serious or good than it really is", "example": "\"A bit of a problem\" was an understatement: the server was down for two days."},
+            "blunt": {"word": "blunt", "ipa": "/blʌnt/", "meaning": "saying what you think directly, without trying to be polite", "example": "His feedback was accurate but very blunt."},
+            "tactful": {"word": "tactful", "ipa": "/ˈtækt.fəl/", "meaning": "careful not to upset or embarrass people", "example": "There's no tactful way to tell him the project's cancelled."},
+            "nuance": {"word": "nuance", "ipa": "/ˈnjuː.ɑːns/", "meaning": "a very small difference in meaning, tone or feeling", "example": "Learners often miss the nuance in \"quite good\"."},
+            "diplomatic": {"word": "diplomatic", "ipa": "/ˌdɪp.ləˈmæt.ɪk/", "meaning": "able to deal with people politely and without causing bad feeling", "example": "She gave a diplomatic answer that didn't upset either side."},
+            "misread": {"word": "misread", "ipa": "/ˌmɪsˈriːd/", "meaning": "to understand someone or something wrongly", "example": "I completely misread the situation."},
+        },
+        "gram_explanations": {
+            "g1": "Classic British understatement. Said warmly with no follow-up question, \"interesting\" often means \"I'm not keen.\" If she'd said \"Interesting — can you put some numbers on it?\", that would be real interest.",
+            "g2": "A polite but firm objection. \"Not entirely\" sounds gentle, yet it's understood as \"I disagree.\"",
+            "g3": "\"Just\" and \"minor\" shrink the criticism. In feedback this can hide quite significant problems, so always ask which points matter most.",
+            "g4": "Past continuous + \"if\" + a question: three layers of distance that turn a demand into a request. Compare \"I want to take Friday off.\"",
+            "g5": "Formal respect language used as a warning. The speaker strongly disagrees and wants you to notice.",
+            "g6": "A disagreement turned into a shared next step (\"could we…\"). Nobody is accused, and the problem still gets fixed.",
+        },
+    },
+    "vocab_check": {
+        "match": [
+            {"prompt": "A \"tactful\" person is someone who…", "options": [{"label": "is careful not to upset or embarrass people", "value": "right", "correct": True}, {"label": "always says exactly what they think", "value": "wrong", "correct": False}, {"label": "is very good at planning", "value": "wrong2", "correct": False}]},
+            {"prompt": "\"Understatement\" means…", "options": [{"label": "presenting something as less serious or good than it is", "value": "right", "correct": True}, {"label": "a written summary of a meeting", "value": "wrong", "correct": False}, {"label": "exaggerating to make a point", "value": "wrong2", "correct": False}]},
+            {"prompt": "If feedback is \"blunt\", it is…", "options": [{"label": "direct, with no attempt to soften it", "value": "right", "correct": True}, {"label": "vague and hard to understand", "value": "wrong", "correct": False}, {"label": "very positive", "value": "wrong2", "correct": False}]},
+            {"prompt": "A \"nuance\" is…", "options": [{"label": "a small but important difference in meaning or tone", "value": "right", "correct": True}, {"label": "a rude remark", "value": "wrong", "correct": False}, {"label": "a new rule", "value": "wrong2", "correct": False}]},
+            {"prompt": "If you \"misread\" a situation, you…", "options": [{"label": "understand it wrongly", "value": "right", "correct": True}, {"label": "handle it perfectly", "value": "wrong", "correct": False}, {"label": "read about it too late", "value": "wrong2", "correct": False}]},
+        ],
+        "gapfill": [
+            {"before": "She's refreshingly", "after": ": she tells you exactly what she thinks of your work.", "answers": ["candid", "blunt"], "width": 110},
+            {"before": "A good manager stays", "after": "even when two team members are arguing.", "answers": ["diplomatic", "tactful"], "width": 120},
+            {"before": "\"A slight delay\" was an", "after": ": the launch was three months late.", "answers": ["understatement"], "width": 150},
+            {"before": "It was an", "after": "moment when she realised he'd been joking.", "answers": ["awkward"], "width": 100},
+        ],
+    },
+    "practice": {
+        "gapfill_focus": "softening phrases (one word per gap)",
+        "gapfill": [
+            {"before": "I was", "after": "if you could help me with the budget.", "answers": ["wondering"], "width": 110},
+            {"before": "Would you", "after": "sending me the latest version?", "answers": ["mind"], "width": 90},
+            {"before": "I'm not", "after": "convinced this is the right approach.", "answers": ["entirely", "totally", "completely"], "width": 100},
+            {"before": "Could you", "after": "check these dates for me?", "answers": ["just", "quickly"], "width": 90},
+            {"before": "Is there any", "after": "you could get it to me by Friday?", "answers": ["chance", "way"], "width": 100},
+            {"before": "I see what you", "after": ", but I wonder if we should wait.", "answers": ["mean"], "width": 90},
+        ],
+        "second": {
+            "type": "errorspot", "title": "Spot the faux pas",
+            "instruction": "Each sentence is grammatically correct but too direct for a British workplace. Tap the word that makes it sound rude.",
+            "items": [
+                {"words": ["You", "must", "send", "me", "the", "figures", "today."], "error_indices": [1], "explanation": "\"Must\" sounds like an order from above. Try \"Could you send me the figures today, if possible?\""},
+                {"words": ["I", "want", "a", "copy", "of", "the", "slides."], "error_indices": [1], "explanation": "\"I want\" sounds demanding. \"Could I get a copy of the slides?\" or \"Would you mind sharing the slides?\" is the natural request."},
+                {"words": ["Honestly,", "your", "plan", "is", "wrong."], "error_indices": [4], "explanation": "A flat verdict on someone's work causes loss of face. \"I'm not sure the plan quite works — can we talk it through?\""},
+            ],
+        },
+        "builders": [
+            {"words": ["Would", "you", "mind", "sending", "me", "the", "figures?"]},
+            {"words": ["I", "was", "wondering", "if", "you", "could", "help."]},
+            {"words": ["I'm", "not", "sure", "that's", "quite", "right."]},
+        ],
+    },
+    "speaking": {
+        "solo_text": "Take three direct sentences you might say at work (e.g. \"Send me the file.\", \"That's wrong.\", \"I want Friday off.\") and say a softened British version of each. Then explain which technique you used each time: past tense, a modal, a softener or a question.",
+        "group_questions": [
+            "Is your first language more direct or more indirect than British English? Give an example of a phrase that doesn't translate well.",
+            "Have you ever misread someone's politeness (or had your directness misread)? What happened?",
+            "Role-play: one person asks for something difficult (a deadline extension, a day off). The other says no using only understatement. Can the group decode the real answer?",
+        ],
+    },
+    "listening": {
+        "intro": "Tomasz shows Anna an email he's about to send to their manager, Claire.",
+        "dialogue": [
+            {"speaker": "Tomasz", "line": "Can you look at this before I send it? \"Claire, I want to take Friday off. Please confirm.\""},
+            {"speaker": "Anna", "line": "Hmm. It's clear, I'll give you that. But she'll read it as an order."},
+            {"speaker": "Tomasz", "line": "Really? I said please."},
+            {"speaker": "Anna", "line": "Please doesn't do much on its own. Try \"I was wondering if I could take Friday off — would that be OK?\""},
+            {"speaker": "Tomasz", "line": "That's so much longer to say the same thing."},
+            {"speaker": "Anna", "line": "It isn't the same thing, though. Yours tells her. Mine asks her. By the way, what did she say about your dashboard idea?"},
+            {"speaker": "Tomasz", "line": "She said it was an interesting idea. So I've started building it."},
+            {"speaker": "Anna", "line": "Ah. I might hold off on that until she mentions it again."},
+        ],
+        "comprehension": [
+            {"prompt": "What's wrong with Tomasz's original email, according to Anna?", "options": [{"label": "It sounds like he's telling Claire rather than asking her.", "value": "right", "correct": True}, {"label": "It doesn't say which Friday he means.", "value": "wrong", "correct": False}]},
+            {"prompt": "What does Anna say about the word \"please\"?", "options": [{"label": "On its own it doesn't make a sentence polite.", "value": "right", "correct": True}, {"label": "It should always go at the start of a request.", "value": "wrong", "correct": False}]},
+            {"prompt": "Why does Anna suggest waiting before building the dashboard?", "options": [{"label": "\"Interesting idea\" probably didn't mean yes.", "value": "right", "correct": True}, {"label": "Claire said the budget isn't ready yet.", "value": "wrong", "correct": False}]},
+        ],
+    },
+    "exit": [
+        {"prompt": "The most natural way to ask a colleague for help is…", "options": [{"label": "\"Could you give me a hand with this?\"", "value": "right", "correct": True}, {"label": "\"Help me with this, please.\"", "value": "wrong", "correct": False}]},
+        {"prompt": "\"I'm not entirely convinced\" means…", "options": [{"label": "I disagree, politely.", "value": "right", "correct": True}, {"label": "I agree, but I need more time.", "value": "wrong", "correct": False}]},
+        {"prompt": "\"With the greatest respect…\" usually signals…", "options": [{"label": "strong disagreement", "value": "right", "correct": True}, {"label": "admiration", "value": "wrong", "correct": False}]},
+        {"prompt": "Which is a softened disagreement?", "options": [{"label": "\"I see what you mean, but I wonder if…\"", "value": "right", "correct": True}, {"label": "\"No, that's not true.\"", "value": "wrong", "correct": False}]},
+        {"prompt": "A British colleague calls your report \"not bad at all\". That's…", "options": [{"label": "a genuine compliment", "value": "right", "correct": True}, {"label": "a polite complaint", "value": "wrong", "correct": False}]},
+    ],
+})

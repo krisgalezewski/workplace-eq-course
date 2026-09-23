@@ -52,7 +52,7 @@
 <script src="shared/course-engine.js"></script>
 <script>
 
-const LESSONS = [{"id": "weq-lesson-01-first-impressions", "title": "Lesson 1 — First Impressions & Small Talk", "isTest": false}];
+const LESSONS = [{"id": "weq-lesson-01-first-impressions", "title": "Lesson 1 — First Impressions & Small Talk", "isTest": false}, {"id": "weq-lesson-02-politeness-register", "title": "Lesson 2 — Politeness & Register", "isTest": false}, {"id": "weq-lesson-03-emails-messaging", "title": "Lesson 3 — Emails & Messaging", "isTest": false}, {"id": "weq-lesson-04-meetings-calls", "title": "Lesson 4 — Meetings & Calls", "isTest": false}, {"id": "weq-lesson-05-difficult-conversations", "title": "Lesson 5 — Difficult Conversations", "isTest": false}, {"id": "weq-lesson-06-visibility-self-advocacy", "title": "Lesson 6 — Visibility & Self-Advocacy", "isTest": false}, {"id": "weq-lesson-07-capstone-week-in-london", "title": "Lesson 7 — Capstone: A Week in London", "isTest": false}, {"id": "weq-test-01", "title": "Final Test: Workplace EQ", "isTest": true}];
 let currentLessonId = LESSONS[0].id;
 function currentLessonTitle(){
   return LESSONS.find(l => l.id === currentLessonId)?.title || currentLessonId;

@@ -98,7 +98,7 @@ def render_test(d):
   </section>'''
 
     total_items = len(part1["items"]) + (len(d["part2"]["items"]) if d.get("part2") else 0)
-    section_num = 2 if d.get("part2") else 2
+    section_num = 3 if d.get("part2") else 2
 
     summary_html = f'''
   <section class="section" id="sec-wrapup">

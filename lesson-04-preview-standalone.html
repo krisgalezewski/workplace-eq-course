@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Teacher Dashboard | Workplace EQ</title>
+<title>Meetings & Calls | Workplace EQ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -532,9 +532,7 @@ table.reveal-table td.section-id{font-family:var(--font-mono);font-size:11.5px;c
 }
 
 </style>
-<style>
-  .shell{max-width:920px}
-</style>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script>
 /* ============================================================
@@ -553,39 +551,370 @@ window.SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXB
 
 </script>
 </head>
-<body>
+<body class="theme-communication">
 
 <div class="course-attribution">Workplace EQ · English Voiced with Kris</div>
 <div class="shell">
   <header class="lesson-header">
-    <div class="lesson-eyebrow">👩‍🏫 Teacher view</div>
-    <h1 class="lesson-title" id="dash-title">Teacher Dashboard</h1>
-    <p class="lesson-sub" id="dash-sub">Loading…</p>
-    <select id="lesson-select" style="margin-top:10px;border:1px solid var(--border-strong);border-radius:var(--radius-pill);padding:8px 16px;font-family:inherit;font-size:13.5px;background:var(--surface);display:none"></select>
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+      <div class="lesson-eyebrow">Lesson 4 of 7 · Communication That Lands</div>
+      <div style="display:flex;gap:8px">
+      <a id="all-lessons-link" href="index-standalone.html" class="pill" style="text-decoration:none;font-size:12.5px;border-radius:var(--radius-sm)">📚 All Lessons</a>
+      <a id="glossary-link" href="glossary-standalone.html" class="pill" style="text-decoration:none;font-size:12.5px;border-radius:var(--radius-sm)">📖 My Glossary</a>
+    </div>
+    </div>
+    <h1 class="lesson-title">Meetings & Calls</h1>
+    <p class="lesson-sub">Getting a word in, disagreeing without damage, keeping things on track — in the room and on video.</p>
+    <div class="pb-track" style="margin-top:16px"><div class="pb-fill" id="overall-progress" style="width:0%"></div></div>
+    <div id="sync-status" style="font-size:11.5px;color:var(--text-tertiary);margin-top:8px"></div>
   </header>
 
-  <div id="join-prompt" class="join-prompt" style="display:none">
-    <p style="margin-bottom:14px;color:var(--text-secondary)">Which group's session do you want to open?</p>
-    <input id="join-input" type="text" placeholder="e.g. tues6pm-x7k2p9" style="border:1px solid var(--border-strong);border-radius:8px;padding:9px 14px;font-family:inherit;width:240px;text-align:center">
-    <br><button class="btn btn-primary" id="join-btn" style="margin-top:12px">Open dashboard</button>
-  </div>
+  <section class="section" id="sec-warmup">
+    <div class="section-label"><span class="num">1</span> Warm-up</div>
+    <div class="card">
+      <p style="margin-bottom:14px;font-size:14.5px;color:var(--text-secondary)">In British meetings, what you say matters, but so does how you get the floor and how you disagree. People who are silent can seem uninterested, and people who interrupt bluntly can seem aggressive. The space in between is a set of fairly simple phrases.</p>
+      
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">1. You want to add a point while a colleague is still speaking. You say…</p>
+        <div id="warm-q1">
+          <button class="opt" data-value="right">"Sorry to jump in — can I just add something?"</button><button class="opt" data-value="wrong">"Stop, I want to say something."</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">2. At the end of a meeting, someone says "Let's take that away and think about it." This often means…</p>
+        <div id="warm-q2">
+          <button class="opt" data-value="right">No decision today, and possibly not ever</button><button class="opt" data-value="wrong">The idea has been approved</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">3. On a video call, the host has been talking for 10 seconds without sound. You say…</p>
+        <div id="warm-q3">
+          <button class="opt" data-value="right">"Sorry, Mark — I think you're on mute."</button><button class="opt" data-value="wrong">Nothing. It would be rude to interrupt.</button>
+        </div>
+      </div>
+      <div class="tip-box">💡 <span style="flex:1;min-width:0">Apologise briefly to get the floor ("Sorry to jump in"), acknowledge before disagreeing ("I take your point, but…"), and use "we" to steer ("Shall we come back to that?"). Silence in a British meeting is rarely read as agreement; it's more often read as having nothing to say.</span></div>
+    </div>
+  </section>
 
-  <div id="dash-body" style="display:none">
-    <section class="section">
-      <div class="section-label"><span class="num">1</span> Roster &amp; live progress</div>
-      <div class="roster" id="roster"></div>
-    </section>
+  <section class="section" id="sec-diagnostic">
+    <div class="section-label"><span class="num">2</span> Quick check — before we explain anything</div>
+    <div class="card">
+      <p style="margin-bottom:16px;font-size:14.5px;color:var(--text-secondary)">Four quick questions. This isn't graded harshly — it just shows us where to focus.</p>
+      
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px;font-weight:550">1. You disagree with your manager's plan in a meeting. The best way in is…</p>
+        <div id="diag-q1">
+          <button class="opt" data-value="right">"I take your point, but I'm a bit worried about the timeline."</button><button class="opt" data-value="wrong">"This plan won't work."</button>
+        </div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px;font-weight:550">2. The discussion has drifted off topic. As chair, you say…</p>
+        <div id="diag-q2">
+          <button class="opt" data-value="right">"Good point — shall we park that and come back to it at the end?"</button><button class="opt" data-value="wrong">"That's not relevant. Next."</button>
+        </div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px;font-weight:550">3. Someone interrupts you before you've finished. You say…</p>
+        <div id="diag-q3">
+          <button class="opt" data-value="right">"If I could just finish the point…"</button><button class="opt" data-value="wrong">"Don't interrupt me."</button>
+        </div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px;font-weight:550">4. A quiet colleague hasn't said anything. To include her, you say…</p>
+        <div id="diag-q4">
+          <button class="opt" data-value="right">"Ola, you worked on this last year — what's your take?"</button><button class="opt" data-value="wrong">"Ola, why aren't you saying anything?"</button>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section class="section">
-      <div class="section-label"><span class="num">2</span> Reveal panel — click any answer to override it live</div>
-      <div id="reveal-root"></div>
-    </section>
+  <section class="section" id="sec-concept">
+    <div class="section-label"><span class="num">3</span> The concept</div>
 
-    <section class="section">
-      <div class="section-label"><span class="num">3</span> Speaking tasks</div>
-      <div id="oral-root"></div>
-    </section>
-  </div>
+    <div class="card">
+      <h3 style="margin-bottom:10px">Three meeting skills</h3>
+      <p style="font-size:14.5px;line-height:1.7;margin-bottom:14px">Three skills make you effective in a meeting: <b>getting the floor</b> (and keeping it), <b>disagreeing diplomatically</b>, and <b>keeping things on track</b>, which isn't only the chair's job. Browse each, then try the quick check.</p>
+      <div class="mode-toggle mode-toggle-outline" style="flex-wrap:wrap;gap:8px">
+        <button class="pill on" id="mode-w-floor">Getting the floor</button><button class="pill" id="mode-w-dis">Disagreeing</button><button class="pill" id="mode-w-track">Keeping on track</button><button class="pill" id="mode-w-quiz">Quick check</button>
+      </div>
+      <div id="widget-area" style="margin-top:14px;padding:18px;border-radius:var(--radius-md);background:var(--surface-alt);border:1px solid var(--border)"></div>
+      <p id="widget-hint" style="font-size:12.5px;color:var(--text-tertiary);margin-top:8px">— Click either cell to see another example.</p>
+
+      <button class="pill" id="rules-toggle" style="margin-top:16px">📖 Show the full rules</button>
+      <div class="expand-content" id="rules-content">
+        <div style="margin-top:16px">
+          
+          <div class="formula" style="border-left-color:var(--c-present)">✅ <b>Get the floor:</b> short apology + "just" + your point. "Sorry to jump in — just a quick one on the budget." Then keep it short.</div>
+          <div class="formula" style="border-left-color:var(--c-continuous)">✅ <b>Disagree:</b> acknowledge → concern → suggestion. "I take your point. I'm a bit worried about the timeline. Could we look at a phased launch?"</div>
+          <div class="formula" style="border-left-color:var(--c-future);margin-bottom:20px">✅ <b>Keep on track:</b> park it, be conscious of time, recap, and name an owner. Use "we" and "shall we" so steering sounds shared.</div>
+          <div class="warn-box">
+            <span>🎯</span>
+            <span style="flex:1;min-width:0"><b>The tricky part for Polish speakers:</b> two opposite risks.<br><br>
+            <b>Too direct:</b> "No, it's not true" / "You are wrong" (<i>To nieprawda</i>) sounds hostile in a British meeting. → "I'm not sure that's quite the case."<br>
+            <b>Too quiet:</b> waiting to be asked, or waiting until you've formed a perfect sentence. British meetings reward people who come in early with a short point. "Can I just add something?" is enough to start.<br><br>
+            Also decode the British "maybe": "Let's take that away", "We'll bear that in mind" and "That's worth thinking about" often mean no decision, or no.</span>
+          </div>
+          <div class="tip-box" style="margin-top:12px">🌍 <span style="flex:1;min-width:0"><b>Elsewhere:</b> in American meetings people often interrupt more freely and speak more confidently about half-formed ideas. In Japan, Finland and parts of Asia, silence and pauses are comfortable and interrupting is rare. Dutch and Israeli colleagues may disagree very directly and see it as honesty. <b>On video:</b> camera on for external calls unless told otherwise; mute when not speaking; say "You're on mute" early and kindly; use the chat or a raised hand to get the floor in big calls.</span></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h3 style="margin-bottom:6px">Too blunt, too stiff, or just right?</h3>
+      <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:14px">Hover over (or tap) each version to see how it lands in a British meeting.</p>
+      <div id="compare-card" style="font-size:14.5px;line-height:1.9"></div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-reading">
+    <div class="section-label"><span class="num">4</span> Reading — Why Nobody Heard Ola</div>
+    <div class="card">
+      <button class="pill" id="gram-toggle">🔍 Show key phrases in this text</button>
+      <div class="passage" id="passage" style="margin-top:14px"><p>Ola was the best analyst on her team in Leeds, and almost nobody in senior management knew it. In the weekly meeting she waited politely for a gap in the conversation, but in a room full of fluent speakers the gap never came. By the time she had put her point into a perfect sentence, the discussion had moved on. Her manager assumed she had nothing to add, and her silence was read as a lack of <span class="vocab" data-word="initiative">initiative</span>.</p><p>A mentor gave her two phrases. The first was <span class="gram" data-gram="g1">“Sorry to jump in — can I just add something?”</span> It felt rude at first, but nobody in the room even noticed. In British meetings a short apology is the normal price of entry. The second was <span class="gram" data-gram="g2">“Building on what Sam said…”</span>, which let her join a discussion by connecting to someone else's idea, so her contribution sounded <span class="vocab" data-word="collaborative">collaborative</span> rather than competitive.</p><p>Disagreeing was harder. Ola's instinct was either to stay silent or to say what she really thought: "That won't work." Her mentor suggested a three-step pattern: acknowledge, raise a concern, offer an alternative. <span class="gram" data-gram="g3">“I take your point, but I'm a bit worried about the timeline”</span> turned a <span class="vocab" data-word="confrontation">confrontation</span> into a problem the whole group could solve. Within a month, two of her suggestions had been adopted.</p><p>She also learnt to <span class="vocab" data-word="read the room">read the room</span>. When the director said <span class="gram" data-gram="g4">“Let's take that away and think about it”</span>, it usually meant the idea would quietly <span class="vocab" data-word="stall">stall</span>. And when discussions began to <span class="vocab" data-word="drift">drift</span>, the person who said <span class="gram" data-gram="g5">“Shall we park that and come back to it at the end?”</span> was usually the one people saw as a future leader. A year later, Ola was chairing the meeting herself. Her final <span class="vocab" data-word="recap">recap</span> at the end of each one, <span class="gram" data-gram="g6">“So, just to recap…”</span>, became the part everyone waited for.</p></div>
+      <p style="font-size:12.5px;color:var(--text-tertiary);margin-top:10px">Tap a highlighted word for pronunciation, meaning and an example. With key phrases on, tap a highlighted phrase to see why it works (and what a less skilful speaker might have said).</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-bottom:12px">Did you follow it? Quick comprehension check</h3>
+      
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">1. Why was Ola's silence a problem?</p>
+        <div id="comp-q1">
+          <button class="opt" data-value="right">Her manager thought she had nothing to contribute.</button><button class="opt" data-value="wrong">It made the meetings too long.</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">2. What three-step pattern did her mentor suggest for disagreeing?</p>
+        <div id="comp-q2">
+          <button class="opt" data-value="right">Acknowledge, raise a concern, offer an alternative.</button><button class="opt" data-value="wrong">Wait, write it down, email it later.</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">3. What did "Let's take that away and think about it" usually mean?</p>
+        <div id="comp-q3">
+          <button class="opt" data-value="right">The idea would probably not go any further.</button><button class="opt" data-value="wrong">The idea was approved and would start soon.</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-vocab">
+    <div class="section-label"><span class="num">5</span> Vocabulary check</div>
+    <div class="card">
+      <p style="font-size:14.5px;margin-bottom:16px">The key words from the text — mixed formats.</p>
+      <h4 style="font-size:13px;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary);margin-bottom:12px">Match the meaning</h4>
+      
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">1. If a project "stalls", it…</p>
+        <div id="vocab-q1">
+          <button class="opt" data-value="right">stops making progress</button><button class="opt" data-value="wrong">is finished early</button><button class="opt" data-value="wrong2">gets more funding</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">2. A "recap" is…</p>
+        <div id="vocab-q2">
+          <button class="opt" data-value="right">a short summary of the main points</button><button class="opt" data-value="wrong">a second meeting</button><button class="opt" data-value="wrong2">a formal apology</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">3. To "read the room" means to…</p>
+        <div id="vocab-q3">
+          <button class="opt" data-value="right">understand the mood of the people around you</button><button class="opt" data-value="wrong">read the meeting agenda aloud</button><button class="opt" data-value="wrong2">book a meeting room</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">4. "Initiative" is…</p>
+        <div id="vocab-q4">
+          <button class="opt" data-value="right">the ability to act without being told</button><button class="opt" data-value="wrong">a meeting at the start of a project</button><button class="opt" data-value="wrong2">a type of disagreement</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">5. A "confrontation" is…</p>
+        <div id="vocab-q5">
+          <button class="opt" data-value="right">an angry disagreement</button><button class="opt" data-value="wrong">a friendly discussion</button><button class="opt" data-value="wrong2">a confirmation email</button>
+        </div>
+      </div>
+      <h4 style="font-size:13px;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary);margin-bottom:12px;padding-top:6px;border-top:1px solid var(--border)">Complete the sentence — vocabulary focus</h4>
+      
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px">1. The conversation began to <input type="text" id="vgap1-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:90px"> towards holiday plans.</p>
+        <button class="btn btn-sm" id="vgap1-check">Check</button>
+        <div id="vgap1-fb"></div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px">2. It was a genuinely <input type="text" id="vgap2-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:140px"> effort — everyone contributed.</p>
+        <button class="btn btn-sm" id="vgap2-check">Check</button>
+        <div id="vgap2-fb"></div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px">3. He hates <input type="text" id="vgap3-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:140px"> , so he agrees with everyone.</p>
+        <button class="btn btn-sm" id="vgap3-check">Check</button>
+        <div id="vgap3-fb"></div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px">4. Could you give us a quick <input type="text" id="vgap4-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:100px"> of what we decided?</p>
+        <button class="btn btn-sm" id="vgap4-check">Check</button>
+        <div id="vgap4-fb"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-practice">
+    <div class="section-label"><span class="num">6</span> Practice</div>
+    <div class="card">
+      <h3 style="margin-bottom:2px">Gap-fill</h3>
+      <p style="font-size:12.5px;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary);margin-bottom:16px">Language focus — meeting phrases (one word per gap)</p>
+      
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px">1. Sorry to <input type="text" id="gap1-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:90px"> in, but can I add something?</p>
+        <button class="btn btn-sm" id="gap1-check">Check</button>
+        <div id="gap1-fb"></div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px">2. I take your <input type="text" id="gap2-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:90px"> , but I'm worried about the cost.</p>
+        <button class="btn btn-sm" id="gap2-check">Check</button>
+        <div id="gap2-fb"></div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px">3. Shall we <input type="text" id="gap3-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:90px"> that and come back to it later?</p>
+        <button class="btn btn-sm" id="gap3-check">Check</button>
+        <div id="gap3-fb"></div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px">4. Just <input type="text" id="gap4-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:110px"> of time — shall we move on?</p>
+        <button class="btn btn-sm" id="gap4-check">Check</button>
+        <div id="gap4-fb"></div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px">5. If I could just <input type="text" id="gap5-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:90px"> the point…</p>
+        <button class="btn btn-sm" id="gap5-check">Check</button>
+        <div id="gap5-fb"></div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px">6. So, just to <input type="text" id="gap6-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:100px"> : Anna owns the budget, and we meet again on Friday.</p>
+        <button class="btn btn-sm" id="gap6-check">Check</button>
+        <div id="gap6-fb"></div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h3 style="margin-bottom:6px">Spot the faux pas</h3>
+      <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:16px">Each line would sound wrong in a British meeting. Tap the word that causes the problem.</p>
+      
+      <div style="margin-bottom:8px;font-size:12px;font-weight:650;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary)">Sentence 1</div>
+      <div id="err1" style="font-size:15px;line-height:1.9;margin-bottom:20px"></div>
+      <div style="margin-bottom:8px;font-size:12px;font-weight:650;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary);padding-top:16px;border-top:1px solid var(--border)">Sentence 2</div>
+      <div id="err2" style="font-size:15px;line-height:1.9;margin-bottom:20px"></div>
+      <div style="margin-bottom:8px;font-size:12px;font-weight:650;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary);padding-top:16px;border-top:1px solid var(--border)">Sentence 3</div>
+      <div id="err3" style="font-size:15px;line-height:1.9;margin-bottom:20px"></div>
+    </div>
+    <div class="card">
+      <h3 style="margin-bottom:6px">Sentence builder</h3>
+      <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:14px">Tap the chips in the right order. Three rounds.</p>
+      <div id="builders"></div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-speaking">
+    <div class="section-label"><span class="num">7</span> Speaking task</div>
+    <div class="mode-toggle">
+      <button class="pill on" id="mode-solo">👤 Solo</button>
+      <button class="pill" id="mode-group">👥 Group (2–4)</button>
+    </div>
+    <div class="task-card" id="speak-solo">
+      <div class="kicker">60-second task</div>
+      <p style="font-size:14.5px;line-height:1.7">Imagine your manager proposes moving a big launch forward by a month. In 60 seconds, disagree diplomatically: acknowledge the idea, raise one or two concerns, and suggest an alternative. Then close with a short recap sentence.</p>
+      <button class="btn btn-sm" id="solo-done-btn" style="margin-top:14px">✓ I've done this</button>
+    </div>
+    <div class="task-card" id="speak-group" style="display:none">
+      <div class="kicker">Discussion — pick 1–2 questions to answer out loud</div>
+      <p style="font-size:14.5px;line-height:1.7;margin-bottom:12px">Tap the question(s) you'll answer. Your teacher will see your pick and mark it after you speak.</p>
+      <div id="discuss-questions" style="display:flex;flex-direction:column;gap:8px"></div>
+      <p id="discuss-limit-msg" style="font-size:12.5px;color:var(--text-tertiary);margin-top:10px">You can select up to 2 questions.</p>
+    </div>
+  </section>
+
+  <section class="section" id="sec-listening">
+    <div class="section-label"><span class="num">8</span> Listening</div>
+    <div class="card">
+      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:12px">After a project meeting, Anna gives Tomasz some feedback on how it went.</p>
+      <audio id="dialogue-audio" preload="none" style="display:none"></audio>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-primary" id="play-dialogue">▶ Play dialogue</button>
+        <button class="btn btn-ghost btn-sm" id="stop-dialogue">⏹ Stop</button>
+        <button class="btn btn-ghost btn-sm" id="show-transcript">Show full transcript</button>
+      </div>
+      <div id="transcript"></div>
+      
+      <div style="margin-top:16px">
+        <p style="margin-bottom:8px;font-weight:550">1. Why didn't Tomasz speak in the meeting?</p>
+        <div id="listen-q1">
+          <button class="opt" data-value="right">He was waiting for a pause that never came.</button><button class="opt" data-value="wrong">He didn't have an opinion on the timeline.</button>
+        </div>
+      </div>
+      <div style="margin-top:16px">
+        <p style="margin-bottom:8px;font-weight:550">2. What does Anna suggest instead of "That's not realistic"?</p>
+        <div id="listen-q2">
+          <button class="opt" data-value="right">"I take your point, but I'm a bit worried about the testing time."</button><button class="opt" data-value="wrong">Saying nothing and emailing Mark later.</button>
+        </div>
+      </div>
+      <div style="margin-top:16px">
+        <p style="margin-bottom:8px;font-weight:550">3. What does Anna advise about "let's take that away"?</p>
+        <div id="listen-q3">
+          <button class="opt" data-value="right">Follow up and suggest a date to revisit it.</button><button class="opt" data-value="wrong">Assume the idea has been approved.</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-wrapup">
+    <div class="section-label"><span class="num">9</span> Wrap-up — exit check</div>
+    <div class="card">
+      
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">1. The politest way to interrupt is…</p>
+        <div id="exit-q1">
+          <button class="opt" data-value="right">"Sorry to jump in — can I just add something?"</button><button class="opt" data-value="wrong">"Wait, listen to me."</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">2. "Shall we park that?" means…</p>
+        <div id="exit-q2">
+          <button class="opt" data-value="right">Let's discuss it later.</button><button class="opt" data-value="wrong">Let's go outside.</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">3. Which is a diplomatic disagreement?</p>
+        <div id="exit-q3">
+          <button class="opt" data-value="right">"I see it slightly differently."</button><button class="opt" data-value="wrong">"You're wrong about this."</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">4. "Just conscious of time" signals that…</p>
+        <div id="exit-q4">
+          <button class="opt" data-value="right">the meeting is running late</button><button class="opt" data-value="wrong">someone has arrived late</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">5. On a video call, someone has been talking on mute. You…</p>
+        <div id="exit-q5">
+          <button class="opt" data-value="right">tell them kindly and quickly</button><button class="opt" data-value="wrong">wait until they notice</button>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="summary-card">
+      <h3 style="margin-bottom:14px">Your lesson summary</h3>
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px" id="summary-ring-row">
+        <div id="score-ring-holder"></div>
+        <div>
+          <div style="font-weight:600" id="summary-name">—</div>
+          <div style="font-size:13px;margin-top:4px" id="summary-completion"></div>
+          <div style="font-size:13px;color:var(--text-secondary);margin-top:4px" id="summary-weak">Finish the lesson to see your results.</div>
+        </div>
+      </div>
+      <button class="btn btn-primary" id="finish-btn">Finish lesson &amp; see results</button>
+      <button class="btn" id="export-btn" style="margin-left:8px;display:none">⬇ Export PDF report</button>
+    </div>
+  </section>
 </div>
 
 <script>
@@ -2192,296 +2521,95 @@ const Course = (() => {
 </script>
 <script>
 
-const LESSONS = [{"id": "weq-lesson-01-first-impressions", "title": "Lesson 1 — First Impressions & Small Talk", "isTest": false}, {"id": "weq-lesson-02-politeness-register", "title": "Lesson 2 — Politeness & Register", "isTest": false}, {"id": "weq-lesson-03-emails-messaging", "title": "Lesson 3 — Emails & Messaging", "isTest": false}, {"id": "weq-lesson-04-meetings-calls", "title": "Lesson 4 — Meetings & Calls", "isTest": false}, {"id": "weq-lesson-05-difficult-conversations", "title": "Lesson 5 — Difficult Conversations", "isTest": false}, {"id": "weq-lesson-06-visibility-self-advocacy", "title": "Lesson 6 — Visibility & Self-Advocacy", "isTest": false}, {"id": "weq-lesson-07-capstone-week-in-london", "title": "Lesson 7 — Capstone: A Week in London", "isTest": false}, {"id": "weq-test-01", "title": "Final Test: Workplace EQ", "isTest": true}];
-let currentLessonId = LESSONS[0].id;
-function currentLessonTitle(){
-  return LESSONS.find(l => l.id === currentLessonId)?.title || currentLessonId;
-}
+const LESSON_ID = "weq-lesson-04-meetings-calls";
+Course.initPageChrome({lessonId: LESSON_ID});
 
-// Human-readable labels + display order for known sections. Anything not
-// listed here still shows up (grouped under "Other"), just unordered --
-// so this dashboard never silently hides a new exercise added later.
-const SECTION_LABELS = {"warmup-1": "Warm-up 1", "warmup-2": "Warm-up 2", "warmup-3": "Warm-up 3", "diagnostic-1": "Diagnostic 1", "diagnostic-2": "Diagnostic 2", "diagnostic-3": "Diagnostic 3", "diagnostic-4": "Diagnostic 4", "reading-comp-1": "Comprehension 1", "reading-comp-2": "Comprehension 2", "reading-comp-3": "Comprehension 3", "reading-comp-4": "Comprehension 4", "vocab-1": "Vocab 1", "vocab-2": "Vocab 2", "vocab-3": "Vocab 3", "vocab-4": "Vocab 4", "vocab-5": "Vocab 5", "vocab-gap-1": "Vocab gap-fill 1", "vocab-gap-2": "Vocab gap-fill 2", "vocab-gap-3": "Vocab gap-fill 3", "vocab-gap-4": "Vocab gap-fill 4", "vocab-gap-5": "Vocab gap-fill 5", "practice-gap-1": "Gap-fill 1", "practice-gap-2": "Gap-fill 2", "practice-gap-3": "Gap-fill 3", "practice-gap-4": "Gap-fill 4", "practice-gap-5": "Gap-fill 5", "practice-gap-6": "Gap-fill 6", "practice-gap-7": "Gap-fill 7", "practice-err-1": "Sentence pair 1", "practice-err-2": "Sentence pair 2", "practice-err-3": "Sentence pair 3", "practice-err-4": "Sentence pair 4", "practice-err-5": "Sentence pair 5", "practice-err-6": "Sentence pair 6", "practice-err-7": "Sentence pair 7", "practice-cat-1": "Categorise 1", "practice-cat-2": "Categorise 2", "practice-cat-3": "Categorise 3", "practice-cat-4": "Categorise 4", "practice-cat-5": "Categorise 5", "practice-cat-6": "Categorise 6", "practice-cat-7": "Categorise 7", "practice-cat-8": "Categorise 8", "practice-cat-9": "Categorise 9", "practice-cat-10": "Categorise 10", "practice-cat-11": "Categorise 11", "practice-builder-1": "Sentence builder 1", "practice-builder-2": "Sentence builder 2", "practice-builder-3": "Sentence builder 3", "listening-1": "Listening 1", "listening-2": "Listening 2", "listening-3": "Listening 3", "exit-1": "Exit check 1", "exit-2": "Exit check 2", "exit-3": "Exit check 3", "exit-4": "Exit check 4", "exit-5": "Exit check 5", "p1-1": "Part 1, Q1", "p1-gap-1": "Part 1, Q1", "p2-1": "Part 2, Q1", "p2-gap-1": "Part 2, Q1", "p1-2": "Part 1, Q2", "p1-gap-2": "Part 1, Q2", "p2-2": "Part 2, Q2", "p2-gap-2": "Part 2, Q2", "p1-3": "Part 1, Q3", "p1-gap-3": "Part 1, Q3", "p2-3": "Part 2, Q3", "p2-gap-3": "Part 2, Q3", "p1-4": "Part 1, Q4", "p1-gap-4": "Part 1, Q4", "p2-4": "Part 2, Q4", "p2-gap-4": "Part 2, Q4", "p1-5": "Part 1, Q5", "p1-gap-5": "Part 1, Q5", "p2-5": "Part 2, Q5", "p2-gap-5": "Part 2, Q5", "p1-6": "Part 1, Q6", "p1-gap-6": "Part 1, Q6", "p2-6": "Part 2, Q6", "p2-gap-6": "Part 2, Q6", "p1-7": "Part 1, Q7", "p1-gap-7": "Part 1, Q7", "p2-7": "Part 2, Q7", "p2-gap-7": "Part 2, Q7", "p1-8": "Part 1, Q8", "p1-gap-8": "Part 1, Q8", "p2-8": "Part 2, Q8", "p2-gap-8": "Part 2, Q8", "p1-9": "Part 1, Q9", "p1-gap-9": "Part 1, Q9", "p2-9": "Part 2, Q9", "p2-gap-9": "Part 2, Q9", "p1-10": "Part 1, Q10", "p1-gap-10": "Part 1, Q10", "p2-10": "Part 2, Q10", "p2-gap-10": "Part 2, Q10", "p1-11": "Part 1, Q11", "p1-gap-11": "Part 1, Q11", "p2-11": "Part 2, Q11", "p2-gap-11": "Part 2, Q11"};
-const SECTION_GROUPS = [{"title": "Warm-up & diagnostic", "prefixes": ["warmup-", "diagnostic-"]}, {"title": "Reading comprehension", "prefixes": ["reading-comp-"]}, {"title": "Vocabulary", "prefixes": ["vocab-"]}, {"title": "Language practice", "prefixes": ["practice-"]}, {"title": "Listening", "prefixes": ["listening-"]}, {"title": "Exit check", "prefixes": ["exit-"]}, {"title": "Test — Part 1", "prefixes": ["p1-"]}, {"title": "Test — Part 2", "prefixes": ["p2-"]}];
+(async function initLesson(){
+  await Course.initSyncStatus(LESSON_ID);
+  const sectionMap = Course.getSectionMap(LESSON_ID);
 
-function getParam(name){ return new URLSearchParams(window.location.search).get(name); }
+  Course.initMCQ('warm-q1', {lessonId: LESSON_ID, sectionId: 'warmup-1', correctValue: "right", restoreAnswer: (sectionMap['warmup-1']||{}).answer_given});
+  Course.initMCQ('warm-q2', {lessonId: LESSON_ID, sectionId: 'warmup-2', correctValue: "right", restoreAnswer: (sectionMap['warmup-2']||{}).answer_given});
+  Course.initMCQ('warm-q3', {lessonId: LESSON_ID, sectionId: 'warmup-3', correctValue: "right", restoreAnswer: (sectionMap['warmup-3']||{}).answer_given});
+  Course.ensureAnswerPositionVariety([{"containerId": "warm-q1", "correctValue": "right"}, {"containerId": "warm-q2", "correctValue": "right"}, {"containerId": "warm-q3", "correctValue": "right"}]);
+  Course.initMCQ('diag-q1', {lessonId: LESSON_ID, sectionId: 'diagnostic-1', correctValue: "right", restoreAnswer: (sectionMap['diagnostic-1']||{}).answer_given});
+  Course.initMCQ('diag-q2', {lessonId: LESSON_ID, sectionId: 'diagnostic-2', correctValue: "right", restoreAnswer: (sectionMap['diagnostic-2']||{}).answer_given});
+  Course.initMCQ('diag-q3', {lessonId: LESSON_ID, sectionId: 'diagnostic-3', correctValue: "right", restoreAnswer: (sectionMap['diagnostic-3']||{}).answer_given});
+  Course.initMCQ('diag-q4', {lessonId: LESSON_ID, sectionId: 'diagnostic-4', correctValue: "right", restoreAnswer: (sectionMap['diagnostic-4']||{}).answer_given});
+  Course.ensureAnswerPositionVariety([{"containerId": "diag-q1", "correctValue": "right"}, {"containerId": "diag-q2", "correctValue": "right"}, {"containerId": "diag-q3", "correctValue": "right"}, {"containerId": "diag-q4", "correctValue": "right"}]);
 
-let supabaseClient = null;
-try {
-  if (window.supabase && window.SUPABASE_URL && window.SUPABASE_ANON_KEY){
-    supabaseClient = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
-  }
-} catch(e){ console.error(e); }
-
-let GROUP_ID = getParam('group');
-let allRows = [];       // every lesson_progress row for this group (all lessons)
-let studentNames = [];
-let absentStudents = new Set(); // local-only for now
-
-function esc(s){ return (s ?? '').toString().replace(/</g,'&lt;'); }
-
-/* ---------------- DATA: latest attempt per student+section ---------------- */
-function currentRowsFor(lessonId){
-  const rows = allRows.filter(r => r.lesson_id === lessonId);
-  const latest = {};
-  rows.forEach(r => {
-    const key = r.student_name + '::' + r.section_id;
-    const existing = latest[key];
-    if (!existing || new Date(r.created_at) >= new Date(existing.created_at)) latest[key] = r;
+  /* ---------------- concept widget ---------------- */
+  Course.renderConceptWidget({
+    areaId: 'widget-area', hintId: 'widget-hint',
+    tabIds: [{"id": "mode-w-floor", "key": "floor"}, {"id": "mode-w-dis", "key": "dis"}, {"id": "mode-w-track", "key": "track"}, {"id": "mode-w-quiz", "key": "quiz"}],
+    categories: {"floor": [{"label": "\"Sorry to jump in, but…\"", "example": "The standard polite interruption. A quick apology buys you the right to speak."}, {"label": "\"Can I just come in here?\"", "example": "Asks for the floor at a natural pause. \"Just\" makes it brief."}, {"label": "\"If I could just finish the point…\"", "example": "Politely keeping the floor when someone interrupts you."}, {"label": "\"Building on what Sam said…\"", "example": "Joining the conversation by connecting to someone else's point. It sounds collaborative, not competitive."}], "dis": [{"label": "\"I take your point, but…\"", "example": "Acknowledge first, then disagree. The \"but\" still carries the message."}, {"label": "\"I'm a bit worried about…\"", "example": "Presents your disagreement as a concern about the plan, not an attack on the person."}, {"label": "\"Could I play devil's advocate for a moment?\"", "example": "Lets you raise objections while signalling it isn't personal."}, {"label": "\"I see it slightly differently.\"", "example": "\"Slightly\" softens a disagreement that may be quite big."}], "track": [{"label": "\"Shall we park that and come back to it at the end?\"", "example": "Politely postpones an off-topic discussion. \"Park\" is very common in British meetings."}, {"label": "\"Just conscious of time — shall we move on?\"", "example": "\"Conscious of time\" is the polite British way to say \"we're running late\"."}, {"label": "\"So, just to recap: …\"", "example": "Summarises decisions. Whoever recaps usually shapes what people remember."}, {"label": "\"Who's going to pick that up?\"", "example": "Turns discussion into action by asking for an owner."}]},
+    quizLabels: {"floor": "getting the floor", "dis": "disagreeing", "track": "keeping on track"},
+    rulesToggleId: 'rules-toggle'
   });
-  return Object.values(latest);
-}
+  Course.renderCompareCard('compare-card', [{"key": "c1", "label": "Too blunt", "text": "Wait. I want to say something.", "explain": "Sounds like you're overruling the speaker. People will remember the interruption, not your point."}, {"key": "c2", "label": "Too stiff", "text": "Might I be permitted to offer a brief contribution at this juncture?", "explain": "So formal it sounds like a joke. It also takes longer than just making the point."}, {"key": "c3", "label": "Just right", "text": "Sorry to jump in — can I just add something on the budget?", "explain": "A short apology, a clear signal, and it tells everyone what your point is about.", "groupEnd": true}, {"key": "c4", "label": "Too blunt", "text": "This plan won't work.", "explain": "A verdict with no reason and no alternative. It shuts the discussion down."}, {"key": "c5", "label": "Too stiff", "text": "I would respectfully submit that the proposal may be somewhat suboptimal.", "explain": "So softened and formal that people aren't sure what you actually think."}, {"key": "c6", "label": "Just right", "text": "I take your point, but I'm a bit worried about the timeline — could we phase it?", "explain": "Acknowledgement, a specific concern and a suggestion. Clear, but nobody loses face."}]);
 
-/* ---------------- RENDER: roster ---------------- */
-function renderRoster(){
-  const rows = currentRowsFor(currentLessonId).filter(r => r.exercise_type === 'auto_graded');
-  const root = document.getElementById('roster');
-  root.innerHTML = '';
-  studentNames.forEach(name => {
-    const mine = rows.filter(r => r.student_name === name);
-    const correct = mine.filter(r => (r.override_correct ?? r.is_correct)).length;
-    const card = document.createElement('div');
-    card.className = 'roster-card' + (absentStudents.has(name) ? ' absent' : '');
-    card.innerHTML = `
-      <div class="name">${esc(name)}</div>
-      <div class="count">${mine.length} answered · ${correct} correct</div>
-      <button class="btn absent-toggle ${absentStudents.has(name) ? 'btn-primary' : 'btn-ghost'}" data-name="${esc(name)}">
-        ${absentStudents.has(name) ? '✓ Marked absent' : 'Mark absent'}
-      </button>
-      <button class="btn btn-ghost wipe-btn" data-name="${esc(name)}">🗑 Wipe answers</button>
-    `;
-    card.querySelector('.absent-toggle').addEventListener('click', () => {
-      if (absentStudents.has(name)) absentStudents.delete(name); else absentStudents.add(name);
-      renderRoster();
-    });
-    card.querySelector('.wipe-btn').addEventListener('click', () => wipeStudent(name));
-    root.appendChild(card);
+  /* ---------------- reading ---------------- */
+  Course.initGramToggle();
+  Course.wireGramSpans({"g1": "The polite interruption: short apology + \"just\" + a question. It takes two seconds and nobody minds.", "g2": "Joining by connecting. It shows you were listening and makes your point sound like teamwork.", "g3": "Acknowledge (\"I take your point\") + concern (\"I'm a bit worried\"). The disagreement is clear but it's about the plan, not the person.", "g4": "British meeting code. Often means \"not now, maybe not ever\". If you care about the idea, ask for a date to revisit it.", "g5": "Steering with \"shall we\" and \"park\". It postpones the topic without dismissing the person who raised it.", "g6": "The recap. Whoever summarises the meeting shapes what everyone remembers and does next."});
+  Course.initVocab({"initiative": {"word": "initiative", "ipa": "/ɪˈnɪʃ.ə.tɪv/", "meaning": "the ability to act and make decisions without being told what to do", "example": "She showed real initiative by fixing the problem herself."}, "collaborative": {"word": "collaborative", "ipa": "/kəˈlæb.ər.ə.tɪv/", "meaning": "involving people working together", "example": "It was a very collaborative project."}, "confrontation": {"word": "confrontation", "ipa": "/ˌkɒn.frʌnˈteɪ.ʃən/", "meaning": "an angry disagreement or argument", "example": "He avoids confrontation at all costs."}, "read the room": {"word": "read the room", "ipa": "/riːd ðə ruːm/", "meaning": "to understand the mood and attitudes of the people around you", "example": "He didn't read the room and told a joke at the wrong moment."}, "stall": {"word": "stall", "ipa": "/stɔːl/", "meaning": "to stop making progress", "example": "The project stalled when the budget was cut."}, "drift": {"word": "drift", "ipa": "/drɪft/", "meaning": "to move slowly away from the main subject or purpose", "example": "The conversation drifted to last night's football."}, "recap": {"word": "recap", "ipa": "/ˈriː.kæp/", "meaning": "a short summary of the main points", "example": "Can you give us a quick recap of the decisions?"}}, LESSON_ID);
+  Course.initMCQ('comp-q1', {lessonId: LESSON_ID, sectionId: 'reading-comp-1', correctValue: "right", restoreAnswer: (sectionMap['reading-comp-1']||{}).answer_given});
+  Course.initMCQ('comp-q2', {lessonId: LESSON_ID, sectionId: 'reading-comp-2', correctValue: "right", restoreAnswer: (sectionMap['reading-comp-2']||{}).answer_given});
+  Course.initMCQ('comp-q3', {lessonId: LESSON_ID, sectionId: 'reading-comp-3', correctValue: "right", restoreAnswer: (sectionMap['reading-comp-3']||{}).answer_given});
+  Course.ensureAnswerPositionVariety([{"containerId": "comp-q1", "correctValue": "right"}, {"containerId": "comp-q2", "correctValue": "right"}, {"containerId": "comp-q3", "correctValue": "right"}]);
+
+  /* ---------------- vocab check ---------------- */
+  Course.initMCQ('vocab-q1', {lessonId: LESSON_ID, sectionId: 'vocab-1', correctValue: "right", restoreAnswer: (sectionMap['vocab-1']||{}).answer_given});
+  Course.initMCQ('vocab-q2', {lessonId: LESSON_ID, sectionId: 'vocab-2', correctValue: "right", restoreAnswer: (sectionMap['vocab-2']||{}).answer_given});
+  Course.initMCQ('vocab-q3', {lessonId: LESSON_ID, sectionId: 'vocab-3', correctValue: "right", restoreAnswer: (sectionMap['vocab-3']||{}).answer_given});
+  Course.initMCQ('vocab-q4', {lessonId: LESSON_ID, sectionId: 'vocab-4', correctValue: "right", restoreAnswer: (sectionMap['vocab-4']||{}).answer_given});
+  Course.initMCQ('vocab-q5', {lessonId: LESSON_ID, sectionId: 'vocab-5', correctValue: "right", restoreAnswer: (sectionMap['vocab-5']||{}).answer_given});
+  Course.ensureAnswerPositionVariety([{"containerId": "vocab-q1", "correctValue": "right"}, {"containerId": "vocab-q2", "correctValue": "right"}, {"containerId": "vocab-q3", "correctValue": "right"}, {"containerId": "vocab-q4", "correctValue": "right"}, {"containerId": "vocab-q5", "correctValue": "right"}]);
+    Course.initGapFill('vgap1-input','vgap1-check','vgap1-fb',{lessonId:LESSON_ID, sectionId:'vocab-gap-1', correctAnswers:["drift"], restore: sectionMap['vocab-gap-1'] ? {answerGiven: sectionMap['vocab-gap-1'].answer_given, isCorrect: sectionMap['vocab-gap-1'].override_correct ?? sectionMap['vocab-gap-1'].is_correct} : null});
+  Course.initGapFill('vgap2-input','vgap2-check','vgap2-fb',{lessonId:LESSON_ID, sectionId:'vocab-gap-2', correctAnswers:["collaborative"], restore: sectionMap['vocab-gap-2'] ? {answerGiven: sectionMap['vocab-gap-2'].answer_given, isCorrect: sectionMap['vocab-gap-2'].override_correct ?? sectionMap['vocab-gap-2'].is_correct} : null});
+  Course.initGapFill('vgap3-input','vgap3-check','vgap3-fb',{lessonId:LESSON_ID, sectionId:'vocab-gap-3', correctAnswers:["confrontation", "conflict"], restore: sectionMap['vocab-gap-3'] ? {answerGiven: sectionMap['vocab-gap-3'].answer_given, isCorrect: sectionMap['vocab-gap-3'].override_correct ?? sectionMap['vocab-gap-3'].is_correct} : null});
+  Course.initGapFill('vgap4-input','vgap4-check','vgap4-fb',{lessonId:LESSON_ID, sectionId:'vocab-gap-4', correctAnswers:["recap", "summary"], restore: sectionMap['vocab-gap-4'] ? {answerGiven: sectionMap['vocab-gap-4'].answer_given, isCorrect: sectionMap['vocab-gap-4'].override_correct ?? sectionMap['vocab-gap-4'].is_correct} : null});
+
+  /* ---------------- practice ---------------- */
+    Course.initGapFill('gap1-input','gap1-check','gap1-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-1', correctAnswers:Course.withContractions(["jump", "butt", "cut"]), restore: sectionMap['practice-gap-1'] ? {answerGiven: sectionMap['practice-gap-1'].answer_given, isCorrect: sectionMap['practice-gap-1'].override_correct ?? sectionMap['practice-gap-1'].is_correct} : null});
+  Course.initGapFill('gap2-input','gap2-check','gap2-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-2', correctAnswers:Course.withContractions(["point"]), restore: sectionMap['practice-gap-2'] ? {answerGiven: sectionMap['practice-gap-2'].answer_given, isCorrect: sectionMap['practice-gap-2'].override_correct ?? sectionMap['practice-gap-2'].is_correct} : null});
+  Course.initGapFill('gap3-input','gap3-check','gap3-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-3', correctAnswers:Course.withContractions(["park"]), restore: sectionMap['practice-gap-3'] ? {answerGiven: sectionMap['practice-gap-3'].answer_given, isCorrect: sectionMap['practice-gap-3'].override_correct ?? sectionMap['practice-gap-3'].is_correct} : null});
+  Course.initGapFill('gap4-input','gap4-check','gap4-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-4', correctAnswers:Course.withContractions(["conscious", "mindful"]), restore: sectionMap['practice-gap-4'] ? {answerGiven: sectionMap['practice-gap-4'].answer_given, isCorrect: sectionMap['practice-gap-4'].override_correct ?? sectionMap['practice-gap-4'].is_correct} : null});
+  Course.initGapFill('gap5-input','gap5-check','gap5-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-5', correctAnswers:Course.withContractions(["finish"]), restore: sectionMap['practice-gap-5'] ? {answerGiven: sectionMap['practice-gap-5'].answer_given, isCorrect: sectionMap['practice-gap-5'].override_correct ?? sectionMap['practice-gap-5'].is_correct} : null});
+  Course.initGapFill('gap6-input','gap6-check','gap6-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-6', correctAnswers:Course.withContractions(["recap", "summarise", "summarize"]), restore: sectionMap['practice-gap-6'] ? {answerGiven: sectionMap['practice-gap-6'].answer_given, isCorrect: sectionMap['practice-gap-6'].override_correct ?? sectionMap['practice-gap-6'].is_correct} : null});
+  Course.initErrorSpot('err1', {
+    lessonId: LESSON_ID, sectionId: 'practice-err-1',
+    words: ["No,", "that's", "not", "true,", "the", "numbers", "are", "different."], errorIndices: [3], correction: "", explanation: "\"Not true\" sounds like you're calling the speaker a liar. Try \"I'm not sure that's quite right — my numbers are slightly different.\""
   });
-}
-
-/* ---------------- WIPE (real, permanent delete) ---------------- */
-async function wipeStudent(name){
-  const confirmed = confirm(`Permanently delete ALL of ${name}'s answers for "${currentLessonTitle()}" from Supabase? This cannot be undone, and does not affect their own device — they'll simply start re-answering from scratch next time they open this lesson.`);
-  if (!confirmed) return;
-  allRows = allRows.filter(r => !(r.student_name === name && r.lesson_id === currentLessonId)); // optimistic
-  renderAll();
-  if (!supabaseClient) return;
-  const { error } = await supabaseClient.from('lesson_progress').delete()
-    .eq('group_id', GROUP_ID).eq('student_name', name).eq('lesson_id', currentLessonId);
-  if (error) console.warn('Wipe failed:', error.message);
-}
-
-/* ---------------- RENDER: reveal panel ---------------- */
-async function overrideAnswer(row, newValue){
-  row.override_correct = newValue; // optimistic local update
-  renderReveal();
-  if (!supabaseClient || !row.id) return;
-  const { error } = await supabaseClient.from('lesson_progress').update({ override_correct: newValue }).eq('id', row.id);
-  if (error) console.warn('Override failed to save:', error.message);
-}
-
-function renderReveal(){
-  const rows = currentRowsFor(currentLessonId).filter(r => r.exercise_type === 'auto_graded');
-  const bySection = {};
-  rows.forEach(r => { (bySection[r.section_id] = bySection[r.section_id] || []).push(r); });
-
-  const root = document.getElementById('reveal-root');
-  root.innerHTML = '';
-  const usedSections = new Set();
-
-  SECTION_GROUPS.forEach(group => {
-    const sectionIds = Object.keys(bySection).filter(sid => group.prefixes.some(p => sid.startsWith(p)));
-    if (!sectionIds.length) return;
-    sectionIds.sort();
-    const wrap = document.createElement('div');
-    wrap.className = 'reveal-section';
-    wrap.innerHTML = `<div class="reveal-section-title">${group.title}</div>`;
-    const table = document.createElement('table');
-    table.className = 'reveal-table';
-    table.innerHTML = `<thead><tr><th>Question</th>${studentNames.map(n => `<th>${esc(n)}</th>`).join('')}</tr></thead><tbody></tbody>`;
-    const tbody = table.querySelector('tbody');
-    sectionIds.forEach(sid => {
-      usedSections.add(sid);
-      const tr = document.createElement('tr');
-      tr.innerHTML = `<td class="section-id">${SECTION_LABELS[sid] || sid}</td>`;
-      studentNames.forEach(name => {
-        const row = bySection[sid].find(r => r.student_name === name);
-        const td = document.createElement('td');
-        if (!row){
-          td.innerHTML = `<span class="answer-cell empty">—</span>`;
-        } else {
-          const ok = row.override_correct ?? row.is_correct;
-          const wasOverridden = row.override_correct !== null && row.override_correct !== undefined;
-          const cell = document.createElement('span');
-          cell.className = `answer-cell ${ok ? 'correct' : 'incorrect'}${wasOverridden ? ' revised' : ''}`;
-          cell.innerHTML = `<span>${ok ? '✓' : '✗'}</span><span class="txt">${esc(row.answer_given)}</span>`;
-          cell.title = 'Click to flip correct/incorrect';
-          cell.addEventListener('click', () => overrideAnswer(row, !ok));
-          td.appendChild(cell);
-        }
-        tr.appendChild(td);
-      });
-      tbody.appendChild(tr);
-    });
-    wrap.appendChild(table);
-    root.appendChild(wrap);
+  Course.initErrorSpot('err2', {
+    lessonId: LESSON_ID, sectionId: 'practice-err-2',
+    words: ["Ola,", "why", "are", "you", "so", "quiet", "today?"], errorIndices: [5], correction: "", explanation: "Commenting on someone's silence puts them on the spot. Invite them in instead: \"Ola, what's your take on this?\""
   });
-
-  // Anything not covered by a known group still shows up, so nothing is silently hidden.
-  const leftover = Object.keys(bySection).filter(sid => !usedSections.has(sid));
-  if (leftover.length){
-    const wrap = document.createElement('div');
-    wrap.className = 'reveal-section';
-    wrap.innerHTML = `<div class="reveal-section-title">Other</div>`;
-    const table = document.createElement('table');
-    table.className = 'reveal-table';
-    table.innerHTML = `<thead><tr><th>Question</th>${studentNames.map(n => `<th>${esc(n)}</th>`).join('')}</tr></thead><tbody></tbody>`;
-    const tbody = table.querySelector('tbody');
-    leftover.sort().forEach(sid => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `<td class="section-id">${sid}</td>`;
-      studentNames.forEach(name => {
-        const row = bySection[sid].find(r => r.student_name === name);
-        const td = document.createElement('td');
-        if (!row){ td.innerHTML = `<span class="answer-cell empty">—</span>`; }
-        else {
-          const ok = row.override_correct ?? row.is_correct;
-          const cell = document.createElement('span');
-          cell.className = `answer-cell ${ok ? 'correct' : 'incorrect'}`;
-          cell.innerHTML = `<span>${ok ? '✓' : '✗'}</span><span class="txt">${esc(row.answer_given)}</span>`;
-          cell.addEventListener('click', () => overrideAnswer(row, !ok));
-          td.appendChild(cell);
-        }
-        tr.appendChild(td);
-      });
-      tbody.appendChild(tr);
-    });
-    wrap.appendChild(table);
-    root.appendChild(wrap);
-  }
-}
-
-/* ---------------- RENDER: oral / discussion picks ---------------- */
-async function setVerdict(row, verdict){
-  if (!row.id) return;
-  row.teacher_verdict = row.teacher_verdict === verdict ? null : verdict; // click again to clear
-  renderOral();
-  if (!supabaseClient) return;
-  const { error } = await supabaseClient.from('lesson_progress').update({ teacher_verdict: row.teacher_verdict }).eq('id', row.id);
-  if (error) console.warn('Verdict failed to save:', error.message);
-}
-
-function renderOral(){
-  const rows = currentRowsFor(currentLessonId).filter(r => r.exercise_type === 'oral' && r.status === 'completed');
-  const bySection = {};
-  rows.forEach(r => { (bySection[r.section_id] = bySection[r.section_id] || []).push(r); });
-
-  const root = document.getElementById('oral-root');
-  root.innerHTML = '';
-  const sectionIds = Object.keys(bySection).sort();
-  if (!sectionIds.length){
-    root.innerHTML = `<p style="font-size:13.5px;color:var(--text-tertiary)">No speaking tasks completed yet.</p>`;
-    return;
-  }
-  sectionIds.forEach(sid => {
-    const picks = bySection[sid];
-    const card = document.createElement('div');
-    card.className = 'oral-card';
-    card.innerHTML = `<div class="oral-q">${esc(picks[0].answer_given)}</div>`;
-    picks.forEach(row => {
-      const rowEl = document.createElement('div');
-      rowEl.className = 'oral-student-row';
-      rowEl.innerHTML = `
-        <span style="font-size:13.5px;font-weight:550">${esc(row.student_name)}</span>
-        <span class="verdict-btns">
-          <button class="btn verdict-btn pass ${row.teacher_verdict === 'pass' ? 'on' : ''}">✓ Pass</button>
-          <button class="btn verdict-btn needs ${row.teacher_verdict === 'needs work' ? 'on' : ''}">Needs work</button>
-        </span>
-      `;
-      rowEl.querySelector('.pass').addEventListener('click', () => setVerdict(row, 'pass'));
-      rowEl.querySelector('.needs').addEventListener('click', () => setVerdict(row, 'needs work'));
-      card.appendChild(rowEl);
-    });
-    root.appendChild(card);
+  Course.initErrorSpot('err3', {
+    lessonId: LESSON_ID, sectionId: 'practice-err-3',
+    words: ["Stop,", "this", "is", "off", "topic."], errorIndices: [0], correction: "", explanation: "Too commanding. \"Good point — shall we park that and come back to it?\" steers without dismissing anyone."
   });
-}
+  Course.renderBuilders('builders', [{"words": ["Sorry", "to", "jump", "in,", "but", "can", "I", "add", "something?"]}, {"words": ["Shall", "we", "park", "that", "for", "now?"]}, {"words": ["I", "take", "your", "point,", "but", "I'm", "a", "bit", "worried."]}], {lessonId: LESSON_ID, sectionPrefix: 'practice-builder'});
 
-function renderAll(){ renderRoster(); renderReveal(); renderOral(); }
+  /* ---------------- speaking ---------------- */
+  Course.initSpeaking({max: 2, lessonId: LESSON_ID, sectionMap, soloTaskLabel: "Imagine your manager proposes moving a big launch forward by a month. In 60 seconds, disagree diplomatically: acknowledge the idea, raise one or two concerns, and suggest an alternative. Then close with a short recap sentence."});
+  Course.renderDiscussQuestions('discuss-questions', ["Role-play a 3-minute meeting about planning the team's Christmas party. One person chairs; the others must interrupt politely at least once, disagree once, and one person keeps drifting off topic.", "In your culture, is interrupting rude, normal, or a sign of engagement? How about silence?", "What makes a video call go well or badly? Share one rule you'd like everyone at work to follow."], {lessonId: LESSON_ID, max: 2, sectionPrefix: 'speaking-q'});
 
-/* ---------------- LOAD + REALTIME ---------------- */
-async function loadGroup(groupId){
-  GROUP_ID = groupId;
-  document.getElementById('dash-title').textContent = `Teacher Dashboard — ${groupId}`;
-  document.getElementById('join-prompt').style.display = 'none';
-  document.getElementById('dash-body').style.display = 'block';
-  document.getElementById('dash-sub').textContent = `Watching "${currentLessonTitle()}" live`;
+  /* ---------------- listening ---------------- */
+  Course.initListening({dialogue: [{"speaker": "Anna", "line": "You were very quiet in there. You had views on the timeline, didn't you?"}, {"speaker": "Tomasz", "line": "I did, but everyone was talking at once. I was waiting for a pause."}, {"speaker": "Anna", "line": "There's never a pause. You just say \"Sorry to jump in\" and go."}, {"speaker": "Tomasz", "line": "And when Mark said the launch date was fixed, I wanted to say \"That's not realistic.\""}, {"speaker": "Anna", "line": "Try \"I take your point, but I'm a bit worried about the testing time.\" Same message, less smoke."}, {"speaker": "Tomasz", "line": "Less smoke. I like that. And what did Mark mean by \"let's take that away\"?"}, {"speaker": "Anna", "line": "Usually it means \"not today\". If you care about it, email him tomorrow and suggest a date to revisit it."}, {"speaker": "Tomasz", "line": "OK. Next meeting, I'm jumping in at least once."}], speakerA: 'Anna', speakerB: 'Tomasz', lessonId: LESSON_ID});
+  Course.initMCQ('listen-q1', {lessonId: LESSON_ID, sectionId: 'listening-1', correctValue: "right", restoreAnswer: (sectionMap['listening-1']||{}).answer_given});
+  Course.initMCQ('listen-q2', {lessonId: LESSON_ID, sectionId: 'listening-2', correctValue: "right", restoreAnswer: (sectionMap['listening-2']||{}).answer_given});
+  Course.initMCQ('listen-q3', {lessonId: LESSON_ID, sectionId: 'listening-3', correctValue: "right", restoreAnswer: (sectionMap['listening-3']||{}).answer_given});
+  Course.ensureAnswerPositionVariety([{"containerId": "listen-q1", "correctValue": "right"}, {"containerId": "listen-q2", "correctValue": "right"}, {"containerId": "listen-q3", "correctValue": "right"}]);
 
-  const select = document.getElementById('lesson-select');
-  select.innerHTML = LESSONS.map(l => `<option value="${l.id}">${l.title}</option>`).join('');
-  select.value = currentLessonId;
-  select.style.display = 'inline-block';
-  select.addEventListener('change', () => {
-    currentLessonId = select.value;
-    document.getElementById('dash-sub').textContent = `Watching "${currentLessonTitle()}" live`;
-    renderAll();
-  });
-
-  if (!supabaseClient){
-    document.getElementById('dash-sub').textContent = 'Supabase isn\'t connected — check shared/supabase-config.js.';
-    return;
-  }
-
-  const { data: groupRow, error: groupErr } = await supabaseClient.from('groups').select('student_names').eq('group_id', groupId).maybeSingle();
-  if (groupErr) console.warn(groupErr.message);
-  studentNames = groupRow ? groupRow.student_names : [];
-
-  const { data: rows, error: rowsErr } = await supabaseClient.from('lesson_progress').select('*').eq('group_id', groupId);
-  if (rowsErr) console.warn(rowsErr.message);
-  allRows = rows || [];
-  // students who've answered but aren't (yet) in groups.student_names shouldn't be invisible
-  allRows.forEach(r => { if (!studentNames.includes(r.student_name)) studentNames.push(r.student_name); });
-
-  renderAll();
-
-  supabaseClient.channel(`dash-${groupId}`)
-    .on('postgres_changes', { event: '*', schema: 'public', table: 'lesson_progress', filter: `group_id=eq.${groupId}` }, (payload) => {
-      if (payload.eventType === 'DELETE'){
-        // DELETE events only populate payload.old, never payload.new -- easy to
-        // miss, and without this branch a wipe from another tab/device would
-        // silently fail to disappear from this dashboard until manual reload.
-        const oldId = payload.old?.id;
-        if (oldId != null) allRows = allRows.filter(r => r.id !== oldId);
-        renderAll();
-        return;
-      }
-      const row = payload.new;
-      if (!row) return;
-      if (!studentNames.includes(row.student_name)) studentNames.push(row.student_name);
-      const idx = allRows.findIndex(r => r.id === row.id);
-      if (idx >= 0) allRows[idx] = row; else allRows.push(row);
-      renderAll();
-    })
-    .on('postgres_changes', { event: '*', schema: 'public', table: 'groups', filter: `group_id=eq.${groupId}` }, (payload) => {
-      if (payload.new?.student_names){
-        payload.new.student_names.forEach(n => { if (!studentNames.includes(n)) studentNames.push(n); });
-        renderAll();
-      }
-    })
-    .subscribe();
-}
-
-if (GROUP_ID){
-  loadGroup(GROUP_ID);
-} else {
-  document.getElementById('join-prompt').style.display = 'block';
-  document.getElementById('join-btn').addEventListener('click', () => {
-    const val = document.getElementById('join-input').value.trim();
-    if (val){
-      history.replaceState(null, '', `?group=${encodeURIComponent(val)}`);
-      loadGroup(val);
-    }
-  });
-}
+  /* ---------------- wrap-up ---------------- */
+  Course.initMCQ('exit-q1', {lessonId: LESSON_ID, sectionId: 'exit-1', correctValue: "right", restoreAnswer: (sectionMap['exit-1']||{}).answer_given});
+  Course.initMCQ('exit-q2', {lessonId: LESSON_ID, sectionId: 'exit-2', correctValue: "right", restoreAnswer: (sectionMap['exit-2']||{}).answer_given});
+  Course.initMCQ('exit-q3', {lessonId: LESSON_ID, sectionId: 'exit-3', correctValue: "right", restoreAnswer: (sectionMap['exit-3']||{}).answer_given});
+  Course.initMCQ('exit-q4', {lessonId: LESSON_ID, sectionId: 'exit-4', correctValue: "right", restoreAnswer: (sectionMap['exit-4']||{}).answer_given});
+  Course.initMCQ('exit-q5', {lessonId: LESSON_ID, sectionId: 'exit-5', correctValue: "right", restoreAnswer: (sectionMap['exit-5']||{}).answer_given});
+  Course.ensureAnswerPositionVariety([{"containerId": "exit-q1", "correctValue": "right"}, {"containerId": "exit-q2", "correctValue": "right"}, {"containerId": "exit-q3", "correctValue": "right"}, {"containerId": "exit-q4", "correctValue": "right"}, {"containerId": "exit-q5", "correctValue": "right"}]);
+  Course.initSummary({lessonId: LESSON_ID, totalExercises: 39});
+})();
 
 </script>
 </body>

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Politeness & Register | Workplace EQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/theme.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="shared/supabase-config.js"></script>
+</head>
+<body class="theme-presence">
+
+<div class="course-attribution">Workplace EQ · English Voiced with Kris</div>
+<div class="shell">
+  <header class="lesson-header">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+      <div class="lesson-eyebrow">Lesson 2 of 7 · Professional Presence</div>
+      <div style="display:flex;gap:8px">
+      <a id="all-lessons-link" href="index-standalone.html" class="pill" style="text-decoration:none;font-size:12.5px;border-radius:var(--radius-sm)">📚 All Lessons</a>
+      <a id="glossary-link" href="glossary-standalone.html" class="pill" style="text-decoration:none;font-size:12.5px;border-radius:var(--radius-sm)">📖 My Glossary</a>
+    </div>
+    </div>
+    <h1 class="lesson-title">Politeness & Register</h1>
+    <p class="lesson-sub">Softening requests, disagreeing without offending, and decoding what British colleagues really mean.</p>
+    <div class="pb-track" style="margin-top:16px"><div class="pb-fill" id="overall-progress" style="width:0%"></div></div>
+    <div id="sync-status" style="font-size:11.5px;color:var(--text-tertiary);margin-top:8px"></div>
+  </header>
+
+  <section class="section" id="sec-warmup">
+    <div class="section-label"><span class="num">1</span> Warm-up</div>
+    <div class="card">
+      <p style="margin-bottom:14px;font-size:14.5px;color:var(--text-secondary)">Polish is a precise, fairly direct language, and "please" does a lot of the polite work. British English does the politeness in the whole sentence instead: past tenses, modal verbs, little words like "just" and "slightly". Leave them out and a perfectly correct sentence can sound like an order.</p>
+      
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">1. You need a colleague's slides. Which sounds more natural in a British office?</p>
+        <div id="warm-q1">
+          <button class="opt" data-value="right">"Could you send me the slides when you get a chance?"</button><button class="opt" data-value="wrong">"Please send me the slides."</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">2. Your British manager says your proposal is "an interesting idea". Most likely she means…</p>
+        <div id="warm-q2">
+          <button class="opt" data-value="right">She has doubts and probably won't go ahead with it.</button><button class="opt" data-value="wrong">She's excited and wants to discuss it further.</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">3. "I was wondering if you could help me" uses the past tense because…</p>
+        <div id="warm-q3">
+          <button class="opt" data-value="right">it makes the request softer and less direct</button><button class="opt" data-value="wrong">the wondering happened yesterday</button>
+        </div>
+      </div>
+      <div class="tip-box">💡 <span style="flex:1;min-width:0">Politeness in English is mostly built from distance: past tense ("I wanted to ask"), modals ("could", "would", "might"), softeners ("just", "a bit", "slightly") and questions instead of statements. "Please" on its own doesn't turn an order into a request.</span></div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-diagnostic">
+    <div class="section-label"><span class="num">2</span> Quick check — before we explain anything</div>
+    <div class="card">
+      <p style="margin-bottom:16px;font-size:14.5px;color:var(--text-secondary)">Four quick questions. This isn't graded harshly — it just shows us where to focus.</p>
+      
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px;font-weight:550">1. You disagree with a colleague's figures in a meeting. You say…</p>
+        <div id="diag-q1">
+          <button class="opt" data-value="right">"I'm not sure those figures are quite right."</button><button class="opt" data-value="wrong">"Your figures are wrong."</button>
+        </div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px;font-weight:550">2. Which request is softest?</p>
+        <div id="diag-q2">
+          <button class="opt" data-value="right">"Would you mind moving the meeting to Thursday?"</button><button class="opt" data-value="wrong">"Move the meeting to Thursday, please."</button>
+        </div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px;font-weight:550">3. A British client says: "With the greatest respect, I think we need to look at this again." They are…</p>
+        <div id="diag-q3">
+          <button class="opt" data-value="right">fairly annoyed and strongly disagreeing</button><button class="opt" data-value="wrong">showing great respect for your work</button>
+        </div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px;font-weight:550">4. "It's not bad" from a British colleague usually means…</p>
+        <div id="diag-q4">
+          <button class="opt" data-value="right">it's quite good, maybe even good</button><button class="opt" data-value="wrong">it's bad, but they're being kind</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-concept">
+    <div class="section-label"><span class="num">3</span> The concept</div>
+
+    <div class="card">
+      <h3 style="margin-bottom:10px">Three kinds of softening</h3>
+      <p style="font-size:14.5px;line-height:1.7;margin-bottom:14px">British politeness does three jobs: it <b>softens requests</b> so they don't sound like orders, it <b>softens disagreement</b> so people don't lose face, and it uses <b>understatement</b>, saying less than you mean, which listeners are expected to decode. Browse each, then try the quick check.</p>
+      <div class="mode-toggle mode-toggle-outline" style="flex-wrap:wrap;gap:8px">
+        <button class="pill on" id="mode-w-req">Softening requests</button><button class="pill" id="mode-w-dis">Softening disagreement</button><button class="pill" id="mode-w-under">Understatement</button><button class="pill" id="mode-w-quiz">Quick check</button>
+      </div>
+      <div id="widget-area" style="margin-top:14px;padding:18px;border-radius:var(--radius-md);background:var(--surface-alt);border:1px solid var(--border)"></div>
+      <p id="widget-hint" style="font-size:12.5px;color:var(--text-tertiary);margin-top:8px">— Click either cell to see another example.</p>
+
+      <button class="pill" id="rules-toggle" style="margin-top:16px">📖 Show the full rules</button>
+      <div class="expand-content" id="rules-content">
+        <div style="margin-top:16px">
+          
+          <div class="formula" style="border-left-color:var(--c-present)">✅ <b>Distance with tense:</b> "I wanted to ask…", "I was wondering if…", "I was hoping you could…". The past tense means "now", but it sounds less pushy.</div>
+          <div class="formula" style="border-left-color:var(--c-continuous)">✅ <b>Distance with modals and questions:</b> could / would / might, "Would you mind + -ing?", "Is there any chance…?", "Wouldn't it be better to…?"</div>
+          <div class="formula" style="border-left-color:var(--c-future);margin-bottom:20px">✅ <b>Softeners:</b> just, a bit, slightly, quite, perhaps, not entirely, I'm not sure. They shrink the size of the request or the criticism.</div>
+          <div class="warn-box">
+            <span>🎯</span>
+            <span style="flex:1;min-width:0"><b>The tricky part for Polish speakers:</b> translating directly from Polish produces sentences that are correct but sound like orders: "I want…", "Give me…", "You must…", "Send it to me, please." In Polish, <i>proszę</i> does the polite work. In English, "please" + an imperative is still an instruction.<br><br>
+            ❌ "Please send me the report today." (to a colleague) — sounds like a manager giving an order.<br>
+            ✅ "Could you send me the report today, if possible?"<br><br>
+            The opposite mistake exists too: stacking every softener ("I was just wondering if you could possibly perhaps…") sounds nervous or sarcastic. One or two softeners per sentence is enough.</span>
+          </div>
+          <div class="tip-box" style="margin-top:12px">🌍 <span style="flex:1;min-width:0"><b>Elsewhere:</b> Americans are usually more direct in requests but more enthusiastic in praise ("This is awesome!"), so British "not bad" can sound cold to them, and American "quite good" means <i>very</i> good, while British "quite good" means only fairly good. Dutch, German and Israeli colleagues are often more direct than the British and may find heavy softening confusing. In Japan and much of East Asia, disagreement is even more indirect than in the UK.</span></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h3 style="margin-bottom:6px">Too blunt, too stiff, or just right?</h3>
+      <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:14px">Hover over (or tap) each version to see how a British listener is likely to hear it.</p>
+      <div id="compare-card" style="font-size:14.5px;line-height:1.9"></div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-reading">
+    <div class="section-label"><span class="num">4</span> Reading — What They Say, What They Mean</div>
+    <div class="card">
+      <button class="pill" id="gram-toggle">🔍 Show key phrases in this text</button>
+      <div class="passage" id="passage" style="margin-top:14px"><p>Piotr had been in the Manchester office for three months when he realised he had been misunderstanding his manager all along. Whenever he suggested an idea, Claire would smile and say, <span class="gram" data-gram="g1">“That's an interesting idea, Piotr.”</span> He went away pleased and started working on it. It took an <span class="vocab" data-word="awkward">awkward</span> conversation with a colleague to learn that, in Claire's mouth, "interesting" usually meant "no".</p><p>Piotr's problem was the reverse of the one many British people have abroad. He came from a culture where being <span class="vocab" data-word="candid">candid</span> is a sign of respect: if you disagree, you say so, and nobody takes it personally. British professional culture relies far more on <span class="vocab" data-word="understatement">understatement</span>. Criticism arrives wrapped in softeners, like <span class="gram" data-gram="g2">“I'm not entirely convinced”</span> or <span class="gram" data-gram="g3">“There are just a few minor points”</span>, and the listener is expected to hear the real message underneath.</p><p>The same system works in the other direction. When Piotr emailed Claire, "I want to take Friday off," he meant nothing rude; it was simply a clear statement. To Claire, it sounded <span class="vocab" data-word="blunt">blunt</span>, almost like a demand. A more <span class="vocab" data-word="tactful">tactful</span> version would have been <span class="gram" data-gram="g4">“I was wondering if I could take Friday off?”</span> The past tense and the question form do the polite work that "proszę" does in Polish.</p><p>None of this means the British are dishonest. Understatement is a shared code, and it is full of <span class="vocab" data-word="nuance">nuance</span>: <span class="gram" data-gram="g5">“With the greatest respect”</span> signals strong disagreement, while "not bad at all" is genuine praise. The skill is to be <span class="vocab" data-word="diplomatic">diplomatic</span> without being vague. Piotr's colleague summed it up: "Say what you mean, but put a cushion around it. <span class="gram" data-gram="g6">“Could we look at the numbers again?”</span> gets you further than "Your numbers are wrong," even when the numbers are wrong." Once Piotr stopped taking every phrase literally, he stopped being <span class="vocab" data-word="misread">misread</span> too.</p></div>
+      <p style="font-size:12.5px;color:var(--text-tertiary);margin-top:10px">Tap a highlighted word for pronunciation, meaning and an example. With key phrases on, tap a highlighted phrase to see why it works (and what a less skilful speaker might have said).</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-bottom:12px">Did you follow it? Quick comprehension check</h3>
+      
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">1. What did Piotr eventually learn about Claire's phrase "That's an interesting idea"?</p>
+        <div id="comp-q1">
+          <button class="opt" data-value="right">It usually meant she wasn't going to accept the idea.</button><button class="opt" data-value="wrong">It meant she wanted him to develop the idea immediately.</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">2. Why did Piotr's email about Friday cause a problem?</p>
+        <div id="comp-q2">
+          <button class="opt" data-value="right">"I want…" sounded like a demand to a British reader.</button><button class="opt" data-value="wrong">He asked for the wrong day off.</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">3. What is the main message of the final paragraph?</p>
+        <div id="comp-q3">
+          <button class="opt" data-value="right">Be clear about what you mean, but soften how you say it.</button><button class="opt" data-value="wrong">Avoid disagreeing with British colleagues at all.</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-vocab">
+    <div class="section-label"><span class="num">5</span> Vocabulary check</div>
+    <div class="card">
+      <p style="font-size:14.5px;margin-bottom:16px">The key words from the text — mixed formats.</p>
+      <h4 style="font-size:13px;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary);margin-bottom:12px">Match the meaning</h4>
+      
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">1. A "tactful" person is someone who…</p>
+        <div id="vocab-q1">
+          <button class="opt" data-value="right">is careful not to upset or embarrass people</button><button class="opt" data-value="wrong">always says exactly what they think</button><button class="opt" data-value="wrong2">is very good at planning</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">2. "Understatement" means…</p>
+        <div id="vocab-q2">
+          <button class="opt" data-value="right">presenting something as less serious or good than it is</button><button class="opt" data-value="wrong">a written summary of a meeting</button><button class="opt" data-value="wrong2">exaggerating to make a point</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">3. If feedback is "blunt", it is…</p>
+        <div id="vocab-q3">
+          <button class="opt" data-value="right">direct, with no attempt to soften it</button><button class="opt" data-value="wrong">vague and hard to understand</button><button class="opt" data-value="wrong2">very positive</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">4. A "nuance" is…</p>
+        <div id="vocab-q4">
+          <button class="opt" data-value="right">a small but important difference in meaning or tone</button><button class="opt" data-value="wrong">a rude remark</button><button class="opt" data-value="wrong2">a new rule</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">5. If you "misread" a situation, you…</p>
+        <div id="vocab-q5">
+          <button class="opt" data-value="right">understand it wrongly</button><button class="opt" data-value="wrong">handle it perfectly</button><button class="opt" data-value="wrong2">read about it too late</button>
+        </div>
+      </div>
+      <h4 style="font-size:13px;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary);margin-bottom:12px;padding-top:6px;border-top:1px solid var(--border)">Complete the sentence — vocabulary focus</h4>
+      
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px">1. She's refreshingly <input type="text" id="vgap1-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:110px"> : she tells you exactly what she thinks of your work.</p>
+        <button class="btn btn-sm" id="vgap1-check">Check</button>
+        <div id="vgap1-fb"></div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px">2. A good manager stays <input type="text" id="vgap2-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:120px"> even when two team members are arguing.</p>
+        <button class="btn btn-sm" id="vgap2-check">Check</button>
+        <div id="vgap2-fb"></div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px">3. "A slight delay" was an <input type="text" id="vgap3-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:150px"> : the launch was three months late.</p>
+        <button class="btn btn-sm" id="vgap3-check">Check</button>
+        <div id="vgap3-fb"></div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px">4. It was an <input type="text" id="vgap4-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:100px"> moment when she realised he'd been joking.</p>
+        <button class="btn btn-sm" id="vgap4-check">Check</button>
+        <div id="vgap4-fb"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-practice">
+    <div class="section-label"><span class="num">6</span> Practice</div>
+    <div class="card">
+      <h3 style="margin-bottom:2px">Gap-fill</h3>
+      <p style="font-size:12.5px;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary);margin-bottom:16px">Language focus — softening phrases (one word per gap)</p>
+      
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px">1. I was <input type="text" id="gap1-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:110px"> if you could help me with the budget.</p>
+        <button class="btn btn-sm" id="gap1-check">Check</button>
+        <div id="gap1-fb"></div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px">2. Would you <input type="text" id="gap2-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:90px"> sending me the latest version?</p>
+        <button class="btn btn-sm" id="gap2-check">Check</button>
+        <div id="gap2-fb"></div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px">3. I'm not <input type="text" id="gap3-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:100px"> convinced this is the right approach.</p>
+        <button class="btn btn-sm" id="gap3-check">Check</button>
+        <div id="gap3-fb"></div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px">4. Could you <input type="text" id="gap4-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:90px"> check these dates for me?</p>
+        <button class="btn btn-sm" id="gap4-check">Check</button>
+        <div id="gap4-fb"></div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px">5. Is there any <input type="text" id="gap5-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:100px"> you could get it to me by Friday?</p>
+        <button class="btn btn-sm" id="gap5-check">Check</button>
+        <div id="gap5-fb"></div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px">6. I see what you <input type="text" id="gap6-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:90px"> , but I wonder if we should wait.</p>
+        <button class="btn btn-sm" id="gap6-check">Check</button>
+        <div id="gap6-fb"></div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h3 style="margin-bottom:6px">Spot the faux pas</h3>
+      <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:16px">Each sentence is grammatically correct but too direct for a British workplace. Tap the word that makes it sound rude.</p>
+      
+      <div style="margin-bottom:8px;font-size:12px;font-weight:650;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary)">Sentence 1</div>
+      <div id="err1" style="font-size:15px;line-height:1.9;margin-bottom:20px"></div>
+      <div style="margin-bottom:8px;font-size:12px;font-weight:650;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary);padding-top:16px;border-top:1px solid var(--border)">Sentence 2</div>
+      <div id="err2" style="font-size:15px;line-height:1.9;margin-bottom:20px"></div>
+      <div style="margin-bottom:8px;font-size:12px;font-weight:650;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary);padding-top:16px;border-top:1px solid var(--border)">Sentence 3</div>
+      <div id="err3" style="font-size:15px;line-height:1.9;margin-bottom:20px"></div>
+    </div>
+    <div class="card">
+      <h3 style="margin-bottom:6px">Sentence builder</h3>
+      <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:14px">Tap the chips in the right order. Three rounds.</p>
+      <div id="builders"></div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-speaking">
+    <div class="section-label"><span class="num">7</span> Speaking task</div>
+    <div class="mode-toggle">
+      <button class="pill on" id="mode-solo">👤 Solo</button>
+      <button class="pill" id="mode-group">👥 Group (2–4)</button>
+    </div>
+    <div class="task-card" id="speak-solo">
+      <div class="kicker">60-second task</div>
+      <p style="font-size:14.5px;line-height:1.7">Take three direct sentences you might say at work (e.g. "Send me the file.", "That's wrong.", "I want Friday off.") and say a softened British version of each. Then explain which technique you used each time: past tense, a modal, a softener or a question.</p>
+      <button class="btn btn-sm" id="solo-done-btn" style="margin-top:14px">✓ I've done this</button>
+    </div>
+    <div class="task-card" id="speak-group" style="display:none">
+      <div class="kicker">Discussion — pick 1–2 questions to answer out loud</div>
+      <p style="font-size:14.5px;line-height:1.7;margin-bottom:12px">Tap the question(s) you'll answer. Your teacher will see your pick and mark it after you speak.</p>
+      <div id="discuss-questions" style="display:flex;flex-direction:column;gap:8px"></div>
+      <p id="discuss-limit-msg" style="font-size:12.5px;color:var(--text-tertiary);margin-top:10px">You can select up to 2 questions.</p>
+    </div>
+  </section>
+
+  <section class="section" id="sec-listening">
+    <div class="section-label"><span class="num">8</span> Listening</div>
+    <div class="card">
+      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:12px">Tomasz shows Anna an email he's about to send to their manager, Claire.</p>
+      <audio id="dialogue-audio" preload="none" style="display:none"></audio>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-primary" id="play-dialogue">▶ Play dialogue</button>
+        <button class="btn btn-ghost btn-sm" id="stop-dialogue">⏹ Stop</button>
+        <button class="btn btn-ghost btn-sm" id="show-transcript">Show full transcript</button>
+      </div>
+      <div id="transcript"></div>
+      
+      <div style="margin-top:16px">
+        <p style="margin-bottom:8px;font-weight:550">1. What's wrong with Tomasz's original email, according to Anna?</p>
+        <div id="listen-q1">
+          <button class="opt" data-value="right">It sounds like he's telling Claire rather than asking her.</button><button class="opt" data-value="wrong">It doesn't say which Friday he means.</button>
+        </div>
+      </div>
+      <div style="margin-top:16px">
+        <p style="margin-bottom:8px;font-weight:550">2. What does Anna say about the word "please"?</p>
+        <div id="listen-q2">
+          <button class="opt" data-value="right">On its own it doesn't make a sentence polite.</button><button class="opt" data-value="wrong">It should always go at the start of a request.</button>
+        </div>
+      </div>
+      <div style="margin-top:16px">
+        <p style="margin-bottom:8px;font-weight:550">3. Why does Anna suggest waiting before building the dashboard?</p>
+        <div id="listen-q3">
+          <button class="opt" data-value="right">"Interesting idea" probably didn't mean yes.</button><button class="opt" data-value="wrong">Claire said the budget isn't ready yet.</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-wrapup">
+    <div class="section-label"><span class="num">9</span> Wrap-up — exit check</div>
+    <div class="card">
+      
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">1. The most natural way to ask a colleague for help is…</p>
+        <div id="exit-q1">
+          <button class="opt" data-value="right">"Could you give me a hand with this?"</button><button class="opt" data-value="wrong">"Help me with this, please."</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">2. "I'm not entirely convinced" means…</p>
+        <div id="exit-q2">
+          <button class="opt" data-value="right">I disagree, politely.</button><button class="opt" data-value="wrong">I agree, but I need more time.</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">3. "With the greatest respect…" usually signals…</p>
+        <div id="exit-q3">
+          <button class="opt" data-value="right">strong disagreement</button><button class="opt" data-value="wrong">admiration</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">4. Which is a softened disagreement?</p>
+        <div id="exit-q4">
+          <button class="opt" data-value="right">"I see what you mean, but I wonder if…"</button><button class="opt" data-value="wrong">"No, that's not true."</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">5. A British colleague calls your report "not bad at all". That's…</p>
+        <div id="exit-q5">
+          <button class="opt" data-value="right">a genuine compliment</button><button class="opt" data-value="wrong">a polite complaint</button>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="summary-card">
+      <h3 style="margin-bottom:14px">Your lesson summary</h3>
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px" id="summary-ring-row">
+        <div id="score-ring-holder"></div>
+        <div>
+          <div style="font-weight:600" id="summary-name">—</div>
+          <div style="font-size:13px;margin-top:4px" id="summary-completion"></div>
+          <div style="font-size:13px;color:var(--text-secondary);margin-top:4px" id="summary-weak">Finish the lesson to see your results.</div>
+        </div>
+      </div>
+      <button class="btn btn-primary" id="finish-btn">Finish lesson &amp; see results</button>
+      <button class="btn" id="export-btn" style="margin-left:8px;display:none">⬇ Export PDF report</button>
+    </div>
+  </section>
+</div>
+
+<script src="shared/course-engine.js"></script>
+<script>
+
+const LESSON_ID = "weq-lesson-02-politeness-register";
+Course.initPageChrome({lessonId: LESSON_ID});
+
+(async function initLesson(){
+  await Course.initSyncStatus(LESSON_ID);
+  const sectionMap = Course.getSectionMap(LESSON_ID);
+
+  Course.initMCQ('warm-q1', {lessonId: LESSON_ID, sectionId: 'warmup-1', correctValue: "right", restoreAnswer: (sectionMap['warmup-1']||{}).answer_given});
+  Course.initMCQ('warm-q2', {lessonId: LESSON_ID, sectionId: 'warmup-2', correctValue: "right", restoreAnswer: (sectionMap['warmup-2']||{}).answer_given});
+  Course.initMCQ('warm-q3', {lessonId: LESSON_ID, sectionId: 'warmup-3', correctValue: "right", restoreAnswer: (sectionMap['warmup-3']||{}).answer_given});
+  Course.ensureAnswerPositionVariety([{"containerId": "warm-q1", "correctValue": "right"}, {"containerId": "warm-q2", "correctValue": "right"}, {"containerId": "warm-q3", "correctValue": "right"}]);
+  Course.initMCQ('diag-q1', {lessonId: LESSON_ID, sectionId: 'diagnostic-1', correctValue: "right", restoreAnswer: (sectionMap['diagnostic-1']||{}).answer_given});
+  Course.initMCQ('diag-q2', {lessonId: LESSON_ID, sectionId: 'diagnostic-2', correctValue: "right", restoreAnswer: (sectionMap['diagnostic-2']||{}).answer_given});
+  Course.initMCQ('diag-q3', {lessonId: LESSON_ID, sectionId: 'diagnostic-3', correctValue: "right", restoreAnswer: (sectionMap['diagnostic-3']||{}).answer_given});
+  Course.initMCQ('diag-q4', {lessonId: LESSON_ID, sectionId: 'diagnostic-4', correctValue: "right", restoreAnswer: (sectionMap['diagnostic-4']||{}).answer_given});
+  Course.ensureAnswerPositionVariety([{"containerId": "diag-q1", "correctValue": "right"}, {"containerId": "diag-q2", "correctValue": "right"}, {"containerId": "diag-q3", "correctValue": "right"}, {"containerId": "diag-q4", "correctValue": "right"}]);
+
+  /* ---------------- concept widget ---------------- */
+  Course.renderConceptWidget({
+    areaId: 'widget-area', hintId: 'widget-hint',
+    tabIds: [{"id": "mode-w-req", "key": "req"}, {"id": "mode-w-dis", "key": "dis"}, {"id": "mode-w-under", "key": "under"}, {"id": "mode-w-quiz", "key": "quiz"}],
+    categories: {"req": [{"label": "\"I was wondering if you could take a look at this.\"", "example": "Past continuous + \"if\" = maximum distance. Good for asking a favour of someone senior or someone you don't know well."}, {"label": "\"Would you mind sending me the latest version?\"", "example": "\"Would you mind + -ing\" is polite and very common. The expected answer is \"Not at all\" or \"No problem\"."}, {"label": "\"Could you just check the dates for me?\"", "example": "\"Just\" makes the task sound small and quick, which makes it easier to say yes to."}, {"label": "\"Is there any chance you could get it to me by Friday?\"", "example": "Frames a deadline as a possibility, not a demand, while still making the deadline clear."}], "dis": [{"label": "\"I'm not sure that's quite right.\"", "example": "Means \"I think that's wrong.\" \"Not sure\" + \"quite\" gives the other person room to check without being embarrassed."}, {"label": "\"I see what you mean, but I wonder if…\"", "example": "Acknowledge first, then disagree. \"I wonder if\" turns your objection into a suggestion."}, {"label": "\"I'm not entirely convinced.\"", "example": "A polite but firm \"no\". \"Not entirely\" sounds gentle, yet everybody understands it as a real objection."}, {"label": "\"Wouldn't it be better to wait until the data's in?\"", "example": "A negative question presents your opinion as something the other person probably agrees with already."}], "under": [{"label": "\"That's an interesting idea.\"", "example": "Often means \"I don't think that will work.\" Watch the tone and whether any follow-up is suggested."}, {"label": "\"It's not bad at all.\"", "example": "Means \"It's good.\" British praise is often expressed through negatives."}, {"label": "\"There are just a few minor issues.\"", "example": "Can mean \"This needs serious work.\" In feedback, \"minor\" is sometimes not minor at all."}, {"label": "\"With the greatest respect…\"", "example": "Means \"I think you're wrong, and I'm getting irritated.\" The more respect is mentioned, the less there is."}]},
+    quizLabels: {"req": "a softened request", "dis": "softened disagreement", "under": "understatement"},
+    rulesToggleId: 'rules-toggle'
+  });
+  Course.renderCompareCard('compare-card', [{"key": "c1", "label": "Too blunt", "text": "Send me the report by Friday.", "explain": "An order. From a peer it sounds rude; even from a manager it sounds cold."}, {"key": "c2", "label": "Too stiff", "text": "Would you be so kind as to furnish me with the report at your earliest convenience?", "explain": "So formal it sounds sarcastic, and \"at your earliest convenience\" hides the actual deadline."}, {"key": "c3", "label": "Just right", "text": "Could you send me the report by Friday, if that works for you?", "explain": "A clear request with a clear deadline, softened with a modal and a small \"if\" clause.", "groupEnd": true}, {"key": "c4", "label": "Too blunt", "text": "That's wrong.", "explain": "Direct disagreement in front of others makes people defensive. In a British meeting it can feel like an attack."}, {"key": "c5", "label": "Too stiff", "text": "I must humbly and respectfully register my profound disagreement.", "explain": "So elaborate that it sounds either sarcastic or like a courtroom."}, {"key": "c6", "label": "Just right", "text": "I'm not sure that's quite right — could we look at the figures again?", "explain": "The disagreement is clear, but it's framed as uncertainty plus a practical next step, so nobody loses face."}]);
+
+  /* ---------------- reading ---------------- */
+  Course.initGramToggle();
+  Course.wireGramSpans({"g1": "Classic British understatement. Said warmly with no follow-up question, \"interesting\" often means \"I'm not keen.\" If she'd said \"Interesting — can you put some numbers on it?\", that would be real interest.", "g2": "A polite but firm objection. \"Not entirely\" sounds gentle, yet it's understood as \"I disagree.\"", "g3": "\"Just\" and \"minor\" shrink the criticism. In feedback this can hide quite significant problems, so always ask which points matter most.", "g4": "Past continuous + \"if\" + a question: three layers of distance that turn a demand into a request. Compare \"I want to take Friday off.\"", "g5": "Formal respect language used as a warning. The speaker strongly disagrees and wants you to notice.", "g6": "A disagreement turned into a shared next step (\"could we…\"). Nobody is accused, and the problem still gets fixed."});
+  Course.initVocab({"awkward": {"word": "awkward", "ipa": "/ˈɔː.kwəd/", "meaning": "causing embarrassment or discomfort", "example": "It was an awkward conversation, but a useful one."}, "candid": {"word": "candid", "ipa": "/ˈkæn.dɪd/", "meaning": "honest and direct, even when the truth is unwelcome", "example": "She gave me a candid opinion of my presentation."}, "understatement": {"word": "understatement", "ipa": "/ˈʌn.dəˌsteɪt.mənt/", "meaning": "saying that something is less important, serious or good than it really is", "example": "\"A bit of a problem\" was an understatement: the server was down for two days."}, "blunt": {"word": "blunt", "ipa": "/blʌnt/", "meaning": "saying what you think directly, without trying to be polite", "example": "His feedback was accurate but very blunt."}, "tactful": {"word": "tactful", "ipa": "/ˈtækt.fəl/", "meaning": "careful not to upset or embarrass people", "example": "There's no tactful way to tell him the project's cancelled."}, "nuance": {"word": "nuance", "ipa": "/ˈnjuː.ɑːns/", "meaning": "a very small difference in meaning, tone or feeling", "example": "Learners often miss the nuance in \"quite good\"."}, "diplomatic": {"word": "diplomatic", "ipa": "/ˌdɪp.ləˈmæt.ɪk/", "meaning": "able to deal with people politely and without causing bad feeling", "example": "She gave a diplomatic answer that didn't upset either side."}, "misread": {"word": "misread", "ipa": "/ˌmɪsˈriːd/", "meaning": "to understand someone or something wrongly", "example": "I completely misread the situation."}}, LESSON_ID);
+  Course.initMCQ('comp-q1', {lessonId: LESSON_ID, sectionId: 'reading-comp-1', correctValue: "right", restoreAnswer: (sectionMap['reading-comp-1']||{}).answer_given});
+  Course.initMCQ('comp-q2', {lessonId: LESSON_ID, sectionId: 'reading-comp-2', correctValue: "right", restoreAnswer: (sectionMap['reading-comp-2']||{}).answer_given});
+  Course.initMCQ('comp-q3', {lessonId: LESSON_ID, sectionId: 'reading-comp-3', correctValue: "right", restoreAnswer: (sectionMap['reading-comp-3']||{}).answer_given});
+  Course.ensureAnswerPositionVariety([{"containerId": "comp-q1", "correctValue": "right"}, {"containerId": "comp-q2", "correctValue": "right"}, {"containerId": "comp-q3", "correctValue": "right"}]);
+
+  /* ---------------- vocab check ---------------- */
+  Course.initMCQ('vocab-q1', {lessonId: LESSON_ID, sectionId: 'vocab-1', correctValue: "right", restoreAnswer: (sectionMap['vocab-1']||{}).answer_given});
+  Course.initMCQ('vocab-q2', {lessonId: LESSON_ID, sectionId: 'vocab-2', correctValue: "right", restoreAnswer: (sectionMap['vocab-2']||{}).answer_given});
+  Course.initMCQ('vocab-q3', {lessonId: LESSON_ID, sectionId: 'vocab-3', correctValue: "right", restoreAnswer: (sectionMap['vocab-3']||{}).answer_given});
+  Course.initMCQ('vocab-q4', {lessonId: LESSON_ID, sectionId: 'vocab-4', correctValue: "right", restoreAnswer: (sectionMap['vocab-4']||{}).answer_given});
+  Course.initMCQ('vocab-q5', {lessonId: LESSON_ID, sectionId: 'vocab-5', correctValue: "right", restoreAnswer: (sectionMap['vocab-5']||{}).answer_given});
+  Course.ensureAnswerPositionVariety([{"containerId": "vocab-q1", "correctValue": "right"}, {"containerId": "vocab-q2", "correctValue": "right"}, {"containerId": "vocab-q3", "correctValue": "right"}, {"containerId": "vocab-q4", "correctValue": "right"}, {"containerId": "vocab-q5", "correctValue": "right"}]);
+    Course.initGapFill('vgap1-input','vgap1-check','vgap1-fb',{lessonId:LESSON_ID, sectionId:'vocab-gap-1', correctAnswers:["candid", "blunt"], restore: sectionMap['vocab-gap-1'] ? {answerGiven: sectionMap['vocab-gap-1'].answer_given, isCorrect: sectionMap['vocab-gap-1'].override_correct ?? sectionMap['vocab-gap-1'].is_correct} : null});
+  Course.initGapFill('vgap2-input','vgap2-check','vgap2-fb',{lessonId:LESSON_ID, sectionId:'vocab-gap-2', correctAnswers:["diplomatic", "tactful"], restore: sectionMap['vocab-gap-2'] ? {answerGiven: sectionMap['vocab-gap-2'].answer_given, isCorrect: sectionMap['vocab-gap-2'].override_correct ?? sectionMap['vocab-gap-2'].is_correct} : null});
+  Course.initGapFill('vgap3-input','vgap3-check','vgap3-fb',{lessonId:LESSON_ID, sectionId:'vocab-gap-3', correctAnswers:["understatement"], restore: sectionMap['vocab-gap-3'] ? {answerGiven: sectionMap['vocab-gap-3'].answer_given, isCorrect: sectionMap['vocab-gap-3'].override_correct ?? sectionMap['vocab-gap-3'].is_correct} : null});
+  Course.initGapFill('vgap4-input','vgap4-check','vgap4-fb',{lessonId:LESSON_ID, sectionId:'vocab-gap-4', correctAnswers:["awkward"], restore: sectionMap['vocab-gap-4'] ? {answerGiven: sectionMap['vocab-gap-4'].answer_given, isCorrect: sectionMap['vocab-gap-4'].override_correct ?? sectionMap['vocab-gap-4'].is_correct} : null});
+
+  /* ---------------- practice ---------------- */
+    Course.initGapFill('gap1-input','gap1-check','gap1-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-1', correctAnswers:Course.withContractions(["wondering"]), restore: sectionMap['practice-gap-1'] ? {answerGiven: sectionMap['practice-gap-1'].answer_given, isCorrect: sectionMap['practice-gap-1'].override_correct ?? sectionMap['practice-gap-1'].is_correct} : null});
+  Course.initGapFill('gap2-input','gap2-check','gap2-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-2', correctAnswers:Course.withContractions(["mind"]), restore: sectionMap['practice-gap-2'] ? {answerGiven: sectionMap['practice-gap-2'].answer_given, isCorrect: sectionMap['practice-gap-2'].override_correct ?? sectionMap['practice-gap-2'].is_correct} : null});
+  Course.initGapFill('gap3-input','gap3-check','gap3-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-3', correctAnswers:Course.withContractions(["entirely", "totally", "completely"]), restore: sectionMap['practice-gap-3'] ? {answerGiven: sectionMap['practice-gap-3'].answer_given, isCorrect: sectionMap['practice-gap-3'].override_correct ?? sectionMap['practice-gap-3'].is_correct} : null});
+  Course.initGapFill('gap4-input','gap4-check','gap4-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-4', correctAnswers:Course.withContractions(["just", "quickly"]), restore: sectionMap['practice-gap-4'] ? {answerGiven: sectionMap['practice-gap-4'].answer_given, isCorrect: sectionMap['practice-gap-4'].override_correct ?? sectionMap['practice-gap-4'].is_correct} : null});
+  Course.initGapFill('gap5-input','gap5-check','gap5-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-5', correctAnswers:Course.withContractions(["chance", "way"]), restore: sectionMap['practice-gap-5'] ? {answerGiven: sectionMap['practice-gap-5'].answer_given, isCorrect: sectionMap['practice-gap-5'].override_correct ?? sectionMap['practice-gap-5'].is_correct} : null});
+  Course.initGapFill('gap6-input','gap6-check','gap6-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-6', correctAnswers:Course.withContractions(["mean"]), restore: sectionMap['practice-gap-6'] ? {answerGiven: sectionMap['practice-gap-6'].answer_given, isCorrect: sectionMap['practice-gap-6'].override_correct ?? sectionMap['practice-gap-6'].is_correct} : null});
+  Course.initErrorSpot('err1', {
+    lessonId: LESSON_ID, sectionId: 'practice-err-1',
+    words: ["You", "must", "send", "me", "the", "figures", "today."], errorIndices: [1], correction: "", explanation: "\"Must\" sounds like an order from above. Try \"Could you send me the figures today, if possible?\""
+  });
+  Course.initErrorSpot('err2', {
+    lessonId: LESSON_ID, sectionId: 'practice-err-2',
+    words: ["I", "want", "a", "copy", "of", "the", "slides."], errorIndices: [1], correction: "", explanation: "\"I want\" sounds demanding. \"Could I get a copy of the slides?\" or \"Would you mind sharing the slides?\" is the natural request."
+  });
+  Course.initErrorSpot('err3', {
+    lessonId: LESSON_ID, sectionId: 'practice-err-3',
+    words: ["Honestly,", "your", "plan", "is", "wrong."], errorIndices: [4], correction: "", explanation: "A flat verdict on someone's work causes loss of face. \"I'm not sure the plan quite works — can we talk it through?\""
+  });
+  Course.renderBuilders('builders', [{"words": ["Would", "you", "mind", "sending", "me", "the", "figures?"]}, {"words": ["I", "was", "wondering", "if", "you", "could", "help."]}, {"words": ["I'm", "not", "sure", "that's", "quite", "right."]}], {lessonId: LESSON_ID, sectionPrefix: 'practice-builder'});
+
+  /* ---------------- speaking ---------------- */
+  Course.initSpeaking({max: 2, lessonId: LESSON_ID, sectionMap, soloTaskLabel: "Take three direct sentences you might say at work (e.g. \"Send me the file.\", \"That's wrong.\", \"I want Friday off.\") and say a softened British version of each. Then explain which technique you used each time: past tense, a modal, a softener or a question."});
+  Course.renderDiscussQuestions('discuss-questions', ["Is your first language more direct or more indirect than British English? Give an example of a phrase that doesn't translate well.", "Have you ever misread someone's politeness (or had your directness misread)? What happened?", "Role-play: one person asks for something difficult (a deadline extension, a day off). The other says no using only understatement. Can the group decode the real answer?"], {lessonId: LESSON_ID, max: 2, sectionPrefix: 'speaking-q'});
+
+  /* ---------------- listening ---------------- */
+  Course.initListening({dialogue: [{"speaker": "Tomasz", "line": "Can you look at this before I send it? \"Claire, I want to take Friday off. Please confirm.\""}, {"speaker": "Anna", "line": "Hmm. It's clear, I'll give you that. But she'll read it as an order."}, {"speaker": "Tomasz", "line": "Really? I said please."}, {"speaker": "Anna", "line": "Please doesn't do much on its own. Try \"I was wondering if I could take Friday off — would that be OK?\""}, {"speaker": "Tomasz", "line": "That's so much longer to say the same thing."}, {"speaker": "Anna", "line": "It isn't the same thing, though. Yours tells her. Mine asks her. By the way, what did she say about your dashboard idea?"}, {"speaker": "Tomasz", "line": "She said it was an interesting idea. So I've started building it."}, {"speaker": "Anna", "line": "Ah. I might hold off on that until she mentions it again."}], speakerA: 'Anna', speakerB: 'Tomasz', lessonId: LESSON_ID});
+  Course.initMCQ('listen-q1', {lessonId: LESSON_ID, sectionId: 'listening-1', correctValue: "right", restoreAnswer: (sectionMap['listening-1']||{}).answer_given});
+  Course.initMCQ('listen-q2', {lessonId: LESSON_ID, sectionId: 'listening-2', correctValue: "right", restoreAnswer: (sectionMap['listening-2']||{}).answer_given});
+  Course.initMCQ('listen-q3', {lessonId: LESSON_ID, sectionId: 'listening-3', correctValue: "right", restoreAnswer: (sectionMap['listening-3']||{}).answer_given});
+  Course.ensureAnswerPositionVariety([{"containerId": "listen-q1", "correctValue": "right"}, {"containerId": "listen-q2", "correctValue": "right"}, {"containerId": "listen-q3", "correctValue": "right"}]);
+
+  /* ---------------- wrap-up ---------------- */
+  Course.initMCQ('exit-q1', {lessonId: LESSON_ID, sectionId: 'exit-1', correctValue: "right", restoreAnswer: (sectionMap['exit-1']||{}).answer_given});
+  Course.initMCQ('exit-q2', {lessonId: LESSON_ID, sectionId: 'exit-2', correctValue: "right", restoreAnswer: (sectionMap['exit-2']||{}).answer_given});
+  Course.initMCQ('exit-q3', {lessonId: LESSON_ID, sectionId: 'exit-3', correctValue: "right", restoreAnswer: (sectionMap['exit-3']||{}).answer_given});
+  Course.initMCQ('exit-q4', {lessonId: LESSON_ID, sectionId: 'exit-4', correctValue: "right", restoreAnswer: (sectionMap['exit-4']||{}).answer_given});
+  Course.initMCQ('exit-q5', {lessonId: LESSON_ID, sectionId: 'exit-5', correctValue: "right", restoreAnswer: (sectionMap['exit-5']||{}).answer_given});
+  Course.ensureAnswerPositionVariety([{"containerId": "exit-q1", "correctValue": "right"}, {"containerId": "exit-q2", "correctValue": "right"}, {"containerId": "exit-q3", "correctValue": "right"}, {"containerId": "exit-q4", "correctValue": "right"}, {"containerId": "exit-q5", "correctValue": "right"}]);
+  Course.initSummary({lessonId: LESSON_ID, totalExercises: 39});
+})();
+
+</script>
+</body>
+</html>

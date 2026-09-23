@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capstone: A Week in London | Workplace EQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/theme.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="shared/supabase-config.js"></script>
+</head>
+<body class="theme-velocity">
+
+<div class="course-attribution">Workplace EQ · English Voiced with Kris</div>
+<div class="shell">
+  <header class="lesson-header">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+      <div class="lesson-eyebrow">Lesson 7 of 7 · Career Velocity</div>
+      <div style="display:flex;gap:8px">
+      <a id="all-lessons-link" href="index-standalone.html" class="pill" style="text-decoration:none;font-size:12.5px;border-radius:var(--radius-sm)">📚 All Lessons</a>
+      <a id="glossary-link" href="glossary-standalone.html" class="pill" style="text-decoration:none;font-size:12.5px;border-radius:var(--radius-sm)">📖 My Glossary</a>
+    </div>
+    </div>
+    <h1 class="lesson-title">Capstone: A Week in London</h1>
+    <p class="lesson-sub">One working week, from Monday's first handshake to Friday's follow-up email, using everything from the course.</p>
+    <div class="pb-track" style="margin-top:16px"><div class="pb-fill" id="overall-progress" style="width:0%"></div></div>
+    <div id="sync-status" style="font-size:11.5px;color:var(--text-tertiary);margin-top:8px"></div>
+  </header>
+
+  <section class="section" id="sec-warmup">
+    <div class="section-label"><span class="num">1</span> Warm-up</div>
+    <div class="card">
+      <p style="margin-bottom:14px;font-size:14.5px;color:var(--text-secondary)">This lesson follows one person through a busy week at a London company: a new team, a client dinner, a tense meeting, a mistake and a big opportunity. Each situation brings back language from Lessons 1–6. Let's start with a quick warm-up across the whole course.</p>
+      
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">1. Monday. Your new team lead introduces himself as "Rob". You say…</p>
+        <div id="warm-q1">
+          <button class="opt" data-value="right">"Nice to meet you, Rob."</button><button class="opt" data-value="wrong">"Nice to meet you, Mr Rob."</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">2. Tuesday. You need a report from a colleague in another team. You write…</p>
+        <div id="warm-q2">
+          <button class="opt" data-value="right">"Hi Jess — could you send me the Q3 report when you get a chance?"</button><button class="opt" data-value="wrong">"Jess, send me the Q3 report."</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">3. Wednesday. At the client dinner, the client asks what you think of the new prime minister. You…</p>
+        <div id="warm-q3">
+          <button class="opt" data-value="right">keep it light and steer to a safer topic</button><button class="opt" data-value="wrong">give your full political opinion</button>
+        </div>
+      </div>
+      <div class="tip-box">💡 <span style="flex:1;min-width:0">The capstone doesn't add many new phrases. It asks you to choose the right one quickly, in context, under a bit of pressure, which is what real workplaces demand.</span></div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-diagnostic">
+    <div class="section-label"><span class="num">2</span> Quick check — before we explain anything</div>
+    <div class="card">
+      <p style="margin-bottom:16px;font-size:14.5px;color:var(--text-secondary)">Four quick questions. This isn't graded harshly — it just shows us where to focus.</p>
+      
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px;font-weight:550">1. Thursday's meeting: the director proposes a plan you think is risky. You say…</p>
+        <div id="diag-q1">
+          <button class="opt" data-value="right">"I take your point, but I'm a bit worried about the budget."</button><button class="opt" data-value="wrong">"That plan is too risky."</button>
+        </div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px;font-weight:550">2. Thursday afternoon: you realise you sent the client the wrong file. You write…</p>
+        <div id="diag-q2">
+          <button class="opt" data-value="right">"Apologies — I attached the wrong version. The correct one is here."</button><button class="opt" data-value="wrong">"The system attached the wrong file."</button>
+        </div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px;font-weight:550">3. Friday: Rob says you did a great job this week. You reply…</p>
+        <div id="diag-q3">
+          <button class="opt" data-value="right">"Thanks — Jess's report made the client meeting much easier."</button><button class="opt" data-value="wrong">"Yes, I know."</button>
+        </div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px;font-weight:550">4. Friday: you'd like to lead the next client project. You say…</p>
+        <div id="diag-q4">
+          <button class="opt" data-value="right">"I'd love the chance to lead the next one — what would you need to see from me?"</button><button class="opt" data-value="wrong">"I should lead the next project."</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-concept">
+    <div class="section-label"><span class="num">3</span> The concept</div>
+
+    <div class="card">
+      <h3 style="margin-bottom:10px">The whole course in three moves</h3>
+      <p style="font-size:14.5px;line-height:1.7;margin-bottom:14px">Every phrase in this course does one of three things. It builds your <b>presence</b> (how people see you), it helps your <b>communication</b> land (so people understand and act), or it adds to your <b>career velocity</b> (so your work and ambitions are noticed). Browse the best phrase from each lesson, then sort them in the quick check.</p>
+      <div class="mode-toggle mode-toggle-outline" style="flex-wrap:wrap;gap:8px">
+        <button class="pill on" id="mode-w-pres">Presence</button><button class="pill" id="mode-w-comm">Communication</button><button class="pill" id="mode-w-vel">Career velocity</button><button class="pill" id="mode-w-quiz">Quick check</button>
+      </div>
+      <div id="widget-area" style="margin-top:14px;padding:18px;border-radius:var(--radius-md);background:var(--surface-alt);border:1px solid var(--border)"></div>
+      <p id="widget-hint" style="font-size:12.5px;color:var(--text-tertiary);margin-top:8px">— Click either cell to see another example.</p>
+
+      <button class="pill" id="rules-toggle" style="margin-top:16px">📖 Show the full rules</button>
+      <div class="expand-content" id="rules-content">
+        <div style="margin-top:16px">
+          
+          <div class="formula" style="border-left-color:var(--c-present)">✅ <b>Presence:</b> follow the other person's lead on names and formality; soften requests and disagreements; decode understatement.</div>
+          <div class="formula" style="border-left-color:var(--c-continuous)">✅ <b>Communication:</b> put the point first; chase lightly; get the floor with a short apology; disagree with acknowledge → concern → suggestion; say no with a reason and an alternative; apologise by owning it first.</div>
+          <div class="formula" style="border-left-color:var(--c-future);margin-bottom:20px">✅ <b>Career velocity:</b> results and numbers, "we" and shared credit, no surprises for your manager, and ask for the conversation before you ask for the thing.</div>
+          <div class="warn-box">
+            <span>🎯</span>
+            <span style="flex:1;min-width:0"><b>The one rule behind all of it:</b> be <b>clear about the message</b> and <b>generous about the person</b>. Blunt speakers forget the second half; over-polite speakers forget the first. Every "just right" example in this course does both.<br><br>
+            If you're ever unsure, three questions help: <i>Would they know exactly what I want? Would they feel respected? Would I say this to someone senior?</i></span>
+          </div>
+          <div class="tip-box" style="margin-top:12px">🌍 <span style="flex:1;min-width:0"><b>Taking it abroad:</b> in the US, turn up the warmth and the self-promotion a notch. In Germany or the Netherlands, turn the softening down. In Japan or much of East Asia, turn the indirectness and the formality up. The British default is a good middle setting: easy to adjust in either direction.</span></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h3 style="margin-bottom:6px">Too blunt, too stiff, or just right? (mixed situations)</h3>
+      <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:14px">One example from each part of the week. Hover over (or tap) to see how each version lands.</p>
+      <div id="compare-card" style="font-size:14.5px;line-height:1.9"></div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-reading">
+    <div class="section-label"><span class="num">4</span> Reading — Monday to Friday</div>
+    <div class="card">
+      <button class="pill" id="gram-toggle">🔍 Show key phrases in this text</button>
+      <div class="passage" id="passage" style="margin-top:14px"><p><b>Monday.</b> Zofia's first day at a London fintech began with a round of introductions. When the head of product said "Hi, I'm Rob," she answered <span class="gram" data-gram="g1">“Nice to meet you, Rob”</span>, no title, no surname, and asked him how long he'd been with the company. By lunchtime she had a <span class="vocab" data-word="rapport">rapport</span> with half the team, mostly because she'd asked questions and listened to the answers.</p><p><b>Tuesday and Wednesday.</b> She needed data from a team she'd never worked with, so she wrote <span class="gram" data-gram="g2">“I was wondering if you could send me the Q3 figures when you get a chance?”</span> They arrived within the hour. On Wednesday evening she joined Rob at a client dinner. When the client raised politics over dessert, Zofia smiled, said it had been quite a year, and asked about his holiday plans instead. Her <span class="vocab" data-word="discretion">discretion</span> did not go unnoticed.</p><p><b>Thursday.</b> In the strategy meeting, the director proposed doubling the marketing budget. Zofia thought the numbers didn't support it. She waited for a natural pause, then said <span class="gram" data-gram="g3">“Sorry to jump in — I take the point, but I'm a bit worried about the return on the last campaign.”</span> The room paused, then agreed to look at the data again. That afternoon she discovered she had sent the client an old version of a proposal. Her email began <span class="gram" data-gram="g4">“Apologies — I attached the wrong version, and that's my mistake.”</span> It was three lines long. The client replied with a smiley face.</p><p><b>Friday.</b> Rob stopped by her desk. "Great first week," he said. "The client loved you." Zofia said <span class="gram" data-gram="g5">“Thanks — Jess's figures made the dinner conversation much easier”</span>, and then, because the moment felt right, added <span class="gram" data-gram="g6">“I'd love the chance to lead the next client project. What would you need to see from me?”</span> Rob looked <span class="vocab" data-word="taken aback">taken aback</span> for a second, then smiled and gave her two things to work on. She sent him a short <span class="vocab" data-word="follow-up">follow-up</span> email that afternoon summarising them. None of it was <span class="vocab" data-word="rocket science">rocket science</span>. It was simply the unwritten rules, followed consistently, for five days in a row.</p></div>
+      <p style="font-size:12.5px;color:var(--text-tertiary);margin-top:10px">Tap a highlighted word for pronunciation, meaning and an example. With key phrases on, tap a highlighted phrase to see why it works (and what a less skilful speaker might have said).</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-bottom:12px">Did you follow it? Quick comprehension check</h3>
+      
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">1. How did Zofia handle politics at the client dinner?</p>
+        <div id="comp-q1">
+          <button class="opt" data-value="right">She kept it light and moved to a safer topic.</button><button class="opt" data-value="wrong">She shared her opinion honestly.</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">2. What happened after Zofia disagreed in Thursday's meeting?</p>
+        <div id="comp-q2">
+          <button class="opt" data-value="right">The group agreed to look at the data again.</button><button class="opt" data-value="wrong">The director asked her to leave the meeting.</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">3. What did Zofia do after Rob praised her on Friday?</p>
+        <div id="comp-q3">
+          <button class="opt" data-value="right">Shared credit, asked to lead a project, and followed up in writing.</button><button class="opt" data-value="wrong">Asked for an immediate pay rise.</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-vocab">
+    <div class="section-label"><span class="num">5</span> Vocabulary check</div>
+    <div class="card">
+      <p style="font-size:14.5px;margin-bottom:16px">The key words from the text — mixed formats.</p>
+      <h4 style="font-size:13px;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary);margin-bottom:12px">Match the meaning</h4>
+      
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">1. "Discretion" is…</p>
+        <div id="vocab-q1">
+          <button class="opt" data-value="right">the ability to behave tactfully and keep things private</button><button class="opt" data-value="wrong">a discount for clients</button><button class="opt" data-value="wrong2">a strong opinion</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">2. If you're "taken aback", you are…</p>
+        <div id="vocab-q2">
+          <button class="opt" data-value="right">surprised</button><button class="opt" data-value="wrong">promoted</button><button class="opt" data-value="wrong2">angry</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">3. A "follow-up" email…</p>
+        <div id="vocab-q3">
+          <button class="opt" data-value="right">continues something that started earlier</button><button class="opt" data-value="wrong">is sent to everyone in the company</button><button class="opt" data-value="wrong2">is always a complaint</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">4. "It isn't rocket science" means…</p>
+        <div id="vocab-q4">
+          <button class="opt" data-value="right">It isn't complicated.</button><button class="opt" data-value="wrong">It isn't interesting.</button><button class="opt" data-value="wrong2">It isn't allowed.</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">5. "Rapport" is…</p>
+        <div id="vocab-q5">
+          <button class="opt" data-value="right">a good understanding between people</button><button class="opt" data-value="wrong">a written report</button><button class="opt" data-value="wrong2">a formal complaint</button>
+        </div>
+      </div>
+      <h4 style="font-size:13px;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary);margin-bottom:12px;padding-top:6px;border-top:1px solid var(--border)">Complete the sentence — vocabulary focus</h4>
+      
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px">1. HR matters need to be handled with complete <input type="text" id="vgap1-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:120px"> .</p>
+        <button class="btn btn-sm" id="vgap1-check">Check</button>
+        <div id="vgap1-fb"></div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px">2. I was a bit taken <input type="text" id="vgap2-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:90px"> by his reaction.</p>
+        <button class="btn btn-sm" id="vgap2-check">Check</button>
+        <div id="vgap2-fb"></div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px">3. I'll send a quick <input type="text" id="vgap3-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:110px"> email with the action points.</p>
+        <button class="btn btn-sm" id="vgap3-check">Check</button>
+        <div id="vgap3-fb"></div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px">4. Good small talk isn't rocket <input type="text" id="vgap4-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:100px"> — just ask and listen.</p>
+        <button class="btn btn-sm" id="vgap4-check">Check</button>
+        <div id="vgap4-fb"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-practice">
+    <div class="section-label"><span class="num">6</span> Practice</div>
+    <div class="card">
+      <h3 style="margin-bottom:2px">Gap-fill</h3>
+      <p style="font-size:12.5px;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary);margin-bottom:16px">Language focus — mixed phrases from the whole course (one word per gap)</p>
+      
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px">1. I don't think we've <input type="text" id="gap1-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:80px"> — I'm Zofia, I've just joined the product team.</p>
+        <button class="btn btn-sm" id="gap1-check">Check</button>
+        <div id="gap1-fb"></div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px">2. Would you <input type="text" id="gap2-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:80px"> sending me the Q3 figures?</p>
+        <button class="btn btn-sm" id="gap2-check">Check</button>
+        <div id="gap2-fb"></div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px">3. Just following <input type="text" id="gap3-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:70px"> on my email from Monday.</p>
+        <button class="btn btn-sm" id="gap3-check">Check</button>
+        <div id="gap3-fb"></div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px">4. Sorry to jump <input type="text" id="gap4-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:70px"> , but can I add something?</p>
+        <button class="btn btn-sm" id="gap4-check">Check</button>
+        <div id="gap4-fb"></div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px">5. I'm afraid I'm at <input type="text" id="gap5-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:100px"> until Friday.</p>
+        <button class="btn btn-sm" id="gap5-check">Check</button>
+        <div id="gap5-fb"></div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px">6. Just a <input type="text" id="gap6-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:90px"> -up: the client may call you this afternoon.</p>
+        <button class="btn btn-sm" id="gap6-check">Check</button>
+        <div id="gap6-fb"></div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h3 style="margin-bottom:6px">Spot the faux pas: the whole week</h3>
+      <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:16px">One line from each part of Zofia's week, as a less skilful colleague might have said it. Tap the word that causes the problem.</p>
+      
+      <div style="margin-bottom:8px;font-size:12px;font-weight:650;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary)">Sentence 1</div>
+      <div id="err1" style="font-size:15px;line-height:1.9;margin-bottom:20px"></div>
+      <div style="margin-bottom:8px;font-size:12px;font-weight:650;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary);padding-top:16px;border-top:1px solid var(--border)">Sentence 2</div>
+      <div id="err2" style="font-size:15px;line-height:1.9;margin-bottom:20px"></div>
+      <div style="margin-bottom:8px;font-size:12px;font-weight:650;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary);padding-top:16px;border-top:1px solid var(--border)">Sentence 3</div>
+      <div id="err3" style="font-size:15px;line-height:1.9;margin-bottom:20px"></div>
+    </div>
+    <div class="card">
+      <h3 style="margin-bottom:6px">Sentence builder</h3>
+      <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:14px">Tap the chips in the right order. Three rounds.</p>
+      <div id="builders"></div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-speaking">
+    <div class="section-label"><span class="num">7</span> Speaking task</div>
+    <div class="mode-toggle">
+      <button class="pill on" id="mode-solo">👤 Solo</button>
+      <button class="pill" id="mode-group">👥 Group (2–4)</button>
+    </div>
+    <div class="task-card" id="speak-solo">
+      <div class="kicker">60-second task</div>
+      <p style="font-size:14.5px;line-height:1.7">Record a 90-second "week in review" as if you were Zofia talking to a friend on Friday evening. Describe one moment from each day and quote the exact phrase she used, then say which one you'd find hardest in real life and why.</p>
+      <button class="btn btn-sm" id="solo-done-btn" style="margin-top:14px">✓ I've done this</button>
+    </div>
+    <div class="task-card" id="speak-group" style="display:none">
+      <div class="kicker">Discussion — pick 1–2 questions to answer out loud</div>
+      <p style="font-size:14.5px;line-height:1.7;margin-bottom:12px">Tap the question(s) you'll answer. Your teacher will see your pick and mark it after you speak.</p>
+      <div id="discuss-questions" style="display:flex;flex-direction:column;gap:8px"></div>
+      <p id="discuss-limit-msg" style="font-size:12.5px;color:var(--text-tertiary);margin-top:10px">You can select up to 2 questions.</p>
+    </div>
+  </section>
+
+  <section class="section" id="sec-listening">
+    <div class="section-label"><span class="num">8</span> Listening</div>
+    <div class="card">
+      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:12px">It's Friday evening. Anna and Tomasz look back on his first few months in London.</p>
+      <audio id="dialogue-audio" preload="none" style="display:none"></audio>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-primary" id="play-dialogue">▶ Play dialogue</button>
+        <button class="btn btn-ghost btn-sm" id="stop-dialogue">⏹ Stop</button>
+        <button class="btn btn-ghost btn-sm" id="show-transcript">Show full transcript</button>
+      </div>
+      <div id="transcript"></div>
+      
+      <div style="margin-top:16px">
+        <p style="margin-bottom:8px;font-weight:550">1. What does Tomasz say was his real challenge?</p>
+        <div id="listen-q1">
+          <button class="opt" data-value="right">The unwritten rules, not his English.</button><button class="opt" data-value="wrong">His pronunciation.</button>
+        </div>
+      </div>
+      <div style="margin-top:16px">
+        <p style="margin-bottom:8px;font-weight:550">2. How does Tomasz now understand "not bad at all"?</p>
+        <div id="listen-q2">
+          <button class="opt" data-value="right">As a genuine compliment.</button><button class="opt" data-value="wrong">As hidden criticism.</button>
+        </div>
+      </div>
+      <div style="margin-top:16px">
+        <p style="margin-bottom:8px;font-weight:550">3. What is Tomasz planning for Monday?</p>
+        <div id="listen-q3">
+          <button class="opt" data-value="right">A conversation with Claire about his next step.</button><button class="opt" data-value="wrong">A client dinner with Anna.</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-wrapup">
+    <div class="section-label"><span class="num">9</span> Wrap-up — exit check</div>
+    <div class="card">
+      
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">1. The rule behind the whole course is…</p>
+        <div id="exit-q1">
+          <button class="opt" data-value="right">be clear about the message and generous about the person</button><button class="opt" data-value="wrong">always be as formal as possible</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">2. At a client dinner, politics comes up. You…</p>
+        <div id="exit-q2">
+          <button class="opt" data-value="right">keep it light and change the subject</button><button class="opt" data-value="wrong">debate it in detail</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">3. You sent the wrong file. Your first sentence is…</p>
+        <div id="exit-q3">
+          <button class="opt" data-value="right">"Apologies — I attached the wrong version."</button><button class="opt" data-value="wrong">"The software didn't work properly."</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">4. Your manager praises you. You reply…</p>
+        <div id="exit-q4">
+          <button class="opt" data-value="right">"Thanks — the team made a big difference."</button><button class="opt" data-value="wrong">"I know, I worked very hard."</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">5. Working with Dutch or German colleagues, you might…</p>
+        <div id="exit-q5">
+          <button class="opt" data-value="right">use a bit less softening than with British colleagues</button><button class="opt" data-value="wrong">add even more understatement</button>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="summary-card">
+      <h3 style="margin-bottom:14px">Your lesson summary</h3>
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px" id="summary-ring-row">
+        <div id="score-ring-holder"></div>
+        <div>
+          <div style="font-weight:600" id="summary-name">—</div>
+          <div style="font-size:13px;margin-top:4px" id="summary-completion"></div>
+          <div style="font-size:13px;color:var(--text-secondary);margin-top:4px" id="summary-weak">Finish the lesson to see your results.</div>
+        </div>
+      </div>
+      <button class="btn btn-primary" id="finish-btn">Finish lesson &amp; see results</button>
+      <button class="btn" id="export-btn" style="margin-left:8px;display:none">⬇ Export PDF report</button>
+    </div>
+  </section>
+</div>
+
+<script src="shared/course-engine.js"></script>
+<script>
+
+const LESSON_ID = "weq-lesson-07-capstone-week-in-london";
+Course.initPageChrome({lessonId: LESSON_ID});
+
+(async function initLesson(){
+  await Course.initSyncStatus(LESSON_ID);
+  const sectionMap = Course.getSectionMap(LESSON_ID);
+
+  Course.initMCQ('warm-q1', {lessonId: LESSON_ID, sectionId: 'warmup-1', correctValue: "right", restoreAnswer: (sectionMap['warmup-1']||{}).answer_given});
+  Course.initMCQ('warm-q2', {lessonId: LESSON_ID, sectionId: 'warmup-2', correctValue: "right", restoreAnswer: (sectionMap['warmup-2']||{}).answer_given});
+  Course.initMCQ('warm-q3', {lessonId: LESSON_ID, sectionId: 'warmup-3', correctValue: "right", restoreAnswer: (sectionMap['warmup-3']||{}).answer_given});
+  Course.ensureAnswerPositionVariety([{"containerId": "warm-q1", "correctValue": "right"}, {"containerId": "warm-q2", "correctValue": "right"}, {"containerId": "warm-q3", "correctValue": "right"}]);
+  Course.initMCQ('diag-q1', {lessonId: LESSON_ID, sectionId: 'diagnostic-1', correctValue: "right", restoreAnswer: (sectionMap['diagnostic-1']||{}).answer_given});
+  Course.initMCQ('diag-q2', {lessonId: LESSON_ID, sectionId: 'diagnostic-2', correctValue: "right", restoreAnswer: (sectionMap['diagnostic-2']||{}).answer_given});
+  Course.initMCQ('diag-q3', {lessonId: LESSON_ID, sectionId: 'diagnostic-3', correctValue: "right", restoreAnswer: (sectionMap['diagnostic-3']||{}).answer_given});
+  Course.initMCQ('diag-q4', {lessonId: LESSON_ID, sectionId: 'diagnostic-4', correctValue: "right", restoreAnswer: (sectionMap['diagnostic-4']||{}).answer_given});
+  Course.ensureAnswerPositionVariety([{"containerId": "diag-q1", "correctValue": "right"}, {"containerId": "diag-q2", "correctValue": "right"}, {"containerId": "diag-q3", "correctValue": "right"}, {"containerId": "diag-q4", "correctValue": "right"}]);
+
+  /* ---------------- concept widget ---------------- */
+  Course.renderConceptWidget({
+    areaId: 'widget-area', hintId: 'widget-hint',
+    tabIds: [{"id": "mode-w-pres", "key": "pres"}, {"id": "mode-w-comm", "key": "comm"}, {"id": "mode-w-vel", "key": "vel"}, {"id": "mode-w-quiz", "key": "quiz"}],
+    categories: {"pres": [{"label": "\"I don't think we've met — I'm Kasia.\"", "example": "Lesson 1: open with your name and one useful detail."}, {"label": "\"Anyway, I'll let you get back to it.\"", "example": "Lesson 1: leave a conversation gracefully."}, {"label": "\"I was wondering if you could…\"", "example": "Lesson 2: soften a request with distance."}, {"label": "\"I'm not entirely convinced.\"", "example": "Lesson 2: polite but clear disagreement."}], "comm": [{"label": "\"Just following up on my email below.\"", "example": "Lesson 3: chase without nagging."}, {"label": "\"Sorry to jump in — can I just add something?\"", "example": "Lesson 4: get the floor in a meeting."}, {"label": "\"Shall we park that and come back to it?\"", "example": "Lesson 4: keep a meeting on track."}, {"label": "\"I'd love to, but I'm at capacity until Friday.\"", "example": "Lesson 5: say no with a reason."}], "vel": [{"label": "\"Quick win from this week: …\"", "example": "Lesson 6: make results visible without bragging."}, {"label": "\"Just a heads-up: …\"", "example": "Lesson 6: manage up by warning early."}, {"label": "\"I'd like to talk about my next step here.\"", "example": "Lesson 6: open a career conversation."}, {"label": "\"Thanks — it was a real team effort.\"", "example": "Lesson 6: accept praise and share credit."}]},
+    quizLabels: {"pres": "presence", "comm": "communication", "vel": "career velocity"},
+    rulesToggleId: 'rules-toggle'
+  });
+  Course.renderCompareCard('compare-card', [{"key": "c1", "label": "Too blunt", "text": "What do you do and how much do you earn?", "explain": "Wednesday's client dinner: two questions too direct for a first meeting, and one of them is off-limits."}, {"key": "c2", "label": "Too stiff", "text": "Might I enquire as to the nature of your professional responsibilities?", "explain": "So formal that the client will think you're joking."}, {"key": "c3", "label": "Just right", "text": "So how long have you been with Harris? It sounds like a busy time for you.", "explain": "Friendly, open, and easy to answer. It keeps the conversation going.", "groupEnd": true}, {"key": "c4", "label": "Too blunt", "text": "Your figures are wrong. Fix them.", "explain": "Thursday's meeting: an accusation plus an order, in front of everyone."}, {"key": "c5", "label": "Too stiff", "text": "I would humbly suggest that the figures may perhaps contain some small inaccuracies.", "explain": "So softened that nobody knows how serious the problem is."}, {"key": "c6", "label": "Just right", "text": "I'm not sure those figures are quite right — could we check them together after the meeting?", "explain": "Clear about the problem, generous to the person, and a private next step."}]);
+
+  /* ---------------- reading ---------------- */
+  Course.initGramToggle();
+  Course.wireGramSpans({"g1": "Lesson 1: follow the other person's lead. He used his first name, so she did too.", "g2": "Lesson 2: a softened request with distance (\"I was wondering if…\") and a friendly time frame.", "g3": "Lessons 4 and 2: a polite interruption plus acknowledge → concern. Clear disagreement, no attack.", "g4": "Lesson 5: own the mistake in the first sentence. Short, accountable, fixed.", "g5": "Lesson 6: accept praise and share credit, naming the colleague.", "g6": "Lesson 6: ask for the opportunity, then ask for the criteria."});
+  Course.initVocab({"rapport": {"word": "rapport", "ipa": "/ræˈpɔː/", "meaning": "a friendly relationship in which people understand each other well", "example": "She built a quick rapport with the new team."}, "discretion": {"word": "discretion", "ipa": "/dɪˈskreʃ.ən/", "meaning": "the ability to behave without causing embarrassment or revealing private information", "example": "The job requires tact and discretion."}, "taken aback": {"word": "taken aback", "ipa": "/ˈteɪ.kən əˈbæk/", "meaning": "surprised, especially by something unexpected", "example": "I was taken aback by how direct she was."}, "follow-up": {"word": "follow-up", "ipa": "/ˈfɒl.əʊ.ʌp/", "meaning": "a message or action that continues something done earlier", "example": "Send a short follow-up after every important meeting."}, "rocket science": {"word": "rocket science", "ipa": "/ˈrɒk.ɪt ˌsaɪ.əns/", "meaning": "(informal, usually negative) something very complicated", "example": "Writing a good email isn't rocket science."}}, LESSON_ID);
+  Course.initMCQ('comp-q1', {lessonId: LESSON_ID, sectionId: 'reading-comp-1', correctValue: "right", restoreAnswer: (sectionMap['reading-comp-1']||{}).answer_given});
+  Course.initMCQ('comp-q2', {lessonId: LESSON_ID, sectionId: 'reading-comp-2', correctValue: "right", restoreAnswer: (sectionMap['reading-comp-2']||{}).answer_given});
+  Course.initMCQ('comp-q3', {lessonId: LESSON_ID, sectionId: 'reading-comp-3', correctValue: "right", restoreAnswer: (sectionMap['reading-comp-3']||{}).answer_given});
+  Course.ensureAnswerPositionVariety([{"containerId": "comp-q1", "correctValue": "right"}, {"containerId": "comp-q2", "correctValue": "right"}, {"containerId": "comp-q3", "correctValue": "right"}]);
+
+  /* ---------------- vocab check ---------------- */
+  Course.initMCQ('vocab-q1', {lessonId: LESSON_ID, sectionId: 'vocab-1', correctValue: "right", restoreAnswer: (sectionMap['vocab-1']||{}).answer_given});
+  Course.initMCQ('vocab-q2', {lessonId: LESSON_ID, sectionId: 'vocab-2', correctValue: "right", restoreAnswer: (sectionMap['vocab-2']||{}).answer_given});
+  Course.initMCQ('vocab-q3', {lessonId: LESSON_ID, sectionId: 'vocab-3', correctValue: "right", restoreAnswer: (sectionMap['vocab-3']||{}).answer_given});
+  Course.initMCQ('vocab-q4', {lessonId: LESSON_ID, sectionId: 'vocab-4', correctValue: "right", restoreAnswer: (sectionMap['vocab-4']||{}).answer_given});
+  Course.initMCQ('vocab-q5', {lessonId: LESSON_ID, sectionId: 'vocab-5', correctValue: "right", restoreAnswer: (sectionMap['vocab-5']||{}).answer_given});
+  Course.ensureAnswerPositionVariety([{"containerId": "vocab-q1", "correctValue": "right"}, {"containerId": "vocab-q2", "correctValue": "right"}, {"containerId": "vocab-q3", "correctValue": "right"}, {"containerId": "vocab-q4", "correctValue": "right"}, {"containerId": "vocab-q5", "correctValue": "right"}]);
+    Course.initGapFill('vgap1-input','vgap1-check','vgap1-fb',{lessonId:LESSON_ID, sectionId:'vocab-gap-1', correctAnswers:["discretion"], restore: sectionMap['vocab-gap-1'] ? {answerGiven: sectionMap['vocab-gap-1'].answer_given, isCorrect: sectionMap['vocab-gap-1'].override_correct ?? sectionMap['vocab-gap-1'].is_correct} : null});
+  Course.initGapFill('vgap2-input','vgap2-check','vgap2-fb',{lessonId:LESSON_ID, sectionId:'vocab-gap-2', correctAnswers:["aback"], restore: sectionMap['vocab-gap-2'] ? {answerGiven: sectionMap['vocab-gap-2'].answer_given, isCorrect: sectionMap['vocab-gap-2'].override_correct ?? sectionMap['vocab-gap-2'].is_correct} : null});
+  Course.initGapFill('vgap3-input','vgap3-check','vgap3-fb',{lessonId:LESSON_ID, sectionId:'vocab-gap-3', correctAnswers:["follow-up", "followup"], restore: sectionMap['vocab-gap-3'] ? {answerGiven: sectionMap['vocab-gap-3'].answer_given, isCorrect: sectionMap['vocab-gap-3'].override_correct ?? sectionMap['vocab-gap-3'].is_correct} : null});
+  Course.initGapFill('vgap4-input','vgap4-check','vgap4-fb',{lessonId:LESSON_ID, sectionId:'vocab-gap-4', correctAnswers:["science"], restore: sectionMap['vocab-gap-4'] ? {answerGiven: sectionMap['vocab-gap-4'].answer_given, isCorrect: sectionMap['vocab-gap-4'].override_correct ?? sectionMap['vocab-gap-4'].is_correct} : null});
+
+  /* ---------------- practice ---------------- */
+    Course.initGapFill('gap1-input','gap1-check','gap1-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-1', correctAnswers:Course.withContractions(["met"]), restore: sectionMap['practice-gap-1'] ? {answerGiven: sectionMap['practice-gap-1'].answer_given, isCorrect: sectionMap['practice-gap-1'].override_correct ?? sectionMap['practice-gap-1'].is_correct} : null});
+  Course.initGapFill('gap2-input','gap2-check','gap2-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-2', correctAnswers:Course.withContractions(["mind"]), restore: sectionMap['practice-gap-2'] ? {answerGiven: sectionMap['practice-gap-2'].answer_given, isCorrect: sectionMap['practice-gap-2'].override_correct ?? sectionMap['practice-gap-2'].is_correct} : null});
+  Course.initGapFill('gap3-input','gap3-check','gap3-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-3', correctAnswers:Course.withContractions(["up"]), restore: sectionMap['practice-gap-3'] ? {answerGiven: sectionMap['practice-gap-3'].answer_given, isCorrect: sectionMap['practice-gap-3'].override_correct ?? sectionMap['practice-gap-3'].is_correct} : null});
+  Course.initGapFill('gap4-input','gap4-check','gap4-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-4', correctAnswers:Course.withContractions(["in"]), restore: sectionMap['practice-gap-4'] ? {answerGiven: sectionMap['practice-gap-4'].answer_given, isCorrect: sectionMap['practice-gap-4'].override_correct ?? sectionMap['practice-gap-4'].is_correct} : null});
+  Course.initGapFill('gap5-input','gap5-check','gap5-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-5', correctAnswers:Course.withContractions(["capacity"]), restore: sectionMap['practice-gap-5'] ? {answerGiven: sectionMap['practice-gap-5'].answer_given, isCorrect: sectionMap['practice-gap-5'].override_correct ?? sectionMap['practice-gap-5'].is_correct} : null});
+  Course.initGapFill('gap6-input','gap6-check','gap6-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-6', correctAnswers:Course.withContractions(["heads"]), restore: sectionMap['practice-gap-6'] ? {answerGiven: sectionMap['practice-gap-6'].answer_given, isCorrect: sectionMap['practice-gap-6'].override_correct ?? sectionMap['practice-gap-6'].is_correct} : null});
+  Course.initErrorSpot('err1', {
+    lessonId: LESSON_ID, sectionId: 'practice-err-1',
+    words: ["Good", "morning,", "Mrs", "Jess,", "send", "me", "the", "figures."], errorIndices: [2], correction: "", explanation: "Two problems, one tap: \"Mrs\" + a first name is wrong, and the request is an order. \"Hi Jess — could you send me the figures?\""
+  });
+  Course.initErrorSpot('err2', {
+    lessonId: LESSON_ID, sectionId: 'practice-err-2',
+    words: ["Unfortunately", "the", "system", "attached", "the", "wrong", "file."], errorIndices: [2], correction: "", explanation: "Blaming the system sounds like an excuse. Own it: \"Apologies — I attached the wrong file.\""
+  });
+  Course.initErrorSpot('err3', {
+    lessonId: LESSON_ID, sectionId: 'practice-err-3',
+    words: ["I", "deserve", "to", "lead", "the", "next", "project."], errorIndices: [1], correction: "", explanation: "Sounds entitled. \"I'd love the chance to lead the next project — what would you need to see from me?\""
+  });
+  Course.renderBuilders('builders', [{"words": ["I'd", "love", "the", "chance", "to", "lead", "the", "next", "one."]}, {"words": ["Apologies", "—", "I", "attached", "the", "wrong", "version."]}, {"words": ["I", "was", "wondering", "if", "you", "could", "send", "the", "figures."]}], {lessonId: LESSON_ID, sectionPrefix: 'practice-builder'});
+
+  /* ---------------- speaking ---------------- */
+  Course.initSpeaking({max: 2, lessonId: LESSON_ID, sectionMap, soloTaskLabel: "Record a 90-second \"week in review\" as if you were Zofia talking to a friend on Friday evening. Describe one moment from each day and quote the exact phrase she used, then say which one you'd find hardest in real life and why."});
+  Course.renderDiscussQuestions('discuss-questions', ["Full role-play (5 minutes): new employee, team lead and client. Cover an introduction, a request, a disagreement, an apology and a career ask. The group gives feedback using \"What worked really well was…\" and \"One thing I'd suggest is…\".", "Which lesson in this course changed the way you'll speak at work the most? Give one example of something you'll say differently.", "Think of a real situation coming up at your work in the next month. Which phrases from this course will you use, and how?"], {lessonId: LESSON_ID, max: 2, sectionPrefix: 'speaking-q'});
+
+  /* ---------------- listening ---------------- */
+  Course.initListening({dialogue: [{"speaker": "Anna", "line": "So, three months in. What's the biggest thing you've learnt?"}, {"speaker": "Tomasz", "line": "That my English was never the problem. It was the rules nobody writes down."}, {"speaker": "Anna", "line": "Like \"Mr Richard\"?"}, {"speaker": "Tomasz", "line": "Please don't. But yes, names, softening, chasing, all of it. I actually jumped in at the meeting today."}, {"speaker": "Anna", "line": "I noticed. \"I take your point, but I'm a bit worried about the timeline.\" Textbook."}, {"speaker": "Tomasz", "line": "And Claire said my dashboard was \"not bad at all\". I've learnt that's a compliment."}, {"speaker": "Anna", "line": "A big one. Have you asked her about leading the next phase?"}, {"speaker": "Tomasz", "line": "Monday morning. I've booked twenty minutes, and I know my first line: \"I'd like to talk about my next step here.\""}], speakerA: 'Anna', speakerB: 'Tomasz', lessonId: LESSON_ID});
+  Course.initMCQ('listen-q1', {lessonId: LESSON_ID, sectionId: 'listening-1', correctValue: "right", restoreAnswer: (sectionMap['listening-1']||{}).answer_given});
+  Course.initMCQ('listen-q2', {lessonId: LESSON_ID, sectionId: 'listening-2', correctValue: "right", restoreAnswer: (sectionMap['listening-2']||{}).answer_given});
+  Course.initMCQ('listen-q3', {lessonId: LESSON_ID, sectionId: 'listening-3', correctValue: "right", restoreAnswer: (sectionMap['listening-3']||{}).answer_given});
+  Course.ensureAnswerPositionVariety([{"containerId": "listen-q1", "correctValue": "right"}, {"containerId": "listen-q2", "correctValue": "right"}, {"containerId": "listen-q3", "correctValue": "right"}]);
+
+  /* ---------------- wrap-up ---------------- */
+  Course.initMCQ('exit-q1', {lessonId: LESSON_ID, sectionId: 'exit-1', correctValue: "right", restoreAnswer: (sectionMap['exit-1']||{}).answer_given});
+  Course.initMCQ('exit-q2', {lessonId: LESSON_ID, sectionId: 'exit-2', correctValue: "right", restoreAnswer: (sectionMap['exit-2']||{}).answer_given});
+  Course.initMCQ('exit-q3', {lessonId: LESSON_ID, sectionId: 'exit-3', correctValue: "right", restoreAnswer: (sectionMap['exit-3']||{}).answer_given});
+  Course.initMCQ('exit-q4', {lessonId: LESSON_ID, sectionId: 'exit-4', correctValue: "right", restoreAnswer: (sectionMap['exit-4']||{}).answer_given});
+  Course.initMCQ('exit-q5', {lessonId: LESSON_ID, sectionId: 'exit-5', correctValue: "right", restoreAnswer: (sectionMap['exit-5']||{}).answer_given});
+  Course.ensureAnswerPositionVariety([{"containerId": "exit-q1", "correctValue": "right"}, {"containerId": "exit-q2", "correctValue": "right"}, {"containerId": "exit-q3", "correctValue": "right"}, {"containerId": "exit-q4", "correctValue": "right"}, {"containerId": "exit-q5", "correctValue": "right"}]);
+  Course.initSummary({lessonId: LESSON_ID, totalExercises: 39});
+})();
+
+</script>
+</body>
+</html>

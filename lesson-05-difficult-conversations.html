@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Difficult Conversations | Workplace EQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/theme.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="shared/supabase-config.js"></script>
+</head>
+<body class="theme-communication">
+
+<div class="course-attribution">Workplace EQ · English Voiced with Kris</div>
+<div class="shell">
+  <header class="lesson-header">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+      <div class="lesson-eyebrow">Lesson 5 of 7 · Communication That Lands</div>
+      <div style="display:flex;gap:8px">
+      <a id="all-lessons-link" href="index-standalone.html" class="pill" style="text-decoration:none;font-size:12.5px;border-radius:var(--radius-sm)">📚 All Lessons</a>
+      <a id="glossary-link" href="glossary-standalone.html" class="pill" style="text-decoration:none;font-size:12.5px;border-radius:var(--radius-sm)">📖 My Glossary</a>
+    </div>
+    </div>
+    <h1 class="lesson-title">Difficult Conversations</h1>
+    <p class="lesson-sub">Saying no, apologising properly, and giving (and receiving) feedback without damaging the relationship.</p>
+    <div class="pb-track" style="margin-top:16px"><div class="pb-fill" id="overall-progress" style="width:0%"></div></div>
+    <div id="sync-status" style="font-size:11.5px;color:var(--text-tertiary);margin-top:8px"></div>
+  </header>
+
+  <section class="section" id="sec-warmup">
+    <div class="section-label"><span class="num">1</span> Warm-up</div>
+    <div class="card">
+      <p style="margin-bottom:14px;font-size:14.5px;color:var(--text-secondary)">Everyone avoids the same conversations: saying no to a request, admitting a mistake, telling a colleague their work isn't good enough. The British way of handling them is to be clear about the message and generous about the person. Let's see where your instincts are.</p>
+      
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">1. Your manager asks you to take on another project, but you're overloaded. You say…</p>
+        <div id="warm-q1">
+          <button class="opt" data-value="right">"I'd love to help, but I'm at capacity until the audit's done. Could we look at it in May?"</button><button class="opt" data-value="wrong">"No, I can't. I have too much work."</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">2. You sent a client the wrong figures. The best first line is…</p>
+        <div id="warm-q2">
+          <button class="opt" data-value="right">"I'm sorry — I sent you the wrong figures. The correct ones are attached."</button><button class="opt" data-value="wrong">"There was a problem with the system, so the figures were wrong."</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">3. A British colleague says your report has "a few small things to tweak". You should…</p>
+        <div id="warm-q3">
+          <button class="opt" data-value="right">ask which points matter most, as they may be bigger than they sound</button><button class="opt" data-value="wrong">assume it's basically finished</button>
+        </div>
+      </div>
+      <div class="tip-box">💡 <span style="flex:1;min-width:0">A good "no" includes a reason and an alternative. A good apology owns the mistake before it explains it. Good feedback is specific, and British feedback is often more serious than it sounds.</span></div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-diagnostic">
+    <div class="section-label"><span class="num">2</span> Quick check — before we explain anything</div>
+    <div class="card">
+      <p style="margin-bottom:16px;font-size:14.5px;color:var(--text-secondary)">Four quick questions. This isn't graded harshly — it just shows us where to focus.</p>
+      
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px;font-weight:550">1. Which is the most constructive feedback?</p>
+        <div id="diag-q1">
+          <button class="opt" data-value="right">"The analysis is strong. The summary could be shorter — maybe one page?"</button><button class="opt" data-value="wrong">"The summary is bad."</button>
+        </div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px;font-weight:550">2. Someone gives you critical feedback. The best first response is…</p>
+        <div id="diag-q2">
+          <button class="opt" data-value="right">"Thanks, that's really useful. Can you give me an example?"</button><button class="opt" data-value="wrong">"That's not fair — I didn't have enough time."</button>
+        </div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px;font-weight:550">3. You need to tell a client their deadline can't be met. You start with…</p>
+        <div id="diag-q3">
+          <button class="opt" data-value="right">"I'm afraid we won't be able to deliver by the 10th."</button><button class="opt" data-value="wrong">"Unfortunately it is impossible."</button>
+        </div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px;font-weight:550">4. A colleague apologises to you for a small delay. You say…</p>
+        <div id="diag-q4">
+          <button class="opt" data-value="right">"No worries at all."</button><button class="opt" data-value="wrong">"OK, but don't do it again."</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-concept">
+    <div class="section-label"><span class="num">3</span> The concept</div>
+
+    <div class="card">
+      <h3 style="margin-bottom:10px">Three difficult conversations</h3>
+      <p style="font-size:14.5px;line-height:1.7;margin-bottom:14px">Three conversations cause most of the tension at work: <b>saying no</b>, <b>apologising</b> when you've got something wrong, and <b>giving feedback</b> someone may not want to hear. Browse the phrases for each, then try the quick check.</p>
+      <div class="mode-toggle mode-toggle-outline" style="flex-wrap:wrap;gap:8px">
+        <button class="pill on" id="mode-w-no">Saying no</button><button class="pill" id="mode-w-sorry">Apologising</button><button class="pill" id="mode-w-fb">Giving feedback</button><button class="pill" id="mode-w-quiz">Quick check</button>
+      </div>
+      <div id="widget-area" style="margin-top:14px;padding:18px;border-radius:var(--radius-md);background:var(--surface-alt);border:1px solid var(--border)"></div>
+      <p id="widget-hint" style="font-size:12.5px;color:var(--text-tertiary);margin-top:8px">— Click either cell to see another example.</p>
+
+      <button class="pill" id="rules-toggle" style="margin-top:16px">📖 Show the full rules</button>
+      <div class="expand-content" id="rules-content">
+        <div style="margin-top:16px">
+          
+          <div class="formula" style="border-left-color:var(--c-present)">✅ <b>Saying no:</b> warm start + reason + alternative. "I'd love to, but I'm at capacity until the 15th — could I help with the next one instead?"</div>
+          <div class="formula" style="border-left-color:var(--c-continuous)">✅ <b>Apologising:</b> own it → fix it → prevent it. "That's my mistake. I've sent the right file. I'll double-check attachments from now on." Keep excuses out of the first sentence.</div>
+          <div class="formula" style="border-left-color:var(--c-future);margin-bottom:20px">✅ <b>Feedback:</b> specific positive → one or two specific suggestions → a question. When <i>receiving</i> it: thank, ask for an example, don't defend yourself on the spot.</div>
+          <div class="warn-box">
+            <span>🎯</span>
+            <span style="flex:1;min-width:0"><b>The tricky part for Polish speakers:</b> British "sorry" and Polish <i>przepraszam</i> don't work the same way. British people say sorry constantly for tiny things ("Sorry, can I just squeeze past?"), so leaving it out can sound cold. But for real mistakes, the British expect a <b>short</b> apology that takes responsibility, not a long explanation of whose fault it was.<br><br>
+            ❌ "The system didn't save it, and nobody told me the deadline changed." → sounds like blaming.<br>
+            ✅ "I'm sorry — I missed the deadline change. I'll have it to you by 3."<br><br>
+            When decoding British feedback, remember Lesson 2: "a few minor points" may be serious, and "have you considered…?" often means "you should."</span>
+          </div>
+          <div class="tip-box" style="margin-top:12px">🌍 <span style="flex:1;min-width:0"><b>Elsewhere:</b> Americans often expect lots of praise around criticism (the "feedback sandwich") and may hear British understatement as approval. Dutch and German colleagues usually give direct, unsoftened feedback and may find the British style evasive. In much of East Asia, criticism in front of others causes serious loss of face, so give it privately. Everywhere, praise in public and criticise in private.</span></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h3 style="margin-bottom:6px">Too blunt, too stiff, or just right?</h3>
+      <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:14px">Hover over (or tap) each version to see how it is likely to land.</p>
+      <div id="compare-card" style="font-size:14.5px;line-height:1.9"></div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-reading">
+    <div class="section-label"><span class="num">4</span> Reading — Three Sentences That Saved a Contract</div>
+    <div class="card">
+      <button class="pill" id="gram-toggle">🔍 Show key phrases in this text</button>
+      <div class="passage" id="passage" style="margin-top:14px"><p>When Kamil discovered that his team had sent a major client the wrong pricing, his first instinct was to explain. His draft email began with a long paragraph about a spreadsheet error, a colleague who had been off sick and a system update. His manager read it and deleted almost all of it. "They don't want the story," she said. "They want to know that you know, and that it's fixed."</p><p>The email they finally sent was three sentences long. It began <span class="gram" data-gram="g1">“I'm sorry — we sent you the wrong pricing on Tuesday, and that's our mistake.”</span> The second sentence gave the correct figures; the third explained what would stop it happening again. The client's reply was two words: <span class="gram" data-gram="g2">“No worries.”</span> What could have become a <span class="vocab" data-word="dispute">dispute</span> was over in an afternoon, because the apology was <span class="vocab" data-word="accountable">accountable</span> rather than <span class="vocab" data-word="defensive">defensive</span>.</p><p>The same manager taught Kamil how to say no. When the sales director asked him to add a new feature two weeks before launch, Kamil's honest answer was "impossible": the team was already <span class="vocab" data-word="at capacity">at capacity</span>. Instead of saying so bluntly, he said <span class="gram" data-gram="g3">“I'd love to, but we're flat out until launch — could we look at it for the June release?”</span> The director agreed at once. A refusal with a reason and an <span class="vocab" data-word="alternative">alternative</span> feels like a plan; a refusal without one feels like a closed door.</p><p>Feedback was the hardest skill. Kamil's reviews of junior colleagues' work were accurate but <span class="vocab" data-word="harsh">harsh</span>, and people had stopped asking for them. He learnt to start with something specific that genuinely worked, then offer <span class="gram" data-gram="g4">“One thing I'd suggest is…”</span> and finish with a question. The content of his feedback barely changed; the way people received it changed completely. And when his own manager criticised him, he practised the hardest phrase of all: <span class="gram" data-gram="g5">“Thanks, that's really useful — can you give me an example?”</span> It is difficult to say when you want to <span class="vocab" data-word="justify">justify</span> yourself, which is exactly why it impresses people.</p></div>
+      <p style="font-size:12.5px;color:var(--text-tertiary);margin-top:10px">Tap a highlighted word for pronunciation, meaning and an example. With key phrases on, tap a highlighted phrase to see why it works (and what a less skilful speaker might have said).</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-bottom:12px">Did you follow it? Quick comprehension check</h3>
+      
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">1. Why did Kamil's manager delete most of his first email?</p>
+        <div id="comp-q1">
+          <button class="opt" data-value="right">It explained too much instead of simply owning the mistake.</button><button class="opt" data-value="wrong">It contained the wrong pricing again.</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">2. Why did the sales director accept Kamil's "no"?</p>
+        <div id="comp-q2">
+          <button class="opt" data-value="right">It came with a reason and an alternative date.</button><button class="opt" data-value="wrong">Kamil's manager overruled the director.</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">3. What changed about Kamil's feedback?</p>
+        <div id="comp-q3">
+          <button class="opt" data-value="right">Mainly how he delivered it, not what he said.</button><button class="opt" data-value="wrong">He stopped mentioning problems at all.</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-vocab">
+    <div class="section-label"><span class="num">5</span> Vocabulary check</div>
+    <div class="card">
+      <p style="font-size:14.5px;margin-bottom:16px">The key words from the text — mixed formats.</p>
+      <h4 style="font-size:13px;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary);margin-bottom:12px">Match the meaning</h4>
+      
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">1. If someone is "defensive", they…</p>
+        <div id="vocab-q1">
+          <button class="opt" data-value="right">react to criticism by making excuses</button><button class="opt" data-value="wrong">protect their team from extra work</button><button class="opt" data-value="wrong2">are very confident</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">2. "At capacity" means…</p>
+        <div id="vocab-q2">
+          <button class="opt" data-value="right">too busy to take on more</button><button class="opt" data-value="wrong">fully qualified</button><button class="opt" data-value="wrong2">about to be promoted</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">3. An "accountable" person…</p>
+        <div id="vocab-q3">
+          <button class="opt" data-value="right">accepts responsibility for what they do</button><button class="opt" data-value="wrong">works in the finance department</button><button class="opt" data-value="wrong2">blames others for mistakes</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">4. "Harsh" feedback is…</p>
+        <div id="vocab-q4">
+          <button class="opt" data-value="right">more severe or unkind than necessary</button><button class="opt" data-value="wrong">detailed and specific</button><button class="opt" data-value="wrong2">delivered in writing</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">5. A "dispute" is…</p>
+        <div id="vocab-q5">
+          <button class="opt" data-value="right">a serious disagreement</button><button class="opt" data-value="wrong">a friendly chat</button><button class="opt" data-value="wrong2">a type of contract</button>
+        </div>
+      </div>
+      <h4 style="font-size:13px;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary);margin-bottom:12px;padding-top:6px;border-top:1px solid var(--border)">Complete the sentence — vocabulary focus</h4>
+      
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px">1. You don't need to <input type="text" id="vgap1-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:100px"> every decision you make.</p>
+        <button class="btn btn-sm" id="vgap1-check">Check</button>
+        <div id="vgap1-fb"></div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px">2. If Tuesday doesn't work, is there an <input type="text" id="vgap2-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:120px"> ?</p>
+        <button class="btn btn-sm" id="vgap2-check">Check</button>
+        <div id="vgap2-fb"></div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px">3. He always gets <input type="text" id="vgap3-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:110px"> when someone questions his figures.</p>
+        <button class="btn btn-sm" id="vgap3-check">Check</button>
+        <div id="vgap3-fb"></div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px">4. The team is <input type="text" id="vgap4-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:70px"> capacity until the end of June.</p>
+        <button class="btn btn-sm" id="vgap4-check">Check</button>
+        <div id="vgap4-fb"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-practice">
+    <div class="section-label"><span class="num">6</span> Practice</div>
+    <div class="card">
+      <h3 style="margin-bottom:2px">Gap-fill</h3>
+      <p style="font-size:12.5px;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary);margin-bottom:16px">Language focus — phrases for difficult conversations (one word per gap)</p>
+      
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px">1. I'm <input type="text" id="gap1-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:90px"> that won't be possible by Friday.</p>
+        <button class="btn btn-sm" id="gap1-check">Check</button>
+        <div id="gap1-fb"></div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px">2. That's my <input type="text" id="gap2-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:100px"> — I'll fix it today.</p>
+        <button class="btn btn-sm" id="gap2-check">Check</button>
+        <div id="gap2-fb"></div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px">3. Thanks for <input type="text" id="gap3-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:100px"> it — I hadn't noticed.</p>
+        <button class="btn btn-sm" id="gap3-check">Check</button>
+        <div id="gap3-fb"></div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px">4. One thing I'd <input type="text" id="gap4-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:100px"> is cutting the intro.</p>
+        <button class="btn btn-sm" id="gap4-check">Check</button>
+        <div id="gap4-fb"></div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px">5. No <input type="text" id="gap5-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:90px"> at all — it happens.</p>
+        <button class="btn btn-sm" id="gap5-check">Check</button>
+        <div id="gap5-fb"></div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px">6. I should <input type="text" id="gap6-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:70px"> checked the figures before sending them.</p>
+        <button class="btn btn-sm" id="gap6-check">Check</button>
+        <div id="gap6-fb"></div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h3 style="margin-bottom:6px">Spot the faux pas</h3>
+      <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:16px">Each line would damage the relationship. Tap the word that causes the problem.</p>
+      
+      <div style="margin-bottom:8px;font-size:12px;font-weight:650;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary)">Sentence 1</div>
+      <div id="err1" style="font-size:15px;line-height:1.9;margin-bottom:20px"></div>
+      <div style="margin-bottom:8px;font-size:12px;font-weight:650;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary);padding-top:16px;border-top:1px solid var(--border)">Sentence 2</div>
+      <div id="err2" style="font-size:15px;line-height:1.9;margin-bottom:20px"></div>
+      <div style="margin-bottom:8px;font-size:12px;font-weight:650;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary);padding-top:16px;border-top:1px solid var(--border)">Sentence 3</div>
+      <div id="err3" style="font-size:15px;line-height:1.9;margin-bottom:20px"></div>
+    </div>
+    <div class="card">
+      <h3 style="margin-bottom:6px">Sentence builder</h3>
+      <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:14px">Tap the chips in the right order. Three rounds.</p>
+      <div id="builders"></div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-speaking">
+    <div class="section-label"><span class="num">7</span> Speaking task</div>
+    <div class="mode-toggle">
+      <button class="pill on" id="mode-solo">👤 Solo</button>
+      <button class="pill" id="mode-group">👥 Group (2–4)</button>
+    </div>
+    <div class="task-card" id="speak-solo">
+      <div class="kicker">60-second task</div>
+      <p style="font-size:14.5px;line-height:1.7">Choose one: (a) say no to your manager's request to work this weekend, with a reason and an alternative; (b) apologise to a client for a missed deadline in three sentences: own it, fix it, prevent it; or (c) give a colleague feedback on a presentation that was far too long.</p>
+      <button class="btn btn-sm" id="solo-done-btn" style="margin-top:14px">✓ I've done this</button>
+    </div>
+    <div class="task-card" id="speak-group" style="display:none">
+      <div class="kicker">Discussion — pick 1–2 questions to answer out loud</div>
+      <p style="font-size:14.5px;line-height:1.7;margin-bottom:12px">Tap the question(s) you'll answer. Your teacher will see your pick and mark it after you speak.</p>
+      <div id="discuss-questions" style="display:flex;flex-direction:column;gap:8px"></div>
+      <p id="discuss-limit-msg" style="font-size:12.5px;color:var(--text-tertiary);margin-top:10px">You can select up to 2 questions.</p>
+    </div>
+  </section>
+
+  <section class="section" id="sec-listening">
+    <div class="section-label"><span class="num">8</span> Listening</div>
+    <div class="card">
+      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:12px">Tomasz has made a mistake with a client report and asks Anna how to handle it.</p>
+      <audio id="dialogue-audio" preload="none" style="display:none"></audio>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-primary" id="play-dialogue">▶ Play dialogue</button>
+        <button class="btn btn-ghost btn-sm" id="stop-dialogue">⏹ Stop</button>
+        <button class="btn btn-ghost btn-sm" id="show-transcript">Show full transcript</button>
+      </div>
+      <div id="transcript"></div>
+      
+      <div style="margin-top:16px">
+        <p style="margin-bottom:8px;font-weight:550">1. What does Anna say the apology email should contain?</p>
+        <div id="listen-q1">
+          <button class="opt" data-value="right">Owning the mistake, the correct figures and how it won't happen again.</button><button class="opt" data-value="wrong">A full page explaining the causes of the error.</button>
+        </div>
+      </div>
+      <div style="margin-top:16px">
+        <p style="margin-bottom:8px;font-weight:550">2. Why does Anna advise against a long explanation?</p>
+        <div id="listen-q2">
+          <button class="opt" data-value="right">It sounds like making excuses.</button><button class="opt" data-value="wrong">Clients don't read emails longer than one line.</button>
+        </div>
+      </div>
+      <div style="margin-top:16px">
+        <p style="margin-bottom:8px;font-weight:550">3. How should Tomasz say no to the Leeds project?</p>
+        <div id="listen-q3">
+          <button class="opt" data-value="right">Say he'd love to, explain he's at capacity, and suggest a date.</button><button class="opt" data-value="wrong">Simply tell Mark he can't do it.</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-wrapup">
+    <div class="section-label"><span class="num">9</span> Wrap-up — exit check</div>
+    <div class="card">
+      
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">1. The best structure for saying no is…</p>
+        <div id="exit-q1">
+          <button class="opt" data-value="right">warm start + reason + alternative</button><button class="opt" data-value="wrong">a quick "no" so there's no confusion</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">2. A professional apology starts with…</p>
+        <div id="exit-q2">
+          <button class="opt" data-value="right">owning the mistake</button><button class="opt" data-value="wrong">explaining the causes</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">3. When you receive critical feedback, you say…</p>
+        <div id="exit-q3">
+          <button class="opt" data-value="right">"Thanks — can you give me an example?"</button><button class="opt" data-value="wrong">"That's not fair."</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">4. "I'm afraid that won't be possible" is…</p>
+        <div id="exit-q4">
+          <button class="opt" data-value="right">a polite way to deliver bad news</button><button class="opt" data-value="wrong">a sign that the speaker is scared</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">5. Where should you usually give critical feedback?</p>
+        <div id="exit-q5">
+          <button class="opt" data-value="right">In private</button><button class="opt" data-value="wrong">In front of the team, so everyone learns</button>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="summary-card">
+      <h3 style="margin-bottom:14px">Your lesson summary</h3>
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px" id="summary-ring-row">
+        <div id="score-ring-holder"></div>
+        <div>
+          <div style="font-weight:600" id="summary-name">—</div>
+          <div style="font-size:13px;margin-top:4px" id="summary-completion"></div>
+          <div style="font-size:13px;color:var(--text-secondary);margin-top:4px" id="summary-weak">Finish the lesson to see your results.</div>
+        </div>
+      </div>
+      <button class="btn btn-primary" id="finish-btn">Finish lesson &amp; see results</button>
+      <button class="btn" id="export-btn" style="margin-left:8px;display:none">⬇ Export PDF report</button>
+    </div>
+  </section>
+</div>
+
+<script src="shared/course-engine.js"></script>
+<script>
+
+const LESSON_ID = "weq-lesson-05-difficult-conversations";
+Course.initPageChrome({lessonId: LESSON_ID});
+
+(async function initLesson(){
+  await Course.initSyncStatus(LESSON_ID);
+  const sectionMap = Course.getSectionMap(LESSON_ID);
+
+  Course.initMCQ('warm-q1', {lessonId: LESSON_ID, sectionId: 'warmup-1', correctValue: "right", restoreAnswer: (sectionMap['warmup-1']||{}).answer_given});
+  Course.initMCQ('warm-q2', {lessonId: LESSON_ID, sectionId: 'warmup-2', correctValue: "right", restoreAnswer: (sectionMap['warmup-2']||{}).answer_given});
+  Course.initMCQ('warm-q3', {lessonId: LESSON_ID, sectionId: 'warmup-3', correctValue: "right", restoreAnswer: (sectionMap['warmup-3']||{}).answer_given});
+  Course.ensureAnswerPositionVariety([{"containerId": "warm-q1", "correctValue": "right"}, {"containerId": "warm-q2", "correctValue": "right"}, {"containerId": "warm-q3", "correctValue": "right"}]);
+  Course.initMCQ('diag-q1', {lessonId: LESSON_ID, sectionId: 'diagnostic-1', correctValue: "right", restoreAnswer: (sectionMap['diagnostic-1']||{}).answer_given});
+  Course.initMCQ('diag-q2', {lessonId: LESSON_ID, sectionId: 'diagnostic-2', correctValue: "right", restoreAnswer: (sectionMap['diagnostic-2']||{}).answer_given});
+  Course.initMCQ('diag-q3', {lessonId: LESSON_ID, sectionId: 'diagnostic-3', correctValue: "right", restoreAnswer: (sectionMap['diagnostic-3']||{}).answer_given});
+  Course.initMCQ('diag-q4', {lessonId: LESSON_ID, sectionId: 'diagnostic-4', correctValue: "right", restoreAnswer: (sectionMap['diagnostic-4']||{}).answer_given});
+  Course.ensureAnswerPositionVariety([{"containerId": "diag-q1", "correctValue": "right"}, {"containerId": "diag-q2", "correctValue": "right"}, {"containerId": "diag-q3", "correctValue": "right"}, {"containerId": "diag-q4", "correctValue": "right"}]);
+
+  /* ---------------- concept widget ---------------- */
+  Course.renderConceptWidget({
+    areaId: 'widget-area', hintId: 'widget-hint',
+    tabIds: [{"id": "mode-w-no", "key": "no"}, {"id": "mode-w-sorry", "key": "sorry"}, {"id": "mode-w-fb", "key": "fb"}, {"id": "mode-w-quiz", "key": "quiz"}],
+    categories: {"no": [{"label": "\"I'd love to, but I'm at capacity right now.\"", "example": "A warm \"no\" with a reason. \"At capacity\" is a professional way to say \"too busy\"."}, {"label": "\"I'm afraid that won't be possible by Friday — could we say Wednesday?\"", "example": "\"I'm afraid\" softens bad news; the alternative keeps the conversation going."}, {"label": "\"Let me check my priorities with Claire and come back to you.\"", "example": "Buys time and brings in the person who sets your workload."}, {"label": "\"I'm not the best person for this, but Sam might be.\"", "example": "Declining by redirecting. Only do it if Sam really is a good fit."}], "sorry": [{"label": "\"That's my mistake — I'll fix it today.\"", "example": "Owns it and gives a next step. Short apologies sound more confident than long ones."}, {"label": "\"I'm sorry, I should have checked the figures.\"", "example": "\"Should have\" admits what you did wrong without drama."}, {"label": "\"Thanks for flagging it.\"", "example": "When someone points out your mistake, thank them. It turns criticism into teamwork."}, {"label": "\"No worries at all.\"", "example": "Accepting someone else's apology for something small. Generous and very British."}], "fb": [{"label": "\"What worked really well was…\"", "example": "Start with something specific and genuine, not a generic \"Great job\"."}, {"label": "\"One thing I'd suggest is…\"", "example": "Frames criticism as a suggestion. Clear, but not a command."}, {"label": "\"I wonder if the intro could be a bit shorter.\"", "example": "\"I wonder if\" + \"a bit\" softens the point, but it's still a clear request to change it."}, {"label": "\"How do you feel it went?\"", "example": "Asking for their view first. People accept feedback more easily when they've named the problem themselves."}]},
+    quizLabels: {"no": "saying no", "sorry": "apologising", "fb": "giving feedback"},
+    rulesToggleId: 'rules-toggle'
+  });
+  Course.renderCompareCard('compare-card', [{"key": "c1", "label": "Too blunt", "text": "No, I don't have time.", "explain": "True, but it closes the door. Your manager hears \"not my problem\"."}, {"key": "c2", "label": "Too stiff", "text": "I deeply regret that I must decline this most generous opportunity.", "explain": "Over-formal and over-apologetic. It sounds sarcastic or anxious."}, {"key": "c3", "label": "Just right", "text": "I'd love to help, but I'm at capacity until the audit's done — could we revisit it in May?", "explain": "Warm, honest, specific reason, and a real alternative.", "groupEnd": true}, {"key": "c4", "label": "Too blunt", "text": "Your presentation was too long and boring.", "explain": "A personal verdict with no specifics. It hurts and gives the person nothing to act on."}, {"key": "c5", "label": "Too stiff", "text": "It might perhaps possibly be worth considering whether the length could conceivably be revisited.", "explain": "So many softeners that the message disappears. The person may not realise there's a problem at all."}, {"key": "c6", "label": "Just right", "text": "The data was really clear. One thing I'd suggest is cutting it to 15 minutes — you'd keep the room with you.", "explain": "Specific praise, one clear suggestion, and a reason that's about their success."}]);
+
+  /* ---------------- reading ---------------- */
+  Course.initGramToggle();
+  Course.wireGramSpans({"g1": "Own it in the first sentence: \"I'm sorry\" + what happened + \"that's our mistake\". No excuses until the problem is fixed.", "g2": "The standard British way to accept an apology for something that's been dealt with. Friendly and final.", "g3": "Warm start (\"I'd love to\") + reason (\"flat out\" = extremely busy) + alternative (\"could we…?\"). A no that feels like a plan.", "g4": "Frames criticism as a suggestion. It's still a clear request to change something.", "g5": "Receiving feedback well: thank, then ask for specifics. It shows confidence and gets you useful detail."});
+  Course.initVocab({"dispute": {"word": "dispute", "ipa": "/dɪˈspjuːt/", "meaning": "a serious disagreement, especially between organisations", "example": "The pricing dispute went on for months."}, "accountable": {"word": "accountable", "ipa": "/əˈkaʊn.tə.bəl/", "meaning": "accepting responsibility for your actions", "example": "A good leader holds herself accountable."}, "defensive": {"word": "defensive", "ipa": "/dɪˈfen.sɪv/", "meaning": "reacting to criticism by trying to protect yourself or make excuses", "example": "He gets defensive whenever anyone questions his work."}, "at capacity": {"word": "at capacity", "ipa": "/æt kəˈpæs.ə.ti/", "meaning": "as busy or as full as possible; unable to take on more", "example": "The team is at capacity until the end of the quarter."}, "alternative": {"word": "alternative", "ipa": "/ɒlˈtɜː.nə.tɪv/", "meaning": "another possible option", "example": "If Friday doesn't work, is there an alternative?"}, "harsh": {"word": "harsh", "ipa": "/hɑːʃ/", "meaning": "unkind, severe, or more critical than necessary", "example": "The feedback was fair but a bit harsh."}, "justify": {"word": "justify", "ipa": "/ˈdʒʌs.tɪ.faɪ/", "meaning": "to give reasons to show that something you did was right", "example": "You don't need to justify every decision."}}, LESSON_ID);
+  Course.initMCQ('comp-q1', {lessonId: LESSON_ID, sectionId: 'reading-comp-1', correctValue: "right", restoreAnswer: (sectionMap['reading-comp-1']||{}).answer_given});
+  Course.initMCQ('comp-q2', {lessonId: LESSON_ID, sectionId: 'reading-comp-2', correctValue: "right", restoreAnswer: (sectionMap['reading-comp-2']||{}).answer_given});
+  Course.initMCQ('comp-q3', {lessonId: LESSON_ID, sectionId: 'reading-comp-3', correctValue: "right", restoreAnswer: (sectionMap['reading-comp-3']||{}).answer_given});
+  Course.ensureAnswerPositionVariety([{"containerId": "comp-q1", "correctValue": "right"}, {"containerId": "comp-q2", "correctValue": "right"}, {"containerId": "comp-q3", "correctValue": "right"}]);
+
+  /* ---------------- vocab check ---------------- */
+  Course.initMCQ('vocab-q1', {lessonId: LESSON_ID, sectionId: 'vocab-1', correctValue: "right", restoreAnswer: (sectionMap['vocab-1']||{}).answer_given});
+  Course.initMCQ('vocab-q2', {lessonId: LESSON_ID, sectionId: 'vocab-2', correctValue: "right", restoreAnswer: (sectionMap['vocab-2']||{}).answer_given});
+  Course.initMCQ('vocab-q3', {lessonId: LESSON_ID, sectionId: 'vocab-3', correctValue: "right", restoreAnswer: (sectionMap['vocab-3']||{}).answer_given});
+  Course.initMCQ('vocab-q4', {lessonId: LESSON_ID, sectionId: 'vocab-4', correctValue: "right", restoreAnswer: (sectionMap['vocab-4']||{}).answer_given});
+  Course.initMCQ('vocab-q5', {lessonId: LESSON_ID, sectionId: 'vocab-5', correctValue: "right", restoreAnswer: (sectionMap['vocab-5']||{}).answer_given});
+  Course.ensureAnswerPositionVariety([{"containerId": "vocab-q1", "correctValue": "right"}, {"containerId": "vocab-q2", "correctValue": "right"}, {"containerId": "vocab-q3", "correctValue": "right"}, {"containerId": "vocab-q4", "correctValue": "right"}, {"containerId": "vocab-q5", "correctValue": "right"}]);
+    Course.initGapFill('vgap1-input','vgap1-check','vgap1-fb',{lessonId:LESSON_ID, sectionId:'vocab-gap-1', correctAnswers:["justify", "explain"], restore: sectionMap['vocab-gap-1'] ? {answerGiven: sectionMap['vocab-gap-1'].answer_given, isCorrect: sectionMap['vocab-gap-1'].override_correct ?? sectionMap['vocab-gap-1'].is_correct} : null});
+  Course.initGapFill('vgap2-input','vgap2-check','vgap2-fb',{lessonId:LESSON_ID, sectionId:'vocab-gap-2', correctAnswers:["alternative", "option"], restore: sectionMap['vocab-gap-2'] ? {answerGiven: sectionMap['vocab-gap-2'].answer_given, isCorrect: sectionMap['vocab-gap-2'].override_correct ?? sectionMap['vocab-gap-2'].is_correct} : null});
+  Course.initGapFill('vgap3-input','vgap3-check','vgap3-fb',{lessonId:LESSON_ID, sectionId:'vocab-gap-3', correctAnswers:["defensive", "upset"], restore: sectionMap['vocab-gap-3'] ? {answerGiven: sectionMap['vocab-gap-3'].answer_given, isCorrect: sectionMap['vocab-gap-3'].override_correct ?? sectionMap['vocab-gap-3'].is_correct} : null});
+  Course.initGapFill('vgap4-input','vgap4-check','vgap4-fb',{lessonId:LESSON_ID, sectionId:'vocab-gap-4', correctAnswers:["at"], restore: sectionMap['vocab-gap-4'] ? {answerGiven: sectionMap['vocab-gap-4'].answer_given, isCorrect: sectionMap['vocab-gap-4'].override_correct ?? sectionMap['vocab-gap-4'].is_correct} : null});
+
+  /* ---------------- practice ---------------- */
+    Course.initGapFill('gap1-input','gap1-check','gap1-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-1', correctAnswers:Course.withContractions(["afraid"]), restore: sectionMap['practice-gap-1'] ? {answerGiven: sectionMap['practice-gap-1'].answer_given, isCorrect: sectionMap['practice-gap-1'].override_correct ?? sectionMap['practice-gap-1'].is_correct} : null});
+  Course.initGapFill('gap2-input','gap2-check','gap2-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-2', correctAnswers:Course.withContractions(["mistake", "fault"]), restore: sectionMap['practice-gap-2'] ? {answerGiven: sectionMap['practice-gap-2'].answer_given, isCorrect: sectionMap['practice-gap-2'].override_correct ?? sectionMap['practice-gap-2'].is_correct} : null});
+  Course.initGapFill('gap3-input','gap3-check','gap3-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-3', correctAnswers:Course.withContractions(["flagging", "spotting", "mentioning"]), restore: sectionMap['practice-gap-3'] ? {answerGiven: sectionMap['practice-gap-3'].answer_given, isCorrect: sectionMap['practice-gap-3'].override_correct ?? sectionMap['practice-gap-3'].is_correct} : null});
+  Course.initGapFill('gap4-input','gap4-check','gap4-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-4', correctAnswers:Course.withContractions(["suggest"]), restore: sectionMap['practice-gap-4'] ? {answerGiven: sectionMap['practice-gap-4'].answer_given, isCorrect: sectionMap['practice-gap-4'].override_correct ?? sectionMap['practice-gap-4'].is_correct} : null});
+  Course.initGapFill('gap5-input','gap5-check','gap5-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-5', correctAnswers:Course.withContractions(["worries", "problem"]), restore: sectionMap['practice-gap-5'] ? {answerGiven: sectionMap['practice-gap-5'].answer_given, isCorrect: sectionMap['practice-gap-5'].override_correct ?? sectionMap['practice-gap-5'].is_correct} : null});
+  Course.initGapFill('gap6-input','gap6-check','gap6-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-6', correctAnswers:Course.withContractions(["have"]), restore: sectionMap['practice-gap-6'] ? {answerGiven: sectionMap['practice-gap-6'].answer_given, isCorrect: sectionMap['practice-gap-6'].override_correct ?? sectionMap['practice-gap-6'].is_correct} : null});
+  Course.initErrorSpot('err1', {
+    lessonId: LESSON_ID, sectionId: 'practice-err-1',
+    words: ["The", "mistake", "happened", "because", "the", "system", "is", "terrible."], errorIndices: [3], correction: "", explanation: "Starting with \"because\" turns an apology into an excuse. Own it first: \"I'm sorry — that's my mistake. I've corrected it.\""
+  });
+  Course.initErrorSpot('err2', {
+    lessonId: LESSON_ID, sectionId: 'practice-err-2',
+    words: ["No,", "I", "can't", "do", "it.", "Ask", "someone", "else."], errorIndices: [5], correction: "", explanation: "Pushing the task away sounds dismissive. Give a reason and an alternative: \"I'm at capacity, but Sam might be able to help.\""
+  });
+  Course.initErrorSpot('err3', {
+    lessonId: LESSON_ID, sectionId: 'practice-err-3',
+    words: ["Your", "presentation", "was", "boring."], errorIndices: [3], correction: "", explanation: "A personal verdict gives nothing to act on. Be specific and constructive: \"One thing I'd suggest is adding a real example early on.\""
+  });
+  Course.renderBuilders('builders', [{"words": ["I'd", "love", "to,", "but", "I'm", "at", "capacity."]}, {"words": ["That's", "my", "mistake", "—", "I'll", "fix", "it."]}, {"words": ["One", "thing", "I'd", "suggest", "is", "cutting", "the", "intro."]}], {lessonId: LESSON_ID, sectionPrefix: 'practice-builder'});
+
+  /* ---------------- speaking ---------------- */
+  Course.initSpeaking({max: 2, lessonId: LESSON_ID, sectionMap, soloTaskLabel: "Choose one: (a) say no to your manager's request to work this weekend, with a reason and an alternative; (b) apologise to a client for a missed deadline in three sentences: own it, fix it, prevent it; or (c) give a colleague feedback on a presentation that was far too long."});
+  Course.renderDiscussQuestions('discuss-questions', ["Role-play: A asks B for a big favour; B says no well. Then swap. Which \"no\" felt most acceptable, and why?", "What's the best (or worst) feedback you've ever received at work? What made it effective or damaging?", "Is it harder in your culture to say no to a manager, to apologise, or to criticise a colleague? Why?"], {lessonId: LESSON_ID, max: 2, sectionPrefix: 'speaking-q'});
+
+  /* ---------------- listening ---------------- */
+  Course.initListening({dialogue: [{"speaker": "Tomasz", "line": "I sent Harris & Co last month's figures instead of this month's. I'm writing an email explaining what happened."}, {"speaker": "Anna", "line": "How long is the explanation?"}, {"speaker": "Tomasz", "line": "About a page. The template was wrong, the file names were confusing…"}, {"speaker": "Anna", "line": "Cut it. Three lines: sorry, that's my mistake; here are the correct figures; I've added a check so it won't happen again."}, {"speaker": "Tomasz", "line": "Won't they think I'm hiding something if I don't explain?"}, {"speaker": "Anna", "line": "No. Long explanations sound like excuses. If they want the details, they'll ask."}, {"speaker": "Tomasz", "line": "And Mark wants me to take over the Leeds project too. I can't, honestly."}, {"speaker": "Anna", "line": "Then tell him you'd love to, but you're at capacity until the Harris work's done, and suggest a date."}], speakerA: 'Anna', speakerB: 'Tomasz', lessonId: LESSON_ID});
+  Course.initMCQ('listen-q1', {lessonId: LESSON_ID, sectionId: 'listening-1', correctValue: "right", restoreAnswer: (sectionMap['listening-1']||{}).answer_given});
+  Course.initMCQ('listen-q2', {lessonId: LESSON_ID, sectionId: 'listening-2', correctValue: "right", restoreAnswer: (sectionMap['listening-2']||{}).answer_given});
+  Course.initMCQ('listen-q3', {lessonId: LESSON_ID, sectionId: 'listening-3', correctValue: "right", restoreAnswer: (sectionMap['listening-3']||{}).answer_given});
+  Course.ensureAnswerPositionVariety([{"containerId": "listen-q1", "correctValue": "right"}, {"containerId": "listen-q2", "correctValue": "right"}, {"containerId": "listen-q3", "correctValue": "right"}]);
+
+  /* ---------------- wrap-up ---------------- */
+  Course.initMCQ('exit-q1', {lessonId: LESSON_ID, sectionId: 'exit-1', correctValue: "right", restoreAnswer: (sectionMap['exit-1']||{}).answer_given});
+  Course.initMCQ('exit-q2', {lessonId: LESSON_ID, sectionId: 'exit-2', correctValue: "right", restoreAnswer: (sectionMap['exit-2']||{}).answer_given});
+  Course.initMCQ('exit-q3', {lessonId: LESSON_ID, sectionId: 'exit-3', correctValue: "right", restoreAnswer: (sectionMap['exit-3']||{}).answer_given});
+  Course.initMCQ('exit-q4', {lessonId: LESSON_ID, sectionId: 'exit-4', correctValue: "right", restoreAnswer: (sectionMap['exit-4']||{}).answer_given});
+  Course.initMCQ('exit-q5', {lessonId: LESSON_ID, sectionId: 'exit-5', correctValue: "right", restoreAnswer: (sectionMap['exit-5']||{}).answer_given});
+  Course.ensureAnswerPositionVariety([{"containerId": "exit-q1", "correctValue": "right"}, {"containerId": "exit-q2", "correctValue": "right"}, {"containerId": "exit-q3", "correctValue": "right"}, {"containerId": "exit-q4", "correctValue": "right"}, {"containerId": "exit-q5", "correctValue": "right"}]);
+  Course.initSummary({lessonId: LESSON_ID, totalExercises: 39});
+})();
+
+</script>
+</body>
+</html>

@@ -685,15 +685,15 @@ window.SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXB
       <div class="bx ring-cell">
         <div class="ring-top">
           <div class="ring" id="overall-ring"><span id="overall-pct">0%</span></div>
-          <div class="ring-label"><b id="overall-title">Nothing attempted yet</b><span id="overall-sub">Your progress across all 1 items.</span></div>
+          <div class="ring-label"><b id="overall-title">Nothing attempted yet</b><span id="overall-sub">Your progress across all 8 items.</span></div>
         </div>
         <div class="mini-list" id="mini-progress"></div>
       </div>
       <div class="bx stat-cell">
         <div class="stat-row">
           <div><div class="stat-n">3</div><div class="stat-l">Sections</div></div>
-          <div><div class="stat-n">1</div><div class="stat-l">Lessons</div></div>
-          <div><div class="stat-n">0</div><div class="stat-l">Tests</div></div>
+          <div><div class="stat-n">7</div><div class="stat-l">Lessons</div></div>
+          <div><div class="stat-n">1</div><div class="stat-l">Test</div></div>
         </div>
         <a class="next-up" id="next-up" href="#">
           <span class="stat-l" style="margin:0">Up next</span>
@@ -2311,9 +2311,9 @@ const Course = (() => {
 </script>
 <script>
 
-const LESSONS = [{"id": "weq-lesson-01-first-impressions", "title": "Lesson 1 — First Impressions & Small Talk", "isTest": false}];
+const LESSONS = [{"id": "weq-lesson-01-first-impressions", "title": "Lesson 1 — First Impressions & Small Talk", "isTest": false}, {"id": "weq-lesson-02-politeness-register", "title": "Lesson 2 — Politeness & Register", "isTest": false}, {"id": "weq-lesson-03-emails-messaging", "title": "Lesson 3 — Emails & Messaging", "isTest": false}, {"id": "weq-lesson-04-meetings-calls", "title": "Lesson 4 — Meetings & Calls", "isTest": false}, {"id": "weq-lesson-05-difficult-conversations", "title": "Lesson 5 — Difficult Conversations", "isTest": false}, {"id": "weq-lesson-06-visibility-self-advocacy", "title": "Lesson 6 — Visibility & Self-Advocacy", "isTest": false}, {"id": "weq-lesson-07-capstone-week-in-london", "title": "Lesson 7 — Capstone: A Week in London", "isTest": false}, {"id": "weq-test-01", "title": "Final Test: Workplace EQ", "isTest": true}];
 const GROUP_META = [{"title": "Professional Presence", "color": "#1F4543", "accent": "#2E6461", "desc": "First impressions, introductions and small talk, then the core skill behind everything else in the course: choosing the right level of politeness and directness for the person in front of you.", "expect": "You'll compare three versions of the same line (too blunt, too stiff, just right) and learn why British listeners hear them so differently. Expect situational choices, rewriting blunt lines politely, and short speaking tasks where you introduce yourself and keep a conversation going."}, {"title": "Communication That Lands", "color": "#33375F", "accent": "#4A4F86", "desc": "Emails and chat messages, meetings and video calls, and the conversations most people avoid: saying no, apologising, giving feedback and delivering bad news.", "expect": "Most of the work here is rewriting: turning a clumsy email into one that gets a reply, softening a disagreement without losing the point, and spotting the faux pas in a message before it's sent. Speaking tasks are short role-plays."}, {"title": "Career Velocity", "color": "#733B21", "accent": "#9A5230", "desc": "Being visible without bragging, managing up, asking for what you want, and networking that actually leads somewhere, then a capstone week-at-work simulation that pulls the whole course together.", "expect": "You'll practise the language of self-advocacy (taking credit gracefully, asking for a raise or a stretch project) and then work through a full scenario, from a client dinner to a tricky follow-up email. The final test mixes all seven lessons."}];
-const SECTION_SIZES = [1, 0, 0];
+const SECTION_SIZES = [2, 3, 3];
 
 /* ------------------------------------------------------------------
    Per-lesson exercise totals — the same number each lesson/test file
@@ -2324,7 +2324,7 @@ const SECTION_SIZES = [1, 0, 0];
    sync with the actual content.
    ------------------------------------------------------------------ */
 const DEFAULT_TOTAL = 12;
-const LESSON_TOTALS = {"weq-lesson-01-first-impressions": 39};
+const LESSON_TOTALS = {"weq-lesson-01-first-impressions": 39, "weq-lesson-02-politeness-register": 39, "weq-lesson-03-emails-messaging": 39, "weq-lesson-04-meetings-calls": 39, "weq-lesson-05-difficult-conversations": 39, "weq-lesson-06-visibility-self-advocacy": 39, "weq-lesson-07-capstone-week-in-london": 39, "weq-test-01": 24};
 function totalFor(id){ return LESSON_TOTALS[id] || DEFAULT_TOTAL; }
 
 // Build the [start, end) ranges from SECTION_SIZES so this never has to
