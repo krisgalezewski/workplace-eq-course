@@ -1026,6 +1026,14 @@ def build_preview(out_dir, lesson_totals):
             if os.path.exists(src):
                 os.makedirs(os.path.join(out_dir, "audio"), exist_ok=True)
                 shutil.copy(src, os.path.join(out_dir, "audio", os.path.basename(src)))
+    # vocab word audio used by the open lessons
+    from extract_audio_manifest import slugify_for_audio
+    for l in ALL_LESSONS[:PREVIEW_OPEN_LESSONS]:
+        for entry in l["reading"]["vocab_data"].values():
+            src = os.path.join(audio_dir, "vocab", slugify_for_audio(entry["word"]) + ".mp3")
+            if os.path.exists(src):
+                os.makedirs(os.path.join(out_dir, "audio", "vocab"), exist_ok=True)
+                shutil.copy(src, os.path.join(out_dir, "audio", "vocab", os.path.basename(src)))
     print(f"Preview written to {out_dir} ({len(files)} pages).")
 
 

@@ -7,7 +7,7 @@ Architecture note: the original B1+/B2 course's equivalent script
 each lesson's embedded inline <script> block using Node's `vm` module,
 because that course's content only ever existed as already-generated
 HTML. This course's content lives as structured Python data BEFORE it's
-ever turned into HTML (lessons_section1.py..lessons_section4.py), so
+ever turned into HTML (lessons_section1.py..lessons_section3.py), so
 there's a strictly simpler and more robust option: import that data
 directly. No HTML parsing, no risk of the extractor and the generator
 drifting apart. Same end artifact (audio-manifest.json), same shape,
@@ -34,9 +34,8 @@ import re
 import lessons_section1 as s1
 import lessons_section2 as s2
 import lessons_section3 as s3
-import lessons_section4 as s4
 
-SECTION_MODULES = [s1, s2, s3, s4]
+SECTION_MODULES = [s1, s2, s3]
 
 # Must exactly mirror Course.slugifyForAudio() in shared/course-engine.js:
 #   text.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')

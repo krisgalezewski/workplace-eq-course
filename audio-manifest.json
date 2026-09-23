@@ -1,0 +1,561 @@
+{
+  "voices": {
+    "anna": "en-GB-Neural2-A",
+    "tomasz": "en-GB-Neural2-B",
+    "narrator": "en-GB-Neural2-F"
+  },
+  "pauseMsBetweenTurns": 450,
+  "vocab": [
+    {
+      "slug": "accountable",
+      "word": "accountable",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/accountable.mp3"
+    },
+    {
+      "slug": "alternative",
+      "word": "alternative",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/alternative.mp3"
+    },
+    {
+      "slug": "approachable",
+      "word": "approachable",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/approachable.mp3"
+    },
+    {
+      "slug": "at-capacity",
+      "word": "at capacity",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/at-capacity.mp3"
+    },
+    {
+      "slug": "awkward",
+      "word": "awkward",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/awkward.mp3"
+    },
+    {
+      "slug": "blunt",
+      "word": "blunt",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/blunt.mp3"
+    },
+    {
+      "slug": "candid",
+      "word": "candid",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/candid.mp3"
+    },
+    {
+      "slug": "collaborative",
+      "word": "collaborative",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/collaborative.mp3"
+    },
+    {
+      "slug": "confrontation",
+      "word": "confrontation",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/confrontation.mp3"
+    },
+    {
+      "slug": "courteous",
+      "word": "courteous",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/courteous.mp3"
+    },
+    {
+      "slug": "criteria",
+      "word": "criteria",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/criteria.mp3"
+    },
+    {
+      "slug": "defensive",
+      "word": "defensive",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/defensive.mp3"
+    },
+    {
+      "slug": "diplomatic",
+      "word": "diplomatic",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/diplomatic.mp3"
+    },
+    {
+      "slug": "discretion",
+      "word": "discretion",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/discretion.mp3"
+    },
+    {
+      "slug": "dispute",
+      "word": "dispute",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/dispute.mp3"
+    },
+    {
+      "slug": "drift",
+      "word": "drift",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/drift.mp3"
+    },
+    {
+      "slug": "etiquette",
+      "word": "etiquette",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/etiquette.mp3"
+    },
+    {
+      "slug": "follow-up",
+      "word": "follow-up",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/follow-up.mp3"
+    },
+    {
+      "slug": "harsh",
+      "word": "harsh",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/harsh.mp3"
+    },
+    {
+      "slug": "hierarchy",
+      "word": "hierarchy",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/hierarchy.mp3"
+    },
+    {
+      "slug": "initiative",
+      "word": "initiative",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/initiative.mp3"
+    },
+    {
+      "slug": "justify",
+      "word": "justify",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/justify.mp3"
+    },
+    {
+      "slug": "manage-up",
+      "word": "manage up",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/manage-up.mp3"
+    },
+    {
+      "slug": "misread",
+      "word": "misread",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/misread.mp3"
+    },
+    {
+      "slug": "notification",
+      "word": "notification",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/notification.mp3"
+    },
+    {
+      "slug": "nuance",
+      "word": "nuance",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/nuance.mp3"
+    },
+    {
+      "slug": "nudge",
+      "word": "nudge",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/nudge.mp3"
+    },
+    {
+      "slug": "options",
+      "word": "options",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/options.mp3"
+    },
+    {
+      "slug": "passive-aggressive",
+      "word": "passive-aggressive",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/passive-aggressive.mp3"
+    },
+    {
+      "slug": "persistence",
+      "word": "persistence",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/persistence.mp3"
+    },
+    {
+      "slug": "put-on-the-spot",
+      "word": "put on the spot",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/put-on-the-spot.mp3"
+    },
+    {
+      "slug": "rapport",
+      "word": "rapport",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/rapport.mp3"
+    },
+    {
+      "slug": "read-the-room",
+      "word": "read the room",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/read-the-room.mp3"
+    },
+    {
+      "slug": "recap",
+      "word": "recap",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/recap.mp3"
+    },
+    {
+      "slug": "register",
+      "word": "register",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/register.mp3"
+    },
+    {
+      "slug": "reputation",
+      "word": "reputation",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/reputation.mp3"
+    },
+    {
+      "slug": "rocket-science",
+      "word": "rocket science",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/rocket-science.mp3"
+    },
+    {
+      "slug": "self-advocacy",
+      "word": "self-advocacy",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/self-advocacy.mp3"
+    },
+    {
+      "slug": "skim",
+      "word": "skim",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/skim.mp3"
+    },
+    {
+      "slug": "stall",
+      "word": "stall",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/stall.mp3"
+    },
+    {
+      "slug": "stranded",
+      "word": "stranded",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/stranded.mp3"
+    },
+    {
+      "slug": "tactful",
+      "word": "tactful",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/tactful.mp3"
+    },
+    {
+      "slug": "taken-aback",
+      "word": "taken aback",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/taken-aback.mp3"
+    },
+    {
+      "slug": "trivial",
+      "word": "trivial",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/trivial.mp3"
+    },
+    {
+      "slug": "understatement",
+      "word": "understatement",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/understatement.mp3"
+    },
+    {
+      "slug": "visible",
+      "word": "visible",
+      "voice": "en-GB-Neural2-F",
+      "path": "audio/vocab/visible.mp3"
+    }
+  ],
+  "dialogues": [
+    {
+      "lessonId": "weq-lesson-01-first-impressions",
+      "shortPrefix": "lesson-01",
+      "title": "First Impressions & Small Talk",
+      "lines": [
+        {
+          "speaker": "Anna",
+          "line": "So, how was the drinks thing last night? Did you survive?"
+        },
+        {
+          "speaker": "Tomasz",
+          "line": "Just about. I think I called the finance director \"Mr Richard\" — twice."
+        },
+        {
+          "speaker": "Anna",
+          "line": "Oh no. Honestly, he'll have found it charming. Everyone's Richard here, even to the interns."
+        },
+        {
+          "speaker": "Tomasz",
+          "line": "Then I got stuck with a man from procurement for about an hour. I didn't know how to get away."
+        },
+        {
+          "speaker": "Anna",
+          "line": "You just say something like, \"Anyway, I'll let you get back to it — lovely to meet you,\" and off you go."
+        },
+        {
+          "speaker": "Tomasz",
+          "line": "That's it? Nobody thinks it's rude?"
+        },
+        {
+          "speaker": "Anna",
+          "line": "Not at all. It's rude to trap someone. Leaving nicely is doing them a favour."
+        },
+        {
+          "speaker": "Tomasz",
+          "line": "Right. Next time: first names, ask how they got there, and leave before the hour's up."
+        }
+      ]
+    },
+    {
+      "lessonId": "weq-lesson-02-politeness-register",
+      "shortPrefix": "lesson-02",
+      "title": "Politeness & Register",
+      "lines": [
+        {
+          "speaker": "Tomasz",
+          "line": "Can you look at this before I send it? \"Claire, I want to take Friday off. Please confirm.\""
+        },
+        {
+          "speaker": "Anna",
+          "line": "Hmm. It's clear, I'll give you that. But she'll read it as an order."
+        },
+        {
+          "speaker": "Tomasz",
+          "line": "Really? I said please."
+        },
+        {
+          "speaker": "Anna",
+          "line": "Please doesn't do much on its own. Try \"I was wondering if I could take Friday off — would that be OK?\""
+        },
+        {
+          "speaker": "Tomasz",
+          "line": "That's so much longer to say the same thing."
+        },
+        {
+          "speaker": "Anna",
+          "line": "It isn't the same thing, though. Yours tells her. Mine asks her. By the way, what did she say about your dashboard idea?"
+        },
+        {
+          "speaker": "Tomasz",
+          "line": "She said it was an interesting idea. So I've started building it."
+        },
+        {
+          "speaker": "Anna",
+          "line": "Ah. I might hold off on that until she mentions it again."
+        }
+      ]
+    },
+    {
+      "lessonId": "weq-lesson-03-emails-messaging",
+      "shortPrefix": "lesson-03",
+      "title": "Emails & Messaging",
+      "lines": [
+        {
+          "speaker": "Anna",
+          "line": "Wait, wait — are you replying all to the office move email?"
+        },
+        {
+          "speaker": "Tomasz",
+          "line": "Yes, I just want to ask if I can keep my monitor."
+        },
+        {
+          "speaker": "Anna",
+          "line": "That's going to two hundred people. Just reply to Sarah in facilities."
+        },
+        {
+          "speaker": "Tomasz",
+          "line": "Good point. Also, the supplier still hasn't answered me. I was going to write \"I am still waiting for your answer.\""
+        },
+        {
+          "speaker": "Anna",
+          "line": "Softer. \"Just following up on my email below — any news on the delivery date?\""
+        },
+        {
+          "speaker": "Tomasz",
+          "line": "And if they ignore that one too?"
+        },
+        {
+          "speaker": "Anna",
+          "line": "Then you pick up the phone. Two emails, then a call. That's my rule."
+        },
+        {
+          "speaker": "Tomasz",
+          "line": "Two emails, then a call. Got it."
+        }
+      ]
+    },
+    {
+      "lessonId": "weq-lesson-04-meetings-calls",
+      "shortPrefix": "lesson-04",
+      "title": "Meetings & Calls",
+      "lines": [
+        {
+          "speaker": "Anna",
+          "line": "You were very quiet in there. You had views on the timeline, didn't you?"
+        },
+        {
+          "speaker": "Tomasz",
+          "line": "I did, but everyone was talking at once. I was waiting for a pause."
+        },
+        {
+          "speaker": "Anna",
+          "line": "There's never a pause. You just say \"Sorry to jump in\" and go."
+        },
+        {
+          "speaker": "Tomasz",
+          "line": "And when Mark said the launch date was fixed, I wanted to say \"That's not realistic.\""
+        },
+        {
+          "speaker": "Anna",
+          "line": "Try \"I take your point, but I'm a bit worried about the testing time.\" Same message, less smoke."
+        },
+        {
+          "speaker": "Tomasz",
+          "line": "Less smoke. I like that. And what did Mark mean by \"let's take that away\"?"
+        },
+        {
+          "speaker": "Anna",
+          "line": "Usually it means \"not today\". If you care about it, email him tomorrow and suggest a date to revisit it."
+        },
+        {
+          "speaker": "Tomasz",
+          "line": "OK. Next meeting, I'm jumping in at least once."
+        }
+      ]
+    },
+    {
+      "lessonId": "weq-lesson-05-difficult-conversations",
+      "shortPrefix": "lesson-05",
+      "title": "Difficult Conversations",
+      "lines": [
+        {
+          "speaker": "Tomasz",
+          "line": "I sent Harris & Co last month's figures instead of this month's. I'm writing an email explaining what happened."
+        },
+        {
+          "speaker": "Anna",
+          "line": "How long is the explanation?"
+        },
+        {
+          "speaker": "Tomasz",
+          "line": "About a page. The template was wrong, the file names were confusing…"
+        },
+        {
+          "speaker": "Anna",
+          "line": "Cut it. Three lines: sorry, that's my mistake; here are the correct figures; I've added a check so it won't happen again."
+        },
+        {
+          "speaker": "Tomasz",
+          "line": "Won't they think I'm hiding something if I don't explain?"
+        },
+        {
+          "speaker": "Anna",
+          "line": "No. Long explanations sound like excuses. If they want the details, they'll ask."
+        },
+        {
+          "speaker": "Tomasz",
+          "line": "And Mark wants me to take over the Leeds project too. I can't, honestly."
+        },
+        {
+          "speaker": "Anna",
+          "line": "Then tell him you'd love to, but you're at capacity until the Harris work's done, and suggest a date."
+        }
+      ]
+    },
+    {
+      "lessonId": "weq-lesson-06-visibility-self-advocacy",
+      "shortPrefix": "lesson-06",
+      "title": "Visibility & Self-Advocacy",
+      "lines": [
+        {
+          "speaker": "Tomasz",
+          "line": "My review's on Tuesday. I was going to say I've worked very hard and I deserve a raise."
+        },
+        {
+          "speaker": "Anna",
+          "line": "Hmm. Everyone thinks they've worked hard. What have you actually delivered?"
+        },
+        {
+          "speaker": "Tomasz",
+          "line": "Well, I rebuilt the client dashboard. Reporting takes one day now instead of three."
+        },
+        {
+          "speaker": "Anna",
+          "line": "That's your opening line, then. Numbers, not adjectives."
+        },
+        {
+          "speaker": "Tomasz",
+          "line": "And if Claire says it's not the right time?"
+        },
+        {
+          "speaker": "Anna",
+          "line": "Ask her what she'd need to see from you, and when you can talk about it again. Then write it down."
+        },
+        {
+          "speaker": "Tomasz",
+          "line": "Should I mention that Ola helped with the testing?"
+        },
+        {
+          "speaker": "Anna",
+          "line": "Definitely. Sharing credit makes you look more senior, not less."
+        }
+      ]
+    },
+    {
+      "lessonId": "weq-lesson-07-capstone-week-in-london",
+      "shortPrefix": "lesson-07",
+      "title": "Capstone: A Week in London",
+      "lines": [
+        {
+          "speaker": "Anna",
+          "line": "So, three months in. What's the biggest thing you've learnt?"
+        },
+        {
+          "speaker": "Tomasz",
+          "line": "That my English was never the problem. It was the rules nobody writes down."
+        },
+        {
+          "speaker": "Anna",
+          "line": "Like \"Mr Richard\"?"
+        },
+        {
+          "speaker": "Tomasz",
+          "line": "Please don't. But yes, names, softening, chasing, all of it. I actually jumped in at the meeting today."
+        },
+        {
+          "speaker": "Anna",
+          "line": "I noticed. \"I take your point, but I'm a bit worried about the timeline.\" Textbook."
+        },
+        {
+          "speaker": "Tomasz",
+          "line": "And Claire said my dashboard was \"not bad at all\". I've learnt that's a compliment."
+        },
+        {
+          "speaker": "Anna",
+          "line": "A big one. Have you asked her about leading the next phase?"
+        },
+        {
+          "speaker": "Tomasz",
+          "line": "Monday morning. I've booked twenty minutes, and I know my first line: \"I'd like to talk about my next step here.\""
+        }
+      ]
+    }
+  ]
+}
