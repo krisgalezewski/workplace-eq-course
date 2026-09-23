@@ -568,7 +568,7 @@ if (existingName && Course.isConnected()){{
 }}
 '''
 
-    html = light_page_shell(title="Workplace EQ", body_html=body_html, extra_head=extra_head, page_script=page_script)
+    html = light_page_shell(title="Course home", body_html=body_html, extra_head=extra_head, page_script=page_script)
     src_path = os.path.join(ROOT, "index.html")
     with open(src_path, "w", encoding="utf-8") as f:
         f.write(html)
