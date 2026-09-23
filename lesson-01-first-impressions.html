@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>First Impressions & Small Talk | Workplace EQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/theme.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="shared/supabase-config.js"></script>
+</head>
+<body class="theme-presence">
+
+<div class="course-attribution">Workplace EQ · English Voiced with Kris</div>
+<div class="shell">
+  <header class="lesson-header">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+      <div class="lesson-eyebrow">Lesson 1 of 7 · Professional Presence</div>
+      <div style="display:flex;gap:8px">
+      <a id="all-lessons-link" href="index-standalone.html" class="pill" style="text-decoration:none;font-size:12.5px;border-radius:var(--radius-sm)">📚 All Lessons</a>
+      <a id="glossary-link" href="glossary-standalone.html" class="pill" style="text-decoration:none;font-size:12.5px;border-radius:var(--radius-sm)">📖 My Glossary</a>
+    </div>
+    </div>
+    <h1 class="lesson-title">First Impressions & Small Talk</h1>
+    <p class="lesson-sub">Introductions, names, safe topics, and how to leave a conversation without leaving a bad impression.</p>
+    <div class="pb-track" style="margin-top:16px"><div class="pb-fill" id="overall-progress" style="width:0%"></div></div>
+    <div id="sync-status" style="font-size:11.5px;color:var(--text-tertiary);margin-top:8px"></div>
+  </header>
+
+  <section class="section" id="sec-warmup">
+    <div class="section-label"><span class="num">1</span> Warm-up</div>
+    <div class="card">
+      <p style="margin-bottom:14px;font-size:14.5px;color:var(--text-secondary)">Most first impressions at work are made in under two minutes, and almost none of that time is spent on anything important. That's the point: small talk is how British colleagues decide whether you're easy to work with. Let's see what your instincts say.</p>
+      
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">1. A British colleague says "Hi, how are you?" as you pass in the corridor. The best reply is…</p>
+        <div id="warm-q1">
+          <button class="opt" data-value="right">"Good, thanks — you?"</button><button class="opt" data-value="wrong">An honest update on how your week is going</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">2. You've been introduced to Helen Price, a senior director, at a London client event. She says "Hi, I'm Helen." You call her…</p>
+        <div id="warm-q2">
+          <button class="opt" data-value="right">Helen</button><button class="opt" data-value="wrong">Mrs Helen</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">3. Which topic is the safest opener with someone you've just met at a work event?</p>
+        <div id="warm-q3">
+          <button class="opt" data-value="right">How they got there, or what brought them to the event</button><button class="opt" data-value="wrong">What they think of the new government</button>
+        </div>
+      </div>
+      <div class="tip-box">💡 <span style="flex:1;min-width:0">In British workplaces, "How are you?" is a greeting, not a question. First names are normal almost immediately, even with senior people, once they've offered theirs. The rule of thumb: follow the other person's lead.</span></div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-diagnostic">
+    <div class="section-label"><span class="num">2</span> Quick check — before we explain anything</div>
+    <div class="card">
+      <p style="margin-bottom:16px;font-size:14.5px;color:var(--text-secondary)">Four quick questions. This isn't graded harshly — it just shows us where to focus.</p>
+      
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px;font-weight:550">1. You want to introduce your manager to a client. The most natural line is…</p>
+        <div id="diag-q1">
+          <button class="opt" data-value="right">"Sarah, have you met Tom? Tom's our head of sales."</button><button class="opt" data-value="wrong">"Sarah, I present to you Tom, our head of sales."</button>
+        </div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px;font-weight:550">2. You've forgotten the name of someone you met last week. You say…</p>
+        <div id="diag-q2">
+          <button class="opt" data-value="right">"I'm so sorry — remind me of your name?"</button><button class="opt" data-value="wrong">"What is your name?"</button>
+        </div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px;font-weight:550">3. At the end of a first conversation, the natural British phrase is…</p>
+        <div id="diag-q3">
+          <button class="opt" data-value="right">"Lovely to meet you."</button><button class="opt" data-value="wrong">"It was a pleasure to make your acquaintance."</button>
+        </div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px;font-weight:550">4. You need to leave a conversation at a networking event. You say…</p>
+        <div id="diag-q4">
+          <button class="opt" data-value="right">"I'll let you get back to the party — great talking to you."</button><button class="opt" data-value="wrong">"OK, I'm going now. Bye."</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-concept">
+    <div class="section-label"><span class="num">3</span> The concept</div>
+
+    <div class="card">
+      <h3 style="margin-bottom:10px">The three moves of any first conversation</h3>
+      <p style="font-size:14.5px;line-height:1.7;margin-bottom:14px">Every short professional conversation has three moves: you <b>open</b> it (greet, introduce, get names right), you <b>keep it going</b> (safe topics, follow-up questions, small reactions), and you <b>close</b> it gracefully. Browse the phrases for each move, then try the quick check.</p>
+      <div class="mode-toggle mode-toggle-outline" style="flex-wrap:wrap;gap:8px">
+        <button class="pill on" id="mode-w-open">Opening</button><button class="pill" id="mode-w-keep">Keeping it going</button><button class="pill" id="mode-w-close">Closing gracefully</button><button class="pill" id="mode-w-quiz">Quick check</button>
+      </div>
+      <div id="widget-area" style="margin-top:14px;padding:18px;border-radius:var(--radius-md);background:var(--surface-alt);border:1px solid var(--border)"></div>
+      <p id="widget-hint" style="font-size:12.5px;color:var(--text-tertiary);margin-top:8px">— Click either cell to see another example.</p>
+
+      <button class="pill" id="rules-toggle" style="margin-top:16px">📖 Show the full rules</button>
+      <div class="expand-content" id="rules-content">
+        <div style="margin-top:16px">
+          
+          <div class="formula" style="border-left-color:var(--c-present)">✅ <b>Open:</b> name + one detail. "I'm Kasia — I look after the Kraków office." Then use their name once, early, so it sticks.</div>
+          <div class="formula" style="border-left-color:var(--c-continuous)">✅ <b>Keep it going:</b> safe topic → open question → follow-up. Journey, the event, the weekend, holidays, work in general. Not salary, politics, religion, age or anyone's weight.</div>
+          <div class="formula" style="border-left-color:var(--c-future);margin-bottom:20px">✅ <b>Close:</b> a softener + a reason or a next step + a warm line. "Anyway, I'll let you get back to it — lovely to meet you."</div>
+          <div class="warn-box">
+            <span>🎯</span>
+            <span style="flex:1;min-width:0"><b>The tricky part for Polish speakers:</b> in Polish, <i>Pan Tomasz</i> or <i>Pani Kasia</i> is perfectly polite. In English, a title goes only with a <b>surname</b>, never a first name.<br><br>
+            ❌ "Mr Tom", "Mrs Helen" — sounds like a child talking to a teacher, or a hotel receptionist.<br>
+            ✅ "Tom" (once he's introduced himself as Tom) or "Mr Clarke" (only in very formal first contact, e.g. an email to someone you've never met).<br><br>
+            Also: in British English there is <b>no full stop</b> after Mr, Mrs, Ms or Dr. Use <b>Ms</b> for a woman unless you know she prefers something else.</span>
+          </div>
+          <div class="tip-box" style="margin-top:12px">🌍 <span style="flex:1;min-width:0"><b>Elsewhere:</b> Americans tend to be warmer and faster ("Great to meet you!", "So what do you do?" in the first minute). In Germany, Austria and much of Asia, titles and surnames last much longer (<i>Frau Dr Weber</i>), so wait to be invited to use a first name. In Japan and Korea, business cards are offered and received with both hands and read before being put away.</span></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h3 style="margin-bottom:6px">Too blunt, too stiff, or just right?</h3>
+      <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:14px">Hover over (or tap) each version to see how a British listener is likely to hear it.</p>
+      <div id="compare-card" style="font-size:14.5px;line-height:1.9"></div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-reading">
+    <div class="section-label"><span class="num">4</span> Reading — The First Ninety Seconds</div>
+    <div class="card">
+      <button class="pill" id="gram-toggle">🔍 Show key phrases in this text</button>
+      <div class="passage" id="passage" style="margin-top:14px"><p>When Marta moved from Warsaw to a consultancy in London, her English was better than that of half her new colleagues. Her first week still felt oddly difficult. At her welcome drinks, the managing partner came over, smiled and said, <span class="gram" data-gram="g1">“Hi, I'm James — I don't think we've met properly.”</span> Marta, anxious to be respectful, replied, "Good evening, Mr James." He laughed kindly, but she saw the <span class="vocab" data-word="awkward">awkward</span> flicker in his eyes and spent the rest of the evening replaying it.</p><p>Her mistake was not grammar. It was <span class="vocab" data-word="register">register</span>: the level of formality a situation expects. British offices tend to hide <span class="vocab" data-word="hierarchy">hierarchy</span> rather than display it. Senior people introduce themselves by first name, and the expected response is simply <span class="gram" data-gram="g2">“Nice to meet you, James.”</span> Being too formal doesn't come across as respect. It creates distance, and in a culture that prizes being <span class="vocab" data-word="approachable">approachable</span>, distance can be mistaken for coldness.</p><p>Small talk, which many learners dismiss as <span class="vocab" data-word="trivial">trivial</span>, is where most of this happens. A question like <span class="gram" data-gram="g3">“Did you have far to come?”</span> is not really about the journey. It's a low-risk way of checking that the other person is friendly and easy to talk to. The best conversationalists are rarely the most interesting people in the room; they are the ones who ask <span class="gram" data-gram="g4">“Oh really? How did you end up doing that?”</span> and then actually listen to the answer.</p><p>Leaving a conversation matters too. Marta's instinct was to wait until the other person walked away, which meant she often stood <span class="vocab" data-word="stranded">stranded</span> with one person for an hour. A colleague taught her an exit line: <span class="gram" data-gram="g5">“Anyway, I'll let you get back to it — lovely to meet you.”</span> It sounds considerate, it's <span class="vocab" data-word="courteous">courteous</span>, and nobody has ever been offended by it. By her third event, Marta was using <span class="gram" data-gram="g6">“Sorry, I didn't quite catch your name”</span> without embarrassment, and a <span class="vocab" data-word="rapport">rapport</span> with her new team followed soon after. As she put it later, "Nobody taught me any of this at school, because none of it is written down."</p></div>
+      <p style="font-size:12.5px;color:var(--text-tertiary);margin-top:10px">Tap a highlighted word for pronunciation, meaning and an example. With key phrases on, tap a highlighted phrase to see why it works (and what a less skilful speaker might have said).</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-bottom:12px">Did you follow it? Quick comprehension check</h3>
+      
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">1. Why did James react awkwardly to Marta's greeting?</p>
+        <div id="comp-q1">
+          <button class="opt" data-value="right">Because "Mr" + first name was far too formal (and incorrect) for the situation.</button><button class="opt" data-value="wrong">Because she made a grammar mistake with "Good evening".</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">2. According to the text, what is a question like "Did you have far to come?" really for?</p>
+        <div id="comp-q2">
+          <button class="opt" data-value="right">A low-risk way of checking the other person is friendly.</button><button class="opt" data-value="wrong">Finding out practical information about travel.</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">3. What problem did the exit line solve for Marta?</p>
+        <div id="comp-q3">
+          <button class="opt" data-value="right">She no longer got stuck talking to one person all evening.</button><button class="opt" data-value="wrong">She no longer forgot people's names.</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-vocab">
+    <div class="section-label"><span class="num">5</span> Vocabulary check</div>
+    <div class="card">
+      <p style="font-size:14.5px;margin-bottom:16px">The key words from the text — mixed formats.</p>
+      <h4 style="font-size:13px;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary);margin-bottom:12px">Match the meaning</h4>
+      
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">1. If a person is "approachable", they are…</p>
+        <div id="vocab-q1">
+          <button class="opt" data-value="right">friendly and easy to talk to</button><button class="opt" data-value="wrong">very senior in the company</button><button class="opt" data-value="wrong2">physically close to you</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">2. "Register" in communication means…</p>
+        <div id="vocab-q2">
+          <button class="opt" data-value="right">the level of formality you choose</button><button class="opt" data-value="wrong">a list of attendees at an event</button><button class="opt" data-value="wrong2">your accent</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">3. A "hierarchy" is…</p>
+        <div id="vocab-q3">
+          <button class="opt" data-value="right">a system that ranks people by status or authority</button><button class="opt" data-value="wrong">a type of formal greeting</button><button class="opt" data-value="wrong2">a social event for new employees</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">4. If you have "rapport" with someone, you…</p>
+        <div id="vocab-q4">
+          <button class="opt" data-value="right">understand each other well and get on</button><button class="opt" data-value="wrong">have to report to them</button><button class="opt" data-value="wrong2">disagree with them politely</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">5. Something "trivial" is…</p>
+        <div id="vocab-q5">
+          <button class="opt" data-value="right">unimportant</button><button class="opt" data-value="wrong">difficult</button><button class="opt" data-value="wrong2">rude</button>
+        </div>
+      </div>
+      <h4 style="font-size:13px;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary);margin-bottom:12px;padding-top:6px;border-top:1px solid var(--border)">Complete the sentence — vocabulary focus</h4>
+      
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px">1. There was an <input type="text" id="vgap1-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:110px"> silence when he called her "Mrs Anna".</p>
+        <button class="btn btn-sm" id="vgap1-check">Check</button>
+        <div id="vgap1-fb"></div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px">2. Nobody rescued me, so I was <input type="text" id="vgap2-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:110px"> by the coffee machine for forty minutes.</p>
+        <button class="btn btn-sm" id="vgap2-check">Check</button>
+        <div id="vgap2-fb"></div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px">3. It's <input type="text" id="vgap3-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:110px"> to reply to every invitation, even if you can't go.</p>
+        <button class="btn btn-sm" id="vgap3-check">Check</button>
+        <div id="vgap3-fb"></div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px">4. Small talk may look <input type="text" id="vgap4-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:100px"> , but it builds trust.</p>
+        <button class="btn btn-sm" id="vgap4-check">Check</button>
+        <div id="vgap4-fb"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-practice">
+    <div class="section-label"><span class="num">6</span> Practice</div>
+    <div class="card">
+      <h3 style="margin-bottom:2px">Gap-fill</h3>
+      <p style="font-size:12.5px;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary);margin-bottom:16px">Language focus — complete the phrase (one word per gap)</p>
+      
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px">1. I don't think we've <input type="text" id="gap1-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:90px"> — I'm Olek, I'm on the data team.</p>
+        <button class="btn btn-sm" id="gap1-check">Check</button>
+        <div id="gap1-fb"></div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px">2. Sorry, I didn't quite <input type="text" id="gap2-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:90px"> your name.</p>
+        <button class="btn btn-sm" id="gap2-check">Check</button>
+        <div id="gap2-fb"></div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px">3. Tom, have you <input type="text" id="gap3-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:90px"> Sarah? She's just joined from Deloitte.</p>
+        <button class="btn btn-sm" id="gap3-check">Check</button>
+        <div id="gap3-fb"></div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px">4. Did you have <input type="text" id="gap4-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:80px"> to come today?</p>
+        <button class="btn btn-sm" id="gap4-check">Check</button>
+        <div id="gap4-fb"></div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px">5. Anyway, I'll let you get <input type="text" id="gap5-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:90px"> to it — lovely to meet you.</p>
+        <button class="btn btn-sm" id="gap5-check">Check</button>
+        <div id="gap5-fb"></div>
+      </div>
+      <div style="margin-bottom:18px">
+        <p style="margin-bottom:8px">6. Oh really? How did you <input type="text" id="gap6-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:90px"> up working in insurance?</p>
+        <button class="btn btn-sm" id="gap6-check">Check</button>
+        <div id="gap6-fb"></div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h3 style="margin-bottom:6px">Spot the faux pas</h3>
+      <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:16px">Each line is grammatically fine but socially wrong for a British workplace. Tap the word that causes the problem, then check the explanation.</p>
+      
+      <div style="margin-bottom:8px;font-size:12px;font-weight:650;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary)">Sentence 1</div>
+      <div id="err1" style="font-size:15px;line-height:1.9;margin-bottom:20px"></div>
+      <div style="margin-bottom:8px;font-size:12px;font-weight:650;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary);padding-top:16px;border-top:1px solid var(--border)">Sentence 2</div>
+      <div id="err2" style="font-size:15px;line-height:1.9;margin-bottom:20px"></div>
+      <div style="margin-bottom:8px;font-size:12px;font-weight:650;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary);padding-top:16px;border-top:1px solid var(--border)">Sentence 3</div>
+      <div id="err3" style="font-size:15px;line-height:1.9;margin-bottom:20px"></div>
+    </div>
+    <div class="card">
+      <h3 style="margin-bottom:6px">Sentence builder</h3>
+      <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:14px">Tap the chips in the right order. Three rounds.</p>
+      <div id="builders"></div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-speaking">
+    <div class="section-label"><span class="num">7</span> Speaking task</div>
+    <div class="mode-toggle">
+      <button class="pill on" id="mode-solo">👤 Solo</button>
+      <button class="pill" id="mode-group">👥 Group (2–4)</button>
+    </div>
+    <div class="task-card" id="speak-solo">
+      <div class="kicker">60-second task</div>
+      <p style="font-size:14.5px;line-height:1.7">Record a 60-second "elevator introduction" for a networking event in London: your name, one useful detail about what you do, and one question you'd ask the other person. Then add a graceful exit line at the end.</p>
+      <button class="btn btn-sm" id="solo-done-btn" style="margin-top:14px">✓ I've done this</button>
+    </div>
+    <div class="task-card" id="speak-group" style="display:none">
+      <div class="kicker">Discussion — pick 1–2 questions to answer out loud</div>
+      <p style="font-size:14.5px;line-height:1.7;margin-bottom:12px">Tap the question(s) you'll answer. Your teacher will see your pick and mark it after you speak.</p>
+      <div id="discuss-questions" style="display:flex;flex-direction:column;gap:8px"></div>
+      <p id="discuss-limit-msg" style="font-size:12.5px;color:var(--text-tertiary);margin-top:10px">You can select up to 2 questions.</p>
+    </div>
+  </section>
+
+  <section class="section" id="sec-listening">
+    <div class="section-label"><span class="num">8</span> Listening</div>
+    <div class="card">
+      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:12px">Tomasz has just started at the London office. Anna asks how his first networking event went.</p>
+      <audio id="dialogue-audio" preload="none" style="display:none"></audio>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-primary" id="play-dialogue">▶ Play dialogue</button>
+        <button class="btn btn-ghost btn-sm" id="stop-dialogue">⏹ Stop</button>
+        <button class="btn btn-ghost btn-sm" id="show-transcript">Show full transcript</button>
+      </div>
+      <div id="transcript"></div>
+      
+      <div style="margin-top:16px">
+        <p style="margin-bottom:8px;font-weight:550">1. What mistake did Tomasz make with the finance director?</p>
+        <div id="listen-q1">
+          <button class="opt" data-value="right">He used "Mr" with his first name.</button><button class="opt" data-value="wrong">He forgot the director's name.</button>
+        </div>
+      </div>
+      <div style="margin-top:16px">
+        <p style="margin-bottom:8px;font-weight:550">2. What does Anna say about leaving a conversation?</p>
+        <div id="listen-q2">
+          <button class="opt" data-value="right">Leaving politely is actually a favour to the other person.</button><button class="opt" data-value="wrong">You should wait for the other person to leave first.</button>
+        </div>
+      </div>
+      <div style="margin-top:16px">
+        <p style="margin-bottom:8px;font-weight:550">3. Which small-talk opener does Tomasz plan to use next time?</p>
+        <div id="listen-q3">
+          <button class="opt" data-value="right">Asking how people got to the event.</button><button class="opt" data-value="wrong">Asking what people earn.</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-wrapup">
+    <div class="section-label"><span class="num">9</span> Wrap-up — exit check</div>
+    <div class="card">
+      
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">1. Your new manager introduces herself as "Jo". You call her…</p>
+        <div id="exit-q1">
+          <button class="opt" data-value="right">Jo</button><button class="opt" data-value="wrong">Mrs Jo</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">2. The best opener at a conference coffee break is…</p>
+        <div id="exit-q2">
+          <button class="opt" data-value="right">"Have you been to one of these before?"</button><button class="opt" data-value="wrong">"Which party did you vote for?"</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">3. You missed someone's name. You say…</p>
+        <div id="exit-q3">
+          <button class="opt" data-value="right">"Sorry, I didn't quite catch your name."</button><button class="opt" data-value="wrong">"Repeat your name."</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">4. Which exit line sounds most natural?</p>
+        <div id="exit-q4">
+          <button class="opt" data-value="right">"Anyway, I'll let you mingle — great to meet you."</button><button class="opt" data-value="wrong">"I will leave this conversation now."</button>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <p style="margin-bottom:8px;font-weight:550">5. A colleague says "How are you?" in the lift. The best answer is…</p>
+        <div id="exit-q5">
+          <button class="opt" data-value="right">"Not bad, thanks — you?"</button><button class="opt" data-value="wrong">A detailed account of your weekend</button>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="summary-card">
+      <h3 style="margin-bottom:14px">Your lesson summary</h3>
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px" id="summary-ring-row">
+        <div id="score-ring-holder"></div>
+        <div>
+          <div style="font-weight:600" id="summary-name">—</div>
+          <div style="font-size:13px;margin-top:4px" id="summary-completion"></div>
+          <div style="font-size:13px;color:var(--text-secondary);margin-top:4px" id="summary-weak">Finish the lesson to see your results.</div>
+        </div>
+      </div>
+      <button class="btn btn-primary" id="finish-btn">Finish lesson &amp; see results</button>
+      <button class="btn" id="export-btn" style="margin-left:8px;display:none">⬇ Export PDF report</button>
+    </div>
+  </section>
+</div>
+
+<script src="shared/course-engine.js"></script>
+<script>
+
+const LESSON_ID = "weq-lesson-01-first-impressions";
+Course.initPageChrome({lessonId: LESSON_ID});
+
+(async function initLesson(){
+  await Course.initSyncStatus(LESSON_ID);
+  const sectionMap = Course.getSectionMap(LESSON_ID);
+
+  Course.initMCQ('warm-q1', {lessonId: LESSON_ID, sectionId: 'warmup-1', correctValue: "right", restoreAnswer: (sectionMap['warmup-1']||{}).answer_given});
+  Course.initMCQ('warm-q2', {lessonId: LESSON_ID, sectionId: 'warmup-2', correctValue: "right", restoreAnswer: (sectionMap['warmup-2']||{}).answer_given});
+  Course.initMCQ('warm-q3', {lessonId: LESSON_ID, sectionId: 'warmup-3', correctValue: "right", restoreAnswer: (sectionMap['warmup-3']||{}).answer_given});
+  Course.ensureAnswerPositionVariety([{"containerId": "warm-q1", "correctValue": "right"}, {"containerId": "warm-q2", "correctValue": "right"}, {"containerId": "warm-q3", "correctValue": "right"}]);
+  Course.initMCQ('diag-q1', {lessonId: LESSON_ID, sectionId: 'diagnostic-1', correctValue: "right", restoreAnswer: (sectionMap['diagnostic-1']||{}).answer_given});
+  Course.initMCQ('diag-q2', {lessonId: LESSON_ID, sectionId: 'diagnostic-2', correctValue: "right", restoreAnswer: (sectionMap['diagnostic-2']||{}).answer_given});
+  Course.initMCQ('diag-q3', {lessonId: LESSON_ID, sectionId: 'diagnostic-3', correctValue: "right", restoreAnswer: (sectionMap['diagnostic-3']||{}).answer_given});
+  Course.initMCQ('diag-q4', {lessonId: LESSON_ID, sectionId: 'diagnostic-4', correctValue: "right", restoreAnswer: (sectionMap['diagnostic-4']||{}).answer_given});
+  Course.ensureAnswerPositionVariety([{"containerId": "diag-q1", "correctValue": "right"}, {"containerId": "diag-q2", "correctValue": "right"}, {"containerId": "diag-q3", "correctValue": "right"}, {"containerId": "diag-q4", "correctValue": "right"}]);
+
+  /* ---------------- concept widget ---------------- */
+  Course.renderConceptWidget({
+    areaId: 'widget-area', hintId: 'widget-hint',
+    tabIds: [{"id": "mode-w-open", "key": "open"}, {"id": "mode-w-keep", "key": "keep"}, {"id": "mode-w-close", "key": "close"}, {"id": "mode-w-quiz", "key": "quiz"}],
+    categories: {"open": [{"label": "\"I don't think we've met — I'm Kasia, I look after the Kraków office.\"", "example": "Introducing yourself to a stranger. Name + one useful detail gives the other person something to reply to."}, {"label": "\"Tom, have you met Sarah? Sarah's just joined us from Deloitte.\"", "example": "Introducing two people. Add a detail they can both talk about, then step back."}, {"label": "\"Sorry, I didn't quite catch your name.\"", "example": "When you missed it the first time. Much better to ask now than to avoid using their name all evening."}, {"label": "\"Nice to meet you.\"", "example": "The standard response when you're introduced. \"How do you do?\" still exists but sounds very formal and old-fashioned to most people under 60."}], "keep": [{"label": "\"How do you know the host?\"", "example": "The perfect event opener: everybody has an answer, and the answer gives you your next question."}, {"label": "\"Did you have far to come?\"", "example": "The journey is the British small-talk topic after the weather. Safe, neutral, and it works anywhere."}, {"label": "\"Oh really? How did you end up doing that?\"", "example": "A follow-up question. People remember you as a good talker when you let them do most of the talking."}, {"label": "\"Awful weather today, isn't it?\"", "example": "A tag question invites agreement, not debate. It isn't really about the weather; it's about showing you're friendly."}], "close": [{"label": "\"I'll let you get back to it.\"", "example": "Leaving by giving the other person their time back. Polite, and nobody feels abandoned."}, {"label": "\"I must just go and say hello to someone — lovely to meet you.\"", "example": "A reason to move on. It doesn't have to be dramatic, and nobody will check."}, {"label": "\"Let's grab a coffee sometime — I'll drop you an email.\"", "example": "Closing with a next step. Only say it if you'll actually send the email."}, {"label": "\"Great talking to you — enjoy the rest of the evening.\"", "example": "A warm, simple exit. Use their name here if you can; it shows you listened."}]},
+    quizLabels: {"open": "an opening move", "keep": "a keeping-it-going move", "close": "a closing move"},
+    rulesToggleId: 'rules-toggle'
+  });
+  Course.renderCompareCard('compare-card', [{"key": "c1", "label": "Too blunt", "text": "What is your job?", "explain": "Grammatically fine, but it sounds like a form you're filling in. A direct question with no softener, asked in the first minute, can come across as an interrogation."}, {"key": "c2", "label": "Too stiff", "text": "May I enquire as to your profession?", "explain": "Over-formal. It sounds like a butler in a period drama, and the other person will wonder if you're joking."}, {"key": "c3", "label": "Just right", "text": "So what brings you here — are you with one of the sponsors?", "explain": "Asks the same thing indirectly, through the event. It also gives them an easy first answer.", "groupEnd": true}, {"key": "c4", "label": "Too blunt", "text": "I have to go now.", "explain": "True, but it sounds like you're escaping. The other person is left wondering what they said wrong."}, {"key": "c5", "label": "Too stiff", "text": "I regret that I must now take my leave.", "explain": "Very formal and theatrical. In a conversation it sounds like a parody."}, {"key": "c6", "label": "Just right", "text": "Anyway, I'll let you mingle — really nice to meet you.", "explain": "\"Anyway\" signals the end is coming, \"I'll let you…\" makes leaving sound like a favour to them, and the warm line finishes on a positive note."}]);
+
+  /* ---------------- reading ---------------- */
+  Course.initGramToggle();
+  Course.wireGramSpans({"g1": "Name + a softened opener. \"I don't think we've met\" is the classic British way to start: it's friendly, and it takes the blame for not having met off the other person. \"Properly\" adds warmth: we've seen each other, but never really talked.", "g2": "The standard, safe response. Match their register: he used his first name, so you use it back. Using the name once also helps you remember it.", "g3": "A classic safe opener. Everybody has an answer, it's never controversial, and the answer (\"Only from Richmond\", \"I flew in from Oslo\") gives you your next question.", "g4": "\"Oh really?\" shows interest; \"How did you end up…?\" is an open question that invites a story. Compare \"What is your job?\", which gets a one-word answer and sounds like a form.", "g5": "\"Anyway\" is the signal that the conversation is closing. \"I'll let you get back to it\" frames leaving as a favour to them, and \"lovely to meet you\" finishes on a warm note.", "g6": "The polite repair when you missed a name. \"Didn't quite catch\" puts the problem on the noise, not on them or your memory. Far better than avoiding their name for the rest of the evening."});
+  Course.initVocab({"awkward": {"word": "awkward", "ipa": "/ˈɔː.kwəd/", "meaning": "causing or feeling embarrassment; uncomfortable", "example": "There was an awkward silence after his joke."}, "register": {"word": "register", "ipa": "/ˈredʒ.ɪ.stə/", "meaning": "the level of formality of language used in a particular situation", "example": "An email to your team needs a different register from a letter to a client."}, "hierarchy": {"word": "hierarchy", "ipa": "/ˈhaɪə.rɑː.ki/", "meaning": "a system in which people are ranked by status or authority", "example": "The company has a very flat hierarchy."}, "approachable": {"word": "approachable", "ipa": "/əˈprəʊ.tʃə.bəl/", "meaning": "friendly and easy to talk to", "example": "Our new director is surprisingly approachable."}, "trivial": {"word": "trivial", "ipa": "/ˈtrɪv.i.əl/", "meaning": "of little importance or value", "example": "It may seem trivial, but remembering names matters."}, "stranded": {"word": "stranded", "ipa": "/ˈstræn.dɪd/", "meaning": "stuck in a place or situation with no easy way out", "example": "I was stranded by the buffet with the one person I didn't want to talk to."}, "courteous": {"word": "courteous", "ipa": "/ˈkɜː.ti.əs/", "meaning": "polite and showing respect for others", "example": "She sent a courteous reply to every applicant."}, "rapport": {"word": "rapport", "ipa": "/ræˈpɔː/", "meaning": "a friendly relationship in which people understand each other well", "example": "He quickly built a rapport with the client."}}, LESSON_ID);
+  Course.initMCQ('comp-q1', {lessonId: LESSON_ID, sectionId: 'reading-comp-1', correctValue: "right", restoreAnswer: (sectionMap['reading-comp-1']||{}).answer_given});
+  Course.initMCQ('comp-q2', {lessonId: LESSON_ID, sectionId: 'reading-comp-2', correctValue: "right", restoreAnswer: (sectionMap['reading-comp-2']||{}).answer_given});
+  Course.initMCQ('comp-q3', {lessonId: LESSON_ID, sectionId: 'reading-comp-3', correctValue: "right", restoreAnswer: (sectionMap['reading-comp-3']||{}).answer_given});
+  Course.ensureAnswerPositionVariety([{"containerId": "comp-q1", "correctValue": "right"}, {"containerId": "comp-q2", "correctValue": "right"}, {"containerId": "comp-q3", "correctValue": "right"}]);
+
+  /* ---------------- vocab check ---------------- */
+  Course.initMCQ('vocab-q1', {lessonId: LESSON_ID, sectionId: 'vocab-1', correctValue: "right", restoreAnswer: (sectionMap['vocab-1']||{}).answer_given});
+  Course.initMCQ('vocab-q2', {lessonId: LESSON_ID, sectionId: 'vocab-2', correctValue: "right", restoreAnswer: (sectionMap['vocab-2']||{}).answer_given});
+  Course.initMCQ('vocab-q3', {lessonId: LESSON_ID, sectionId: 'vocab-3', correctValue: "right", restoreAnswer: (sectionMap['vocab-3']||{}).answer_given});
+  Course.initMCQ('vocab-q4', {lessonId: LESSON_ID, sectionId: 'vocab-4', correctValue: "right", restoreAnswer: (sectionMap['vocab-4']||{}).answer_given});
+  Course.initMCQ('vocab-q5', {lessonId: LESSON_ID, sectionId: 'vocab-5', correctValue: "right", restoreAnswer: (sectionMap['vocab-5']||{}).answer_given});
+  Course.ensureAnswerPositionVariety([{"containerId": "vocab-q1", "correctValue": "right"}, {"containerId": "vocab-q2", "correctValue": "right"}, {"containerId": "vocab-q3", "correctValue": "right"}, {"containerId": "vocab-q4", "correctValue": "right"}, {"containerId": "vocab-q5", "correctValue": "right"}]);
+    Course.initGapFill('vgap1-input','vgap1-check','vgap1-fb',{lessonId:LESSON_ID, sectionId:'vocab-gap-1', correctAnswers:["awkward"], restore: sectionMap['vocab-gap-1'] ? {answerGiven: sectionMap['vocab-gap-1'].answer_given, isCorrect: sectionMap['vocab-gap-1'].override_correct ?? sectionMap['vocab-gap-1'].is_correct} : null});
+  Course.initGapFill('vgap2-input','vgap2-check','vgap2-fb',{lessonId:LESSON_ID, sectionId:'vocab-gap-2', correctAnswers:["stranded"], restore: sectionMap['vocab-gap-2'] ? {answerGiven: sectionMap['vocab-gap-2'].answer_given, isCorrect: sectionMap['vocab-gap-2'].override_correct ?? sectionMap['vocab-gap-2'].is_correct} : null});
+  Course.initGapFill('vgap3-input','vgap3-check','vgap3-fb',{lessonId:LESSON_ID, sectionId:'vocab-gap-3', correctAnswers:["courteous", "polite"], restore: sectionMap['vocab-gap-3'] ? {answerGiven: sectionMap['vocab-gap-3'].answer_given, isCorrect: sectionMap['vocab-gap-3'].override_correct ?? sectionMap['vocab-gap-3'].is_correct} : null});
+  Course.initGapFill('vgap4-input','vgap4-check','vgap4-fb',{lessonId:LESSON_ID, sectionId:'vocab-gap-4', correctAnswers:["trivial"], restore: sectionMap['vocab-gap-4'] ? {answerGiven: sectionMap['vocab-gap-4'].answer_given, isCorrect: sectionMap['vocab-gap-4'].override_correct ?? sectionMap['vocab-gap-4'].is_correct} : null});
+
+  /* ---------------- practice ---------------- */
+    Course.initGapFill('gap1-input','gap1-check','gap1-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-1', correctAnswers:Course.withContractions(["met"]), restore: sectionMap['practice-gap-1'] ? {answerGiven: sectionMap['practice-gap-1'].answer_given, isCorrect: sectionMap['practice-gap-1'].override_correct ?? sectionMap['practice-gap-1'].is_correct} : null});
+  Course.initGapFill('gap2-input','gap2-check','gap2-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-2', correctAnswers:Course.withContractions(["catch", "get"]), restore: sectionMap['practice-gap-2'] ? {answerGiven: sectionMap['practice-gap-2'].answer_given, isCorrect: sectionMap['practice-gap-2'].override_correct ?? sectionMap['practice-gap-2'].is_correct} : null});
+  Course.initGapFill('gap3-input','gap3-check','gap3-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-3', correctAnswers:Course.withContractions(["met"]), restore: sectionMap['practice-gap-3'] ? {answerGiven: sectionMap['practice-gap-3'].answer_given, isCorrect: sectionMap['practice-gap-3'].override_correct ?? sectionMap['practice-gap-3'].is_correct} : null});
+  Course.initGapFill('gap4-input','gap4-check','gap4-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-4', correctAnswers:Course.withContractions(["far"]), restore: sectionMap['practice-gap-4'] ? {answerGiven: sectionMap['practice-gap-4'].answer_given, isCorrect: sectionMap['practice-gap-4'].override_correct ?? sectionMap['practice-gap-4'].is_correct} : null});
+  Course.initGapFill('gap5-input','gap5-check','gap5-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-5', correctAnswers:Course.withContractions(["back"]), restore: sectionMap['practice-gap-5'] ? {answerGiven: sectionMap['practice-gap-5'].answer_given, isCorrect: sectionMap['practice-gap-5'].override_correct ?? sectionMap['practice-gap-5'].is_correct} : null});
+  Course.initGapFill('gap6-input','gap6-check','gap6-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-6', correctAnswers:Course.withContractions(["end"]), restore: sectionMap['practice-gap-6'] ? {answerGiven: sectionMap['practice-gap-6'].answer_given, isCorrect: sectionMap['practice-gap-6'].override_correct ?? sectionMap['practice-gap-6'].is_correct} : null});
+  Course.initErrorSpot('err1', {
+    lessonId: LESSON_ID, sectionId: 'practice-err-1',
+    words: ["Nice", "to", "meet", "you,", "Mr", "David."], errorIndices: [4], correction: "", explanation: "\"Mr\" + a first name doesn't work in English. Say \"Nice to meet you, David.\" (or \"Mr Jones\" in very formal contexts)."
+  });
+  Course.initErrorSpot('err2', {
+    lessonId: LESSON_ID, sectionId: 'practice-err-2',
+    words: ["So", "how", "much", "do", "you", "earn", "there?"], errorIndices: [5], correction: "", explanation: "Salary is off-limits in British small talk. Try \"So how long have you been there?\" instead."
+  });
+  Course.initErrorSpot('err3', {
+    lessonId: LESSON_ID, sectionId: 'practice-err-3',
+    words: ["Great", "to", "meet", "you!", "How", "old", "are", "you,", "by", "the", "way?"], errorIndices: [5], correction: "", explanation: "Age is off-limits with people you've just met (and often with colleagues you know well). Ask about their role, the event or their journey instead."
+  });
+  Course.renderBuilders('builders', [{"words": ["I", "don't", "think", "we've", "met", "—", "I'm", "Kasia."]}, {"words": ["Sorry,", "I", "didn't", "quite", "catch", "your", "name."]}, {"words": ["I'll", "let", "you", "get", "back", "to", "the", "party."]}], {lessonId: LESSON_ID, sectionPrefix: 'practice-builder'});
+
+  /* ---------------- speaking ---------------- */
+  Course.initSpeaking({max: 2, lessonId: LESSON_ID, sectionMap, soloTaskLabel: "Record a 60-second \"elevator introduction\" for a networking event in London: your name, one useful detail about what you do, and one question you'd ask the other person. Then add a graceful exit line at the end."});
+  Course.renderDiscussQuestions('discuss-questions', ["Role-play: one of you is the host of a work event and introduces the other two to each other. Keep the conversation going for one minute, then everyone leaves it gracefully.", "What are the \"safe\" and \"unsafe\" small-talk topics in your country? Which British ones surprise you?", "Tell your group about a first impression (yours or someone else's) that went badly. What would you say differently now?"], {lessonId: LESSON_ID, max: 2, sectionPrefix: 'speaking-q'});
+
+  /* ---------------- listening ---------------- */
+  Course.initListening({dialogue: [{"speaker": "Anna", "line": "So, how was the drinks thing last night? Did you survive?"}, {"speaker": "Tomasz", "line": "Just about. I think I called the finance director \"Mr Richard\" — twice."}, {"speaker": "Anna", "line": "Oh no. Honestly, he'll have found it charming. Everyone's Richard here, even to the interns."}, {"speaker": "Tomasz", "line": "Then I got stuck with a man from procurement for about an hour. I didn't know how to get away."}, {"speaker": "Anna", "line": "You just say something like, \"Anyway, I'll let you get back to it — lovely to meet you,\" and off you go."}, {"speaker": "Tomasz", "line": "That's it? Nobody thinks it's rude?"}, {"speaker": "Anna", "line": "Not at all. It's rude to trap someone. Leaving nicely is doing them a favour."}, {"speaker": "Tomasz", "line": "Right. Next time: first names, ask how they got there, and leave before the hour's up."}], speakerA: 'Anna', speakerB: 'Tomasz', lessonId: LESSON_ID});
+  Course.initMCQ('listen-q1', {lessonId: LESSON_ID, sectionId: 'listening-1', correctValue: "right", restoreAnswer: (sectionMap['listening-1']||{}).answer_given});
+  Course.initMCQ('listen-q2', {lessonId: LESSON_ID, sectionId: 'listening-2', correctValue: "right", restoreAnswer: (sectionMap['listening-2']||{}).answer_given});
+  Course.initMCQ('listen-q3', {lessonId: LESSON_ID, sectionId: 'listening-3', correctValue: "right", restoreAnswer: (sectionMap['listening-3']||{}).answer_given});
+  Course.ensureAnswerPositionVariety([{"containerId": "listen-q1", "correctValue": "right"}, {"containerId": "listen-q2", "correctValue": "right"}, {"containerId": "listen-q3", "correctValue": "right"}]);
+
+  /* ---------------- wrap-up ---------------- */
+  Course.initMCQ('exit-q1', {lessonId: LESSON_ID, sectionId: 'exit-1', correctValue: "right", restoreAnswer: (sectionMap['exit-1']||{}).answer_given});
+  Course.initMCQ('exit-q2', {lessonId: LESSON_ID, sectionId: 'exit-2', correctValue: "right", restoreAnswer: (sectionMap['exit-2']||{}).answer_given});
+  Course.initMCQ('exit-q3', {lessonId: LESSON_ID, sectionId: 'exit-3', correctValue: "right", restoreAnswer: (sectionMap['exit-3']||{}).answer_given});
+  Course.initMCQ('exit-q4', {lessonId: LESSON_ID, sectionId: 'exit-4', correctValue: "right", restoreAnswer: (sectionMap['exit-4']||{}).answer_given});
+  Course.initMCQ('exit-q5', {lessonId: LESSON_ID, sectionId: 'exit-5', correctValue: "right", restoreAnswer: (sectionMap['exit-5']||{}).answer_given});
+  Course.ensureAnswerPositionVariety([{"containerId": "exit-q1", "correctValue": "right"}, {"containerId": "exit-q2", "correctValue": "right"}, {"containerId": "exit-q3", "correctValue": "right"}, {"containerId": "exit-q4", "correctValue": "right"}, {"containerId": "exit-q5", "correctValue": "right"}]);
+  Course.initSummary({lessonId: LESSON_ID, totalExercises: 39});
+})();
+
+</script>
+</body>
+</html>
