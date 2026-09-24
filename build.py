@@ -99,6 +99,8 @@ def light_page_shell(*, title, body_html, extra_head="", page_script="", raw=Fal
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<script defer src="/analytics.js"></script>
 <title>{title} | Workplace EQ</title>
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 {FONT_LINK}
