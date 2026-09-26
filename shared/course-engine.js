@@ -399,7 +399,7 @@ const Course = (() => {
           <button class="audio-btn vocab-audio-btn" data-speak="${data.word}">Hear it</button>
           <div style="font-size:14px;margin-bottom:8px">${data.meaning}</div>
           <div class="vocab-pop-ex">"${data.example}"</div>
-          <button class="btn btn-sm glossary-btn" data-word="${key}" ${alreadySaved ? 'disabled' : ''}>${alreadySaved ? 'Saved ✓' : '+ Add to my glossary'}</button>
+          <button class="btn btn-sm glossary-btn" data-word="${key}" ${alreadySaved ? 'disabled' : ''}>${alreadySaved ? '✓ Saved' : '+ Save to glossary'}</button>
         `;
         showPopup(html, el);
         const content = document.getElementById('course-popup-content');
@@ -408,7 +408,7 @@ const Course = (() => {
           e.stopPropagation();
           await saveToGlossary(key, data, lessonId);
           const btn = content.querySelector('.glossary-btn');
-          btn.textContent = 'Saved ✓'; btn.disabled = true;
+          btn.textContent = '✓ Saved'; btn.disabled = true;
         });
       });
     });
@@ -458,13 +458,29 @@ const Course = (() => {
   function showPopup(html, triggerEl){
     const root = ensurePopupRoot();
     if (triggerEl && popupTrigger === triggerEl){ hidePopup(); return; }
+    if (popupTrigger) hidePopup();
     document.getElementById('course-popup-content').innerHTML = html;
+    // Redesign: inside a reading passage the box opens as an inline
+    // popover under the tapped paragraph instead of a centred dialog.
+    const box = document.getElementById('course-popup-box');
+    const para = triggerEl && triggerEl.closest ? triggerEl.closest('.passage p, .passage > div') : null;
+    if (para && box){
+      para.after(box);
+      box.classList.add('rd-inline');
+      box.classList.toggle('rd-gram', !!triggerEl.closest('.gram'));
+      root.classList.add('rd-popover-open');
+      triggerEl.classList.add('rd-open');
+    }
     root.classList.add('open');
     popupTrigger = triggerEl || null;
   }
   function hidePopup(){
     const root = document.getElementById('course-popup-root');
-    if (root) root.classList.remove('open');
+    const box = document.getElementById('course-popup-box');
+    if (box && root && box.parentNode !== root){ root.appendChild(box); }
+    if (box) box.classList.remove('rd-inline', 'rd-gram');
+    if (root) root.classList.remove('open', 'rd-popover-open');
+    if (popupTrigger && popupTrigger.classList) popupTrigger.classList.remove('rd-open');
     popupTrigger = null;
   }
 
@@ -771,7 +787,7 @@ const Course = (() => {
     const el = document.getElementById(elId);
     if (!el) return;
     const pct = total ? Math.round((correct/total)*100) : 0;
-    el.innerHTML = `<div class="score-ring">${pct}%</div>`;
+    el.innerHTML = `<div class="score-ring" title="${pct}%">${correct} / ${total}</div>`;
   }
 
   /* ============================================================
@@ -1064,6 +1080,7 @@ const Course = (() => {
       <div class="compare-row" style="margin-bottom:${it.groupEnd ? 20 : 8}px">
         <span style="font-size:11px;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary)">${it.label}</span>
         <span class="compare-box" data-key="${it.key}">"${it.text}"</span>
+        <span class="rd-why" hidden>${it.explain}</span>
       </div>
     `).join('');
     el.querySelectorAll('.compare-box').forEach((node, i) => {
@@ -1402,7 +1419,7 @@ const Course = (() => {
     if (doneBtn){
       let soloDone = !!(sectionMap['speaking-solo'] && sectionMap['speaking-solo'].status === 'completed');
       function renderSoloBtn(){
-        doneBtn.textContent = soloDone ? '✓ Marked as done' : "✓ I've done this";
+        doneBtn.textContent = soloDone ? '✓ Done' : "I've done this";
         doneBtn.classList.toggle('btn-primary', soloDone);
       }
       renderSoloBtn();
@@ -1642,4 +1659,623 @@ const Course = (() => {
            renderCompareCard, showCompareTooltip, hideCompareTooltip, renderConceptWidget,
            initListening, initSpeaking, renderDiscussQuestions, initReading, wireGramSpans, initGramToggle,
            initPageChrome, initSyncStatus, initSummary };
+})();
+
+/* ================================================================
+   REDESIGN CHROME (2026) — shared by every English+ course.
+   Builds the lesson-page chrome from the page's existing markup, so
+   no lesson content had to change:
+     · coloured hero (course link, All lessons / My glossary / Lesson
+       quiz, kicker, title, subtitle, word-chip art)
+     · sticky section menu (pills), scroll spy, done ticks, n/10
+       counter and the 3px page-scroll bar
+     · big-number section headings; Reading comprehension split into
+       its own section; concept panel + separate "full rules" card;
+       speaking card; listening player; wrap-up summary + quiz cards
+     · A/B/C option badges, inline gap-fill checks, emoji-free labels
+   Everything is additive: ids and classes the engine wires are kept,
+   and if anything here fails the page still works with the plain
+   restyled markup. Course data (colours, chips, art) is in RD_COURSE.
+   ================================================================ */
+const RD_COURSE = {
+ "key": "weq",
+ "backLabel": "Workplace EQ · B2–C1",
+ "tipLabel": "Key finding",
+ "navStyle": "pills",
+ "chips": {
+  "1": [
+   [
+    "Mr Tom",
+    "o"
+   ],
+   [
+    "Tom",
+    "s"
+   ]
+  ],
+  "2": [
+   [
+    "Could you…?",
+    "s"
+   ],
+   [
+    "Do it.",
+    "d"
+   ]
+  ],
+  "3": [
+   [
+    "Hi Tom,",
+    "s"
+   ],
+   [
+    "Best,",
+    "o"
+   ]
+  ],
+  "4": [
+   [
+    "Can I just come in here?",
+    "s"
+   ]
+  ],
+  "5": [
+   [
+    "I hear you, but…",
+    "s"
+   ]
+  ],
+  "6": [
+   [
+    "I led",
+    "s"
+   ],
+   [
+    "we",
+    "o"
+   ]
+  ],
+  "7": [
+   [
+    "Mon",
+    "o"
+   ],
+   [
+    "Wed",
+    "d"
+   ],
+   [
+    "Fri",
+    "s"
+   ]
+  ]
+ },
+ "lessonArt": {
+  "1": "<div style=\"display:flex;flex-direction:column;gap:14px;align-items:flex-end;font-family:'Archivo';font-weight:800\">\n        <div style=\"display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end\"><span style=\"font-size:22px;opacity:.6\">Good evening,</span><span style=\"padding:4px 12px;border-radius:999px;border:1.5px dashed rgba(246,238,221,.7);font-size:22px\">Mr James</span></div>\n          <div style=\"display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end\"><span style=\"font-size:22px;opacity:.6\">Nice to meet you,</span><span style=\"padding:5px 12px;border-radius:9px;background:#F6EEDD;color:#17614F;font-size:22px\">James</span></div>\n          <div style=\"display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end\"><span style=\"font-family:'JetBrains Mono';font-weight:500;font-size:11px;letter-spacing:.12em;opacity:.7\">REGISTER · FIRST NAMES</span></div>\n      </div>"
+ }
+};
+
+(function(){
+  const NAV_LABELS = {
+    warmup:'Warm-up', diagnostic:'Check', check:'Check', concept:'Concept', reading:'Reading', comp:'Comprehension',
+    vocab:'Vocab', practice:'Practice', speaking:'Speaking', listening:'Listening', wrapup:'Wrap-up'
+  };
+  const TITLE_FIX = { 'Vocabulary check':'Vocabulary', 'Speaking task':'Speaking', 'Quick check':'Quick check' };
+  const EMOJI_RE = /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{1F000}-\u{1F2FF}]️?/gu;
+  const CHECK_EMOJI_RE = /^\s*[✅❌🎯💡📌⚠️⭐]️?\s*/u;
+
+  function el(tag, cls, html){ const n = document.createElement(tag); if (cls) n.className = cls; if (html != null) n.innerHTML = html; return n; }
+  function stripEmoji(s){ return (s || '').replace(EMOJI_RE, '').replace(/\s{2,}/g, ' ').trim(); }
+  function pad(n){ return String(n).padStart(2, '0'); }
+  function chipHtml(c){ const [t, k] = c; return `<span class="rd-chip ${k || 's'}">${t}</span>`; }
+
+  /* Strip leading emoji from button/link labels (keeps ▶ ⏸ ✓ ✗ → ←). */
+  function cleanLabel(node){
+    if (!node) return;
+    node.childNodes.forEach(c => {
+      if (c.nodeType === 3 && EMOJI_RE.test(c.nodeValue)){ EMOJI_RE.lastIndex = 0; c.nodeValue = c.nodeValue.replace(EMOJI_RE, '').replace(/^\s+/, ''); }
+      EMOJI_RE.lastIndex = 0;
+    });
+  }
+  function watchLabel(node){
+    if (!node) return;
+    cleanLabel(node);
+    new MutationObserver(() => { const before = node.textContent; cleanLabel(node); if (node.textContent !== before) cleanLabel(node); })
+      .observe(node, { childList:true, characterData:true, subtree:true });
+  }
+
+  /* ---------------- hero ---------------- */
+  function buildHero(){
+    const old = document.querySelector('.lesson-header');
+    if (!old || document.querySelector('.rd-hero')) return null;
+    const eyebrow = old.querySelector('.lesson-eyebrow');
+    const title = old.querySelector('.lesson-title');
+    const sub = old.querySelector('.lesson-sub');
+    const sync = old.querySelector('#sync-status');
+    const kickerText = stripEmoji(eyebrow ? eyebrow.textContent : '');
+    const m = kickerText.match(/^(Lesson|Test|Big Test|Review)\s+(\d+)/i);
+    const kind = m ? m[1].toLowerCase() : '';
+    const num = m ? Number(m[2]) : null;
+
+    const hero = el('header', 'rd-hero');
+    const bar = el('div', 'rd-hero-bar');
+    const back = el('a', 'rd-back', '← ' + (RD_COURSE.backLabel || document.title.replace(/\s*\|.*$/, '')));
+    const links = el('div', 'rd-links');
+    const all = old.querySelector('#all-lessons-link');
+    back.href = all ? all.getAttribute('href') : 'index-standalone.html';
+    // Keep the engine's link elements (ids + hrefs), only restyle them.
+    const found = [...old.querySelectorAll('a[id], button[id]')].filter(a => a.id !== 'rules-toggle');
+    found.forEach(a => {
+      a.removeAttribute('style');
+      a.className = 'rd-pill';
+      const label = stripEmoji(a.textContent);
+      if (a.id === 'all-lessons-link'){ a.textContent = 'All lessons'; }
+      else if (a.id === 'glossary-link'){ a.innerHTML = 'My glossary&nbsp;·&nbsp;<span class="rd-gl-count">0</span>'; }
+      else if (a.id === 'quiz-link'){ a.textContent = 'Lesson quiz'; a.classList.add('solid'); }
+      else a.textContent = label;
+      links.appendChild(a);
+    });
+    // Order: All lessons, My glossary, Lesson quiz, anything else.
+    const order = ['all-lessons-link', 'glossary-link', 'quiz-link'];
+    [...links.children].sort((a, b) => ((order.indexOf(a.id) + 1) || 9) - ((order.indexOf(b.id) + 1) || 9)).forEach(a => links.appendChild(a));
+    // Free preview on englishvoiced.com/courses/: link back to all courses.
+    if (document.body.dataset.previewOpen){
+      const ac = el('a', 'rd-pill', 'All courses'); ac.href = '/courses/'; links.prepend(ac);
+    }
+    bar.append(back, links);
+
+    const body = el('div', 'rd-hero-body');
+    const text = el('div', 'rd-hero-text');
+    text.appendChild(el('div', 'rd-kicker', kickerText));
+    if (title) text.appendChild(title);
+    if (sub) text.appendChild(sub);
+    if (sync){ text.appendChild(sync); watchLabel(sync); }
+    const pb = old.querySelector('.pb-track');
+    if (pb) text.appendChild(pb);
+    body.appendChild(text);
+
+    let artHtml = '';
+    if (kind === 'lesson' && num != null){
+      if (RD_COURSE.lessonArt && RD_COURSE.lessonArt[num]) artHtml = RD_COURSE.lessonArt[num];
+      else if (RD_COURSE.chips && RD_COURSE.chips[num] && RD_COURSE.chips[num].length)
+        artHtml = `<div class="rd-art-row">${RD_COURSE.chips[num].map(chipHtml).join('')}</div>`;
+    }
+    if (artHtml){ body.appendChild(el('div', 'rd-art', artHtml)); }
+    else body.classList.add('no-art');
+    hero.append(bar, body);
+
+    // Anything else the old header held (rare) goes under the subtitle.
+    [...old.children].forEach(c => { if (c.textContent.trim() && !c.contains(title)) {} });
+    const shell = old.closest('.shell') || old.parentNode;
+    shell.parentNode.insertBefore(hero, shell);
+    old.remove();
+    return { kind, num };
+  }
+
+  function updateGlossaryCount(){
+    const n = document.querySelector('.rd-gl-count');
+    if (!n) return;
+    try { n.textContent = Object.keys(Course.getGlossary() || {}).length; } catch (e){}
+  }
+
+  /* ---------------- section headings ---------------- */
+  function headingParts(label){
+    const numEl = label.querySelector('.num');
+    const raw = stripEmoji([...label.childNodes].filter(n => n !== numEl).map(n => n.textContent).join('')).trim();
+    const i = raw.search(/\s+[—–-]\s+/);
+    let title = i > -1 ? raw.slice(0, i) : raw;
+    let kicker = i > -1 ? raw.slice(i).replace(/^\s+[—–-]\s+/, '') : '';
+    return { title: TITLE_FIX[title] || title, kicker };
+  }
+  function setHeading(label, n, title, kicker){
+    label.innerHTML = `<span class="num">${pad(n)}</span><h2 class="rd-sec-title">${title}</h2>${kicker ? `<span class="rd-sec-kicker">${kicker}</span>` : ''}`;
+  }
+
+  /* ---------------- reading: title card + comprehension split ---------------- */
+  function restructureReading(){
+    const sec = document.getElementById('sec-reading');
+    if (!sec) return;
+    const label = sec.querySelector('.section-label');
+    const parts = label ? headingParts(label) : { title:'Reading', kicker:'' };
+    const passage = sec.querySelector('#passage, .passage');
+    const cards = [...sec.querySelectorAll(':scope > .card')];
+    const readCard = passage ? passage.closest('.card') : cards[0];
+    if (readCard){
+      readCard.classList.add('rd-reading');
+      const head = el('div', 'rd-reading-head');
+      if (parts.kicker){ head.appendChild(el('h3', null, parts.kicker)); }
+      const tog = readCard.querySelector('#gram-toggle');
+      if (tog){ tog.classList.add('pill'); head.appendChild(tog); watchLabel(tog); }
+      if (head.children.length) readCard.insertBefore(head, readCard.firstChild);
+      readCard.querySelectorAll(':scope > p').forEach(p => { if (/Tap a highlighted/i.test(p.textContent)) { p.removeAttribute('style'); p.className = 'rd-reading-note'; } });
+    }
+    if (label) label.dataset.rdTitle = 'Reading';
+    // Everything after the reading card (comprehension) → its own section.
+    const rest = cards.filter(c => c !== readCard);
+    if (!rest.length) return;
+    const comp = el('section', 'section');
+    comp.id = 'sec-comp';
+    const lab = el('div', 'section-label');
+    lab.dataset.rdTitle = 'Comprehension'; lab.dataset.rdKicker = 'Did you follow it?';
+    comp.appendChild(lab);
+    rest.forEach(c => {
+      const h = c.querySelector(':scope > h3');
+      if (h && /comprehension|follow/i.test(h.textContent)) h.remove();
+      comp.appendChild(c);
+    });
+    sec.after(comp);
+  }
+
+  /* ---------------- concept: colour panel + full-rules card ---------------- */
+  function restructureConcept(){
+    const sec = document.getElementById('sec-concept');
+    if (!sec) return;
+    const area = sec.querySelector('[id$="widget-area"]');
+    const card = area ? area.closest('.card') : null;
+    if (!card) return;
+    card.classList.add('rd-feature');
+    const intro = card.querySelector(':scope > p');
+    const toggle = card.querySelector('#rules-toggle');
+    const content = card.querySelector('#rules-content');
+    if (toggle && content){
+      const rules = el('div', 'card rd-rules-card');
+      const head = el('div', 'rd-rules-head', '<h3>The full rules</h3>');
+      toggle.removeAttribute('style');
+      head.appendChild(toggle);
+      rules.append(head, content);
+      card.after(rules);
+      const fix = () => {
+        const t = stripEmoji(toggle.textContent);
+        const want = /disabled/i.test(t) ? 'Disabled during Quick check' : (/hide/i.test(t) ? 'Hide' : 'Show');
+        if (toggle.textContent !== want) toggle.textContent = want;
+      };
+      fix();
+      new MutationObserver(fix).observe(toggle, { childList:true, characterData:true, subtree:true });
+      // Nested "show more" toggles inside the rules keep their own labels.
+      content.querySelectorAll('.pill').forEach(watchLabel);
+    }
+    card.querySelectorAll('.pill').forEach(watchLabel);
+    // Rules rows: "✅ Subject: <b>…</b> — use" → label cell + text cell
+    sec.querySelectorAll('.formula').forEach(f => {
+      f.innerHTML = f.innerHTML.replace(CHECK_EMOJI_RE, '');
+      const m = f.innerHTML.match(/^\s*([^<:]{1,28}):\s*([\s\S]*)$/) || f.innerHTML.match(/^\s*<b>([^<:]{1,28}):<\/b>\s*([\s\S]*)$/);
+      if (m){ f.classList.add('rd-rule'); f.innerHTML = `<span class="rd-rule-k">${m[1].trim()}</span><span>${m[2]}</span>`; }
+    });
+    // Tricky part: "❌ “x” → ✅ “y”" lines → struck / correct pairs
+    sec.querySelectorAll('.warn-box').forEach(w => {
+      [...w.childNodes].forEach(n => { if (n.nodeType === 1 && n.children.length === 0 && EMOJI_RE.test(n.textContent) && n.textContent.trim().length <= 3){ n.remove(); } EMOJI_RE.lastIndex = 0; });
+      const holder = w.querySelector('span[style*="flex:1"]') || w;
+      let html = holder.innerHTML;
+      const pairRe = /❌\s*([^<]*?)\s*(?:→|->)\s*✅\s*([^<]*?)\s*(?=<br|$)/g;
+      if (pairRe.test(html)){
+        pairRe.lastIndex = 0;
+        const pairs = [];
+        html = html.replace(pairRe, (all, a, b) => { pairs.push([a, b]); return '§PAIR§'; });
+        // Collapse the run of pairs (and the <br>s between them) into one grid.
+        html = html.replace(/(§PAIR§(\s*<br\s*\/?>\s*)*)+/g, (run) => {
+          const n = (run.match(/§PAIR§/g) || []).length;
+          const chunk = pairs.splice(0, n).map(([a, b]) => `<span class="rd-wrong">${a}</span><span class="rd-right">${b}</span>`).join('');
+          return `</span><span class="rd-pairs">${chunk}</span><span>`;
+        });
+        html = '<span>' + html + '</span>';
+        html = html.replace(/<span>(\s*<br\s*\/?>\s*)*<\/span>/g, '').replace(/<span>(\s*<br\s*\/?>\s*)+/g, '<span>');
+        holder.innerHTML = html;
+        if (holder !== w){ holder.style.display = 'flex'; holder.style.flexDirection = 'column'; holder.style.gap = '12px'; }
+      }
+      // Any remaining ❌ / ✅ marks become small "Avoid" / "Use" tags.
+      holder.innerHTML = holder.innerHTML
+        .replace(/❌\uFE0F?\s*/g, '<span class="rd-tag bad">Avoid</span>')
+        .replace(/✅\uFE0F?\s*/g, '<span class="rd-tag good">Use</span>');
+    });
+    sec.querySelectorAll('#rules-content').forEach(rc => {
+      rc.querySelectorAll('p, li, div:not(.warn-box):not(.formula)').forEach(n => {
+        if (n.children.length > 12) return;
+        if (/[❌✅]/.test(n.innerHTML) && !n.querySelector('.rd-pairs')) n.innerHTML = n.innerHTML
+          .replace(/❌\uFE0F?\s*/g, '<span class="rd-tag bad">Avoid</span>').replace(/✅\uFE0F?\s*/g, '<span class="rd-tag good">Use</span>');
+      });
+    });
+    // "Same words, different meaning": inline explanation on hover / tap
+    const cmp = sec.querySelector('#compare-card');
+    if (cmp){
+      document.body.classList.add('rd-compare-inline');
+      const wire = () => {
+        cmp.querySelectorAll('.compare-row').forEach(row => {
+          if (row.dataset.rdWired) return;
+          row.dataset.rdWired = '1';
+          const why = row.querySelector('.rd-why');
+          const open = () => {
+            cmp.querySelectorAll('.compare-row.rd-on').forEach(r => { r.classList.remove('rd-on'); const w = r.querySelector('.rd-why'); if (w) w.hidden = true; });
+            row.classList.add('rd-on'); if (why) why.hidden = false;
+          };
+          row.addEventListener('mouseenter', open);
+          row.addEventListener('click', open);
+        });
+      };
+      wire();
+      new MutationObserver(wire).observe(cmp, { childList:true });
+    }
+  }
+
+  /* ---------------- speaking ---------------- */
+  function restructureSpeaking(){
+    const sec = document.getElementById('sec-speaking');
+    if (!sec || sec.querySelector('.rd-speak')) return;
+    const toggle = sec.querySelector(':scope > .mode-toggle');
+    const cards = [...sec.querySelectorAll(':scope > .task-card')];
+    if (!toggle && !cards.length) return;
+    const box = el('div', 'rd-speak');
+    if (toggle){ box.appendChild(toggle); toggle.querySelectorAll('.pill').forEach(watchLabel); }
+    cards.forEach(c => {
+      box.appendChild(c);
+      const p = c.querySelector(':scope > p');
+      if (p && c.id === 'speak-solo') p.classList.add('rd-speak-text');
+      c.querySelectorAll('.btn').forEach(b => { b.classList.remove('btn-sm'); watchLabel(b); });
+    });
+    sec.appendChild(box);
+  }
+
+  /* ---------------- listening player ---------------- */
+  function restructureListening(){
+    const sec = document.getElementById('sec-listening');
+    if (!sec) return;
+    const play = sec.querySelector('#play-dialogue');
+    if (!play) return;
+    const row = play.parentNode;
+    const card = play.closest('.card');
+    const tr = sec.querySelector('#transcript');
+    const player = el('div', 'rd-player');
+    const r = el('div', 'rd-player-row');
+    const stop = sec.querySelector('#stop-dialogue');
+    const show = sec.querySelector('#show-transcript');
+    const track = el('div', 'rd-track', '<i></i>');
+    r.append(play, track);
+    if (stop) r.appendChild(stop);
+    if (show) r.appendChild(show);
+    [play, stop, show].forEach(b => { if (b){ b.classList.remove('btn-sm', 'btn-ghost'); watchLabel(b); } });
+    row.parentNode.insertBefore(player, row);
+    if (row !== card && !row.children.length) row.remove();
+    player.appendChild(r);
+    if (tr) player.appendChild(tr);
+    if (card) card.classList.add('rd-player-host');
+    // Progress: real audio time when an MP3 is playing, otherwise the
+    // position of the line being spoken.
+    const bar = track.firstChild;
+    const audio = sec.querySelector('audio');
+    let lastPct = 0;
+    function tick(){
+      let pct = lastPct;
+      if (audio && audio.src && audio.duration && !audio.paused){ pct = audio.currentTime / audio.duration * 100; }
+      else {
+        const lines = tr ? tr.querySelectorAll('.transcript-line') : [];
+        const act = tr ? tr.querySelector('.transcript-line.active') : null;
+        if (act && lines.length){ const i = [...lines].indexOf(act); pct = Math.max(pct, (i + 1) / lines.length * 100); }
+        else if (!/pause|resume/i.test(play.textContent) && lastPct > 0 && lastPct < 100){ pct = /resume/i.test(play.textContent) ? lastPct : (audio && audio.currentTime === 0 ? 0 : 100); }
+      }
+      if (/play dialogue/i.test(play.textContent) && !(audio && audio.currentTime > 0 && audio.currentTime < (audio.duration || 0))){ pct = lastPct >= 99 || lastPct === 0 ? lastPct : 100; }
+      lastPct = pct;
+      bar.style.width = Math.min(100, pct) + '%';
+    }
+    setInterval(tick, 300);
+    if (stop) stop.addEventListener('click', () => { lastPct = 0; bar.style.width = '0%'; });
+  }
+
+  /* ---------------- wrap-up ---------------- */
+  function restructureWrapup(){
+    const sum = document.getElementById('summary-card');
+    if (!sum) return;
+    const quiz = document.getElementById('quiz-card');
+    const grid = el('div', 'rd-wrap-grid');
+    sum.before(grid);
+    grid.appendChild(sum);
+    if (quiz){ grid.appendChild(quiz); quiz.classList.add('rd-feature'); quiz.querySelectorAll('a,.btn').forEach(watchLabel); }
+    sum.querySelectorAll('.btn').forEach(watchLabel);
+    const nm = sum.querySelector('#summary-name');
+    if (nm && nm.textContent.trim() === '—') nm.textContent = '';
+  }
+
+  /* ---------------- questions, gap-fills, spot, builders ---------------- */
+  function polishExercises(root){
+    root = root || document;
+    // Question prompts (the <p> right before a group of options)
+    root.querySelectorAll('.section .opt').forEach(o => {
+      const group = o.parentElement;
+      const p = group && group.previousElementSibling;
+      if (p && p.tagName === 'P' && !p.classList.contains('rd-q') && !group.closest('.rd-feature')) p.classList.add('rd-q');
+      if (group && /-options$/.test(group.id || '')) return;
+    });
+    // Gap-fills: "1. before [input] after" + Check on one line
+    root.querySelectorAll('.section input[type="text"]').forEach(inp => {
+      if (inp.dataset.rdGap) return;
+      inp.dataset.rdGap = '1';
+      const p = inp.closest('p');
+      const id = inp.id || '';
+      const base = id.replace(/-input$/, '').replace(/-in(\d+)$/, '-chk$1');
+      let btn = document.getElementById(id.replace(/-input$/, '-check')) || document.getElementById(base);
+      let fb = document.getElementById(id.replace(/-input$/, '-fb')) || document.getElementById(id.replace(/-in(\d+)$/, '-fb$1'));
+      if (p){
+        p.classList.add('rd-gap');
+        // wrap the leading "1." in a mono number
+        const first = p.firstChild;
+        if (first && first.nodeType === 3){
+          const m = first.nodeValue.match(/^\s*(\d+\.)\s*/);
+          if (m){ first.nodeValue = first.nodeValue.slice(m[0].length); p.insertBefore(el('span', 'rd-n', m[1] + ' '), first); }
+        }
+        if (btn && btn.parentNode !== p && btn.previousElementSibling === p){ p.appendChild(btn); }
+      }
+      const mark = () => {
+        if (!fb) return;
+        const ok = !!fb.querySelector('.fb-ok') || fb.classList.contains('fb-ok');
+        const bad = !!fb.querySelector('.fb-no') || fb.classList.contains('fb-no');
+        inp.classList.toggle('rd-ok', ok); inp.classList.toggle('rd-bad', bad && !ok);
+      };
+      if (fb){ mark(); new MutationObserver(mark).observe(fb, { childList:true, subtree:true, attributes:true }); }
+      // Enter also checks
+      inp.addEventListener('keydown', e => { if (e.key === 'Enter' && btn && !btn.disabled){ e.preventDefault(); btn.click(); } });
+    });
+    // Spot the mistake containers
+    root.querySelectorAll('.err-word').forEach(w => { const c = w.parentElement; if (c && !c.classList.contains('rd-spot')) c.classList.add('rd-spot'); });
+    // Sentence builder rounds
+    root.querySelectorAll('.builder-target').forEach(t => {
+      const r = t.parentElement;
+      if (r && !r.classList.contains('rd-round')) r.classList.add('rd-round');
+      r && r.querySelectorAll('.btn').forEach(watchLabel);
+    });
+  }
+
+  function polishCallouts(){
+    document.querySelectorAll('.tip-box').forEach(t => {
+      if (t.querySelector('.rd-tip-label')) return;
+      const first = t.firstChild;
+      if (first && first.nodeType === 3) first.nodeValue = first.nodeValue.replace(EMOJI_RE, '');
+      EMOJI_RE.lastIndex = 0;
+      [...t.children].forEach(c => { if (!c.children.length && c.textContent.trim().length <= 3 && EMOJI_RE.test(c.textContent)) c.remove(); EMOJI_RE.lastIndex = 0; });
+      t.insertBefore(el('span', 'rd-tip-label', RD_COURSE.tipLabel || 'Tip'), t.firstChild);
+    });
+    document.querySelectorAll('.section .btn, .section .pill').forEach(b => { if (EMOJI_RE.test(b.textContent)){ EMOJI_RE.lastIndex = 0; watchLabel(b); } EMOJI_RE.lastIndex = 0; });
+    // Card intro paragraphs
+    document.querySelectorAll('.section > .card > p:first-child').forEach(p => p.classList.add('rd-intro'));
+  }
+
+  /* ---------------- sticky menu + scroll spy + done ticks ---------------- */
+  function sectionDone(sec){
+    const id = sec.id.replace(/^sec-/, '');
+    const groups = [...sec.querySelectorAll('.opt')].map(o => o.parentElement).filter((g, i, a) => a.indexOf(g) === i && !g.closest('.rd-feature'));
+    const mcqDone = groups.length > 0 && groups.every(g => g.querySelector('.opt.ok, .opt.bad, .opt.dim'));
+    if (id === 'concept') return !!sec.dataset.rdQc;
+    if (id === 'reading') return !!sec.dataset.rdPop;
+    if (id === 'speaking') return !!sec.querySelector('#solo-done-btn.btn-primary, [id$="done-btn"].btn-primary, .discuss-q.picked');
+    if (id === 'practice'){
+      const inputs = [...sec.querySelectorAll('input[type="text"]')];
+      const spots = [...sec.querySelectorAll('.rd-spot')];
+      const cats = groups;
+      return (inputs.length + spots.length + cats.length) > 0
+        && inputs.every(i => i.disabled)
+        && spots.every(s => s.querySelector('.err-target'))
+        && cats.every(g => g.querySelector('.opt.ok, .opt.bad, .opt.dim'));
+    }
+    if (id === 'vocab'){
+      const inputs = [...sec.querySelectorAll('input[type="text"]')];
+      return groups.length ? mcqDone : (inputs.length > 0 && inputs.every(i => i.disabled));
+    }
+    if (groups.length) return mcqDone;
+    const inputs = [...sec.querySelectorAll('input[type="text"]')];
+    if (inputs.length) return inputs.every(i => i.disabled);
+    return false;
+  }
+
+  function buildNav(sections){
+    const nav = el('nav', 'rd-nav');
+    nav.setAttribute('aria-label', 'Lesson sections');
+    const inner = el('div', 'rd-nav-inner');
+    const list = el('div', 'rd-nav-list');
+    const count = el('div', 'rd-nav-count');
+    const prog = el('div', 'rd-progress', '<i></i>');
+    const items = sections.map((s, i) => {
+      const a = el('a', 'rd-nav-item');
+      a.href = '#' + s.id;
+      a.innerHTML = `<span class="rd-nav-num">${i + 1}</span><span>${s.navLabel}</span>`;
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const y = s.el.getBoundingClientRect().top + window.scrollY - 76;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+        history.replaceState(null, '', '#' + s.id);
+      });
+      list.appendChild(a);
+      return a;
+    });
+    inner.append(list, count);
+    nav.append(inner, prog);
+
+    let active = -1;
+    function spy(){
+      let idx = 0;
+      sections.forEach((s, i) => { if (s.el.getBoundingClientRect().top < 160) idx = i; });
+      if (idx !== active){
+        active = idx;
+        items.forEach((a, i) => a.classList.toggle('active', i === idx));
+        const a = items[idx];
+        if (a){ const l = a.offsetLeft - list.offsetLeft, r = l + a.offsetWidth; if (l < list.scrollLeft || r > list.scrollLeft + list.clientWidth) list.scrollTo({ left: l - 40, behavior: 'smooth' }); }
+      }
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      prog.firstChild.style.width = (max > 0 ? Math.min(100, window.scrollY / max * 100) : 0) + '%';
+    }
+    function done(){
+      let n = 0;
+      sections.forEach((s, i) => {
+        const d = sectionDone(s.el);
+        if (d) n++;
+        items[i].classList.toggle('done', d);
+        items[i].querySelector('.rd-nav-num').textContent = d ? '✓' : String(i + 1);
+      });
+      count.textContent = `${n}/${sections.length}`;
+    }
+    window.addEventListener('scroll', spy, { passive:true });
+    window.addEventListener('resize', spy);
+    let t = null;
+    const later = () => { clearTimeout(t); t = setTimeout(() => { done(); updateGlossaryCount(); }, 120); };
+    document.addEventListener('click', later, true);
+    document.addEventListener('keyup', later, true);
+    setTimeout(() => { done(); spy(); }, 400);
+    setTimeout(done, 2500); // after Supabase restore
+    spy(); done();
+    return nav;
+  }
+
+  function markReadingOpened(){
+    const sec = document.getElementById('sec-reading');
+    if (!sec) return;
+    const key = 'rd_read_' + location.pathname.split('/').pop().replace(/\?.*$/, '');
+    try { if (localStorage.getItem(key)) sec.dataset.rdPop = '1'; } catch (e){}
+    sec.addEventListener('click', e => { if (e.target.closest('.vocab, .gram')){ sec.dataset.rdPop = '1'; try { localStorage.setItem(key, '1'); } catch (err){} } }, true);
+  }
+  function markQuickCheck(){
+    const sec = document.getElementById('sec-concept');
+    if (!sec) return;
+    const key = 'rd_qc_' + location.pathname.split('/').pop().replace(/\?.*$/, '');
+    try { if (localStorage.getItem(key)) sec.dataset.rdQc = '1'; } catch (e){}
+    sec.addEventListener('click', e => {
+      const o = e.target.closest('.rd-feature .opt');
+      if (o) setTimeout(() => { if (sec.querySelector('.rd-feature .opt.ok')){ sec.dataset.rdQc = '1'; try { localStorage.setItem(key, '1'); } catch (err){} } }, 30);
+    }, true);
+  }
+
+  /* ---------------- main ---------------- */
+  function run(){
+    const lessonSections = [...document.querySelectorAll('.shell > section.section[id^="sec-"], .shell section.section[id^="sec-"]')];
+    if (!document.querySelector('.lesson-header') || !lessonSections.length) return; // index / glossary / dashboard
+    document.body.classList.add('rd-lesson');
+    if (RD_COURSE.navStyle) document.body.dataset.nav = RD_COURSE.navStyle;
+    let hero = null;
+    try { hero = buildHero(); } catch (e){ console.warn('[redesign] hero', e); }
+    const steps = [restructureReading, restructureConcept, restructureSpeaking, restructureListening, restructureWrapup, polishCallouts, markReadingOpened, markQuickCheck];
+    steps.forEach(f => { try { f(); } catch (e){ console.warn('[redesign]', f.name, e); } });
+
+    const secs = [...document.querySelectorAll('.shell section.section[id^="sec-"]')].filter(s => s.querySelector('.section-label'));
+    const model = secs.map((s, i) => {
+      const label = s.querySelector('.section-label');
+      const parts = headingParts(label);
+      const title = label.dataset.rdTitle || parts.title;
+      const kicker = label.dataset.rdKicker || (label.dataset.rdTitle === 'Reading' ? '' : parts.kicker);
+      setHeading(label, i + 1, title, kicker);
+      const key = s.id.replace(/^sec-/, '');
+      return { id: s.id, el: s, navLabel: NAV_LABELS[key] || title.replace(/^Part\s+(\d+)$/, 'Part $1') };
+    });
+    // Tests: "Part 1 — Pronouns" → menu shows the part name
+    model.forEach(m => { if (/^part\s*\d+$/i.test(m.navLabel)){ const k = m.el.querySelector('.rd-sec-kicker'); if (k) m.navLabel = k.textContent; } });
+
+    try { polishExercises(document); } catch (e){ console.warn('[redesign] exercises', e); }
+    // Dynamic content (builders, error-spot, restored answers) arrives after sync — re-polish then.
+    let pt = null;
+    new MutationObserver(() => { clearTimeout(pt); pt = setTimeout(() => { try { polishExercises(document); } catch (e){} }, 60); })
+      .observe(document.querySelector('.shell'), { childList:true, subtree:true });
+
+    const heroEl = document.querySelector('.rd-hero');
+    const nav = buildNav(model);
+    if (heroEl) heroEl.after(nav); else document.querySelector('.shell').before(nav);
+    updateGlossaryCount();
+    window.addEventListener('storage', updateGlossaryCount);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
+  else setTimeout(run, 0);
 })();

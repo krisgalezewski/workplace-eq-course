@@ -31,15 +31,11 @@ def j(data):
     return json.dumps(data, ensure_ascii=False)
 
 
-STEP_TABS = [
-    ("sec-warmup", "1 Warm-up"), ("sec-diagnostic", "2 Check"), ("sec-concept", "3 Concept"),
-    ("sec-reading", "4 Reading"), ("sec-vocab", "5 Vocab"), ("sec-practice", "6 Practice"),
-    ("sec-speaking", "7 Speaking"), ("sec-listening", "8 Listening"),
-]
+ATTRIBUTION = "Workplace EQ · B2–C1 · English Voiced with Kris"
 
 
 def top_nav(left="Workplace EQ", links_html=None):
-    """The bottle-green bar at the top of every page."""
+    """Top bar of the glossary and teacher-dashboard pages."""
     if links_html is None:
         links_html = (
             '<a id="all-lessons-link" href="index-standalone.html">All lessons</a>'
@@ -50,37 +46,27 @@ def top_nav(left="Workplace EQ", links_html=None):
 </div></div>'''
 
 
-ON_ATTR = ' class="on"'
-
-
 def nav_header(eyebrow, title, sub, is_test=False, section_name="", steps=None):
-    """Nav bar + green header band (+ step tabs for lessons).
-    Keeps the ids the engine relies on: all-lessons-link, glossary-link,
-    overall-progress, sync-status."""
-    links = '<a id="all-lessons-link" href="index-standalone.html">All lessons</a>'
+    """Lesson/test header. The redesign chrome in course-engine.js turns it
+    into the coloured hero + sticky section menu. Keeps the ids the engine
+    relies on: all-lessons-link, glossary-link, overall-progress, sync-status."""
+    links = '<a id="all-lessons-link" href="index-standalone.html" class="pill">All lessons</a>'
     if not is_test:
-        links += '<a id="glossary-link" href="glossary-standalone.html">My glossary</a>'
-    steps = STEP_TABS if steps is None else steps
-    tabs = ""
-    if steps:
-        tabs = '<nav class="eq-steps" aria-label="Lesson sections"><div class="eq-wrap">' + "".join(
-            f'<a href="#{sid}" data-step="{sid}"{ON_ATTR if i == 0 else ""}>{label}</a>'
-            for i, (sid, label) in enumerate(steps)
-        ) + '</div></nav>'
-    sec_line = f'<br><span class="sec-name">{section_name}</span>' if section_name else ""
-    return f'''{top_nav(links_html=links)}
-  <header class="eq-band"><div class="eq-wrap grid12">
-    <div class="eq-band-meta">
-      <div>{eyebrow}{sec_line}</div>
-      <div><div class="pb-track"><div class="pb-fill" id="overall-progress" style="width:0%"></div></div>
-      <div id="sync-status" style="margin-top:8px"></div></div>
+        links += '\n      <a id="glossary-link" href="glossary-standalone.html" class="pill">My glossary</a>'
+    if section_name:
+        eyebrow = f"{eyebrow} · {section_name}"
+    return f'''  <header class="lesson-header">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+      <div class="lesson-eyebrow">{eyebrow}</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+      {links}
     </div>
-    <div class="eq-band-main">
-      <h1 class="lesson-title">{title}</h1>
-      <p class="lesson-sub">{sub}</p>
     </div>
-  </div></header>
-  {tabs}'''
+    <h1 class="lesson-title">{title}</h1>
+    <p class="lesson-sub">{sub}</p>
+    <div class="pb-track" style="margin-top:16px"><div class="pb-fill" id="overall-progress" style="width:0%"></div></div>
+    <div id="sync-status" style="font-size:11.5px;color:var(--text-tertiary);margin-top:8px"></div>
+  </header>'''
 
 
 def page_shell(*, title, theme_class, body_html, extra_head="", page_script=""):
@@ -92,6 +78,9 @@ def page_shell(*, title, theme_class, body_html, extra_head="", page_script=""):
 <meta name="robots" content="noindex">
 <script defer src="/analytics.js"></script>
 <title>{title} | Workplace EQ</title>
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" href="assets/favicon-180.png">
 {FONT_LINK}
 <link rel="stylesheet" href="shared/theme.css">
 {extra_head}
@@ -99,7 +88,11 @@ def page_shell(*, title, theme_class, body_html, extra_head="", page_script=""):
 <script src="shared/supabase-config.js"></script>
 </head>
 <body class="{theme_class}">
+
+<div class="course-attribution">{ATTRIBUTION}</div>
+<div class="shell">
 {body_html}
+</div>
 
 <script src="shared/course-engine.js"></script>
 <script>

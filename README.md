@@ -28,9 +28,26 @@ The standalone englishvoiced.com lesson (Practical use of English) covers the sa
 - Rules panels end with a `🌍 Elsewhere` tip box for US and international notes.
 - Tests have an `after_section` key, so a section can have zero or more tests.
 
-## Design
+## Design (2026 redesign)
 
-The look follows the Claude Design handoff "Annual Report · Bottle" (6b): Archivo with its width axis, paper `#F4F1E8`, ink `#14231C`, bottle `#1D4A35`, green `#1E6B47`, square corners, thin ink rules, a 12-column grid. All the styling is in `shared/theme.css`; the course home layout (hero, stats strip, lesson table) is in `build.py → build_index()`. Tips render as "Key finding" rows, the blunt/stiff comparison as tone cells (`Course.renderToneCells`), and the UK / US / elsewhere notes come from `culture_notes.py`.
+The look follows the Claude Design handoff "English+ course redesign", shared by all five English+ courses:
+a course-colour hero with a dot grid, a sticky section menu (10 parts, done ticks, page-scroll bar),
+big-number section headings, Archivo / Figtree / JetBrains Mono / Source Serif 4 (self-hosted in
+`/fonts/fonts.css` on englishvoiced.com — Figtree was added there for this), borders instead of shadows.
+
+| What | Where |
+|---|---|
+| Colours, type, every component style | `shared/theme.css` (the course palette is the `body.theme-*` block near the top) |
+| Lesson-page chrome (hero, section menu, headings, reading popover, listening player, wrap-up cards) | the **REDESIGN CHROME** block at the end of `shared/course-engine.js`; its `RD_COURSE` object holds the lesson-hero chips/art |
+| Course overview (hero, progress card, section tiles, free-preview mode) | `overview.py`; its data (copy, art, `LESSON_CHIPS`, section colours) is in `redesign_config.py` |
+
+The chrome is built at runtime from the markup the templates already emit, so lesson content and
+exercise ids are unchanged. If the chrome script ever fails, the page still works with the plain
+restyled markup.
+
+Workplace EQ specifics: tips are labelled "Key finding"; the "Too blunt, too stiff, or just right?" lines use the
+shared compare list (explanation on hover/tap); the UK / US / elsewhere notes (`culture_notes.py`) are an
+"Across cultures" card under it.
 
 ## Build
 

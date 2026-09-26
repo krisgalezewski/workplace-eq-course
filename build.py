@@ -48,6 +48,11 @@ SECTION_META = [
      "expect": "You'll practise the language of self-advocacy (taking credit gracefully, asking for a raise or a stretch project) and then work through a full scenario, from a client dinner to a tricky follow-up email. The final test mixes all seven lessons."},
 ]
 
+# 2026 redesign: the handoff's Forest palette (main / deep per section).
+import redesign_config as _R
+for _m, _c in zip(SECTION_META, _R.SECTION_COLORS):
+    _m["color"], _m["accent"], _m["deep"] = _c["color"], _c["color"], _c["deep"]
+
 
 def slugify(text):
     text = text.lower()
@@ -170,370 +175,52 @@ def build_tests():
 
 
 # ==================================================================
-# INDEX PAGE
-# Bento layout designed in Claude Design (see design/README.md handoff):
-# a wide intro block (hero + progress ring w/ per-section mini bars +
-# stats/"Up next"), then one full-width expandable box per section with
-# a description, what students will be asked to do, a progress bar, and
-# (expanded) the lesson grid with a green tick at 100%. Neutral graphite
-# chrome; the four section colours appear only inside the section boxes.
-# ==================================================================
-def build_index(lesson_totals, preview_available=None, out_path=None):
-    """Course home. preview_available=N builds the public preview variant:
-    only the first N items open, the rest shown locked, plus a banner and
-    a link back to englishvoiced.com/courses/."""
-    preview = preview_available is not None
-    extra_head = '''<style>
-  /* ---------- Course home (design handoff 6b) ---------- */
-  .eq-hero{background:var(--green);color:var(--paper)}
-  .eq-hero .grid12{padding-top:40px;padding-bottom:44px}
-  .hero-t{grid-column:1 / -1;font-stretch:68%;font-weight:800;font-size:clamp(72px,17vw,168px);line-height:.82;letter-spacing:-.02em;text-transform:uppercase;margin:0}
-  .hero-t span{color:var(--mint)}
-  .hero-tag{grid-column:1 / span 5;margin-top:32px;font-size:22px;font-weight:600;line-height:1.25;text-wrap:pretty}
-  .hero-body{grid-column:7 / span 6;margin-top:32px;font-size:16px;line-height:1.6;color:var(--hero-body);text-wrap:pretty}
-  .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1px solid var(--ink)}
-  .stat{padding:18px 20px;border-right:1px solid var(--ink)}
-  .stat:first-child{padding-left:0}
-  .stat:last-child{border-right:0;padding-right:0}
-  .stat-n{font-stretch:68%;font-weight:800;font-size:64px;line-height:1}
-  .stat-l{font-size:13px;font-weight:600}
-  #overall-pct{color:var(--green)}
-  .name-next{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;padding:24px 0}
-  .welcome{display:flex;flex-direction:column;gap:10px;justify-content:center}
-  .welcome-copy{font-size:13px;font-weight:600;line-height:1.5}
-  .welcome-copy b{font-weight:800}
-  .name-form{display:flex}
-  .name-form .btn{border-radius:0;padding:0 24px}
-  .next-up{text-decoration:none;background:var(--green);color:#fff;padding:16px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;transition:background .15s}
-  .next-up:hover{background:var(--bottle)}
-  .next-k{font-size:13px;font-weight:600}
-  .next-row{display:flex;justify-content:space-between;align-items:flex-end;gap:10px}
-  .next-title{font-stretch:75%;font-weight:700;font-size:26px;line-height:1.05}
-  .next-go{font-size:28px;line-height:1}
-  .preview-banner{border:2px solid var(--ink);padding:14px 18px;font-size:15px;line-height:1.55;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;margin:0 0 8px}
-  .preview-banner a{color:var(--green);font-weight:700}
-  .ltable{padding:16px 0 48px}
-  .lrow{display:grid;grid-template-columns:120px minmax(0,1fr) 80px;gap:20px;padding:14px 0;border-bottom:1px solid var(--grey-rule);align-items:baseline;text-decoration:none;color:var(--ink)}
-  .lrow.lhead{padding:10px 0;border-bottom:2px solid var(--ink);font-size:12px;font-weight:600;color:var(--grey-label)}
-  .lrow.group-end{border-bottom:1px solid var(--ink)}
-  .lrow.table-end{border-bottom:2px solid var(--ink)}
-  a.lrow:hover .lr-title{color:var(--green)}
-  .lr-sec{font-size:13px;font-weight:700;display:flex;flex-direction:column;gap:4px;align-items:flex-start}
-  .lr-about{font-size:12px;font-weight:600;color:var(--grey-label);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
-  .lr-about:hover{color:var(--green)}
-  .lr-title{font-stretch:80%;font-weight:700;font-size:24px;line-height:1.15;transition:color .15s}
-  .lr-title.is-test{color:var(--green)}
-  .lr-prog{text-align:right;font-size:14px;color:var(--grey-text)}
-  .lr-prog.next{color:var(--green);font-weight:700}
-  .lr-prog.done{color:var(--ink);font-weight:700}
-  .lrow.locked{cursor:pointer}
-  .lrow.locked.is-flagged .lr-title{opacity:1;color:var(--green)}
-  .locked-notice{border:2px solid var(--green);background:rgba(30,107,71,.07);padding:14px 18px;font-size:15px;line-height:1.55;margin:0 0 8px}
-  .locked-notice a{color:var(--green);font-weight:700}
-  .locked-notice[hidden]{display:none}
-  .lrow.locked .lr-title{opacity:.4}
-  .lrow.locked:hover .lr-title{color:var(--ink)}
-  .lr-expect{display:none;grid-template-columns:120px minmax(0,1fr) 80px;gap:20px;padding:0 0 16px;border-bottom:1px solid var(--grey-rule);font-size:15px;line-height:1.6;color:var(--text-secondary)}
-  .lr-expect.open{display:grid}
-  .lr-expect > div{grid-column:2 / span 1}
-  .lr-expect p + p{margin-top:8px}
-  .lr-sechead{display:none}
-  @media (max-width:720px){
-    .hero-tag,.hero-body{grid-column:1 / -1}
-    .hero-body{margin-top:16px}
-    .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .stat,.stat:first-child,.stat:last-child{padding:16px 0;border-right:0;border-bottom:1px solid var(--ink)}
-    .stat:nth-child(odd){border-right:1px solid var(--ink);padding-right:16px}
-    .stat:nth-child(even){padding-left:16px}
-    .stat:nth-child(n+3){border-bottom:0}
-    .stat-n{font-size:48px}
-    .name-next{grid-template-columns:minmax(0,1fr)}
-    .lrow,.lr-expect{grid-template-columns:minmax(0,1fr) 64px}
-    .lrow .lr-sec{display:none}
-    .lrow.lhead span:first-child{display:none}
-    .lr-expect > div{grid-column:1 / -1}
-    .lr-sechead{display:flex;justify-content:space-between;align-items:baseline;padding:18px 0 6px;font-size:13px;font-weight:700;border-bottom:1px solid var(--grey-rule)}
-    .lr-title{font-size:20px}
-  }
-</style>'''
-
-    n_items = len(ALL_LESSONS) + len(ALL_TESTS)
-    home_link = ('<a href="https://englishvoiced.com/courses/">&larr; All courses</a>' if preview
-                 else '<a href="https://englishvoiced.com/">English Voiced with Kris</a>')
-    banner = ''
-    if preview:
-        banner = f'''
-  <div class="preview-banner">
-    <span>This is a <b>free preview</b>. Lesson 1 is fully open; the rest of the course is listed so you can see where it goes.</span>
-    <span>Interested in the full course? <a href="https://englishvoiced.com/contact/">Get in touch with Kris</a></span>
-  </div>
-  <div class="locked-notice" id="locked-notice" role="status" hidden></div>'''
-    body_html = f'''<div class="eq-nav"><div class="eq-wrap">
-  {home_link}<span>B2–C1</span><span class="eq-hl">Course home</span>
-</div></div>
-<header class="eq-hero"><div class="eq-wrap grid12">
-  <h1 class="hero-t" id="welcome-heading">Workplace<br><span>EQ</span></h1>
-  <p class="hero-tag">The unwritten rules of professional presence, communication, and career velocity.</p>
-  <p class="hero-body">Your grammar can be perfect and you can still sound rude, cold or junior. This course is about the other half: what British colleagues actually mean, what they expect to hear, and how to say it (with notes on US and international norms along the way).</p>
-</div></header>
-<main class="eq-wrap">
-  <div class="stats">
-    <div class="stat"><div class="stat-n">{len(SECTION_META)}</div><div class="stat-l">Sections</div></div>
-    <div class="stat"><div class="stat-n">{len(ALL_LESSONS)}</div><div class="stat-l">Lessons</div></div>
-    <div class="stat"><div class="stat-n">{len(ALL_TESTS)}</div><div class="stat-l">Test{"" if len(ALL_TESTS) == 1 else "s"}</div></div>
-    <div class="stat"><div class="stat-n" id="overall-pct">0%</div><div class="stat-l" id="overall-title">Nothing attempted yet</div></div>
-  </div>
-  <div class="name-next">
-    <div class="welcome" id="welcome-card">
-      <div class="welcome-copy" id="welcome-copy">Add your name, so that you can track your progress throughout the course.</div>
-      <form class="name-form" id="name-form">
-        <input type="text" id="name-input" class="name-input" placeholder="Name" autocomplete="off" aria-label="Your name">
-        <button type="submit" class="btn btn-primary">Start</button>
-      </form>
-    </div>
-    <a class="next-up" id="next-up" href="#">
-      <span class="next-k" id="next-k">Up next</span>
-      <span class="next-row"><span class="next-title" id="next-title">Lesson 1 — {ALL_LESSONS[0]["title"]}</span><span class="next-go" aria-hidden="true">&rarr;</span></span>
-    </a>
-  </div>{banner}
-  <div class="ltable" id="lesson-index"></div>
-</main>'''
+# INDEX PAGE — course overview (see overview.py)
+def build_index(lesson_totals):
+    """Course overview (2026 redesign). Layout, styles and script live in
+    overview.py (shared by every English+ course); this passes the data.
+    The public preview reuses this page: build_preview() switches on the
+    locked/preview mode with data-preview-* attributes on <body>."""
+    import overview
+    import redesign_config as R
 
     entries = []
-    for mod in SECTION_MODULES:
+    groups = []
+    for si, (mod, meta) in enumerate(zip(SECTION_MODULES, SECTION_META)):
+        size = 0
         for l in mod.LESSONS:
-            entries.append({"id": l["id"], "title": f'Lesson {l["num"]} — {l["title"]}', "isTest": False})
-        section_idx = SECTION_MODULES.index(mod)
-        for test in ALL_TESTS:
-            if test["after_section"] == section_idx + 1:
-                entries.append({"id": test["id"], "title": test["title"], "isTest": True})
+            entries.append({"id": l["id"], "title": f'Lesson {l["num"]} — {l["title"]}', "isTest": False,
+                            "chips": R.LESSON_CHIPS.get(l["num"], [])})
+            size += 1
+        for t in ALL_TESTS:
+            if t.get("after_section", si + 1) == si + 1:
+                entries.append({"id": t["id"], "title": t["title"], "isTest": True,
+                                "chips": [[f'{lesson_totals.get(t["id"], 12)} Q', "o"]]})
+                size += 1
+        groups.append({"title": meta["name"], "color": meta["color"], "deep": meta["deep"],
+                       "desc": meta["desc"], "expect": meta["expect"], "size": size})
 
-    short_names = ["Presence", "Communication", "Career"]
-    groups_js = [{"title": m["name"], "short": short_names[i] if i < len(short_names) else m["name"],
-                  "desc": m["desc"], "expect": m["expect"]} for i, m in enumerate(SECTION_META)]
-    section_sizes = [len(mod.LESSONS) + sum(1 for t in ALL_TESTS if t["after_section"] == i + 1) for i, mod in enumerate(SECTION_MODULES)]
-
-    page_script = f'''
-const LESSONS = {j(entries)};
-const GROUP_META = {j(groups_js)};
-const SECTION_SIZES = {j(section_sizes)};
-// Public preview: only the first PREVIEW_AVAILABLE items open (null = full course).
-const PREVIEW_AVAILABLE = {j(preview_available)};
-
-/* Per-lesson exercise totals, extracted from each generated lesson/test
-   file's own totalExercises at build time, so they never drift. */
-const DEFAULT_TOTAL = 12;
-const LESSON_TOTALS = {j(lesson_totals)};
-function totalFor(id){{ return LESSON_TOTALS[id] || DEFAULT_TOTAL; }}
-
-const GROUPS = (() => {{
-  let start = 0;
-  return GROUP_META.map((g, i) => {{
-    const end = start + SECTION_SIZES[i];
-    const range = [start, end];
-    start = end;
-    return {{ ...g, range }};
-  }});
-}})();
-
-const STUDENT_NAME_KEY = 'workplaceeq_student_name';
-const OPEN_KEY = 'workplaceeq_index_open';
-
-const groupParam = new URLSearchParams(window.location.search).get('group');
-function withGroup(href){{
-  return groupParam ? `${{href}}?group=${{encodeURIComponent(groupParam)}}` : href;
-}}
-function standaloneFilename(id){{
-  const match = id.match(/^weq-(lesson-\\d+|test-\\d+)/);
-  const prefix = match ? match[1] : id;
-  return `${{prefix}}-preview-standalone.html`;
-}}
-const isLocked = idx => PREVIEW_AVAILABLE !== null && idx >= PREVIEW_AVAILABLE;
-
-/* ---------- Progress ----------
-   Nothing is read until a name exists: the engine's getStudentName()
-   would otherwise pop up its own name prompt on top of this page's
-   name field (the "asked twice" problem). */
-function lessonProgress(id){{
-  let attempted = 0;
-  if (localStorage.getItem(STUDENT_NAME_KEY)){{
-    try {{
-      attempted = Course.getCurrentRows(id).filter(r => r.exercise_type === 'auto_graded').length;
-    }} catch (e){{ attempted = 0; }}
-  }}
-  const total = totalFor(id);
-  const pct = total ? Math.min(100, Math.round((attempted / total) * 100)) : 0;
-  return {{ attempted, total, pct, done: pct >= 100 }};
-}}
-
-function readOpen(){{
-  try {{ return new Set(JSON.parse(localStorage.getItem(OPEN_KEY)) || []); }}
-  catch (e){{ return new Set(); }}
-}}
-function writeOpen(set){{
-  localStorage.setItem(OPEN_KEY, JSON.stringify([...set]));
-}}
-
-function rowTitle(l){{
-  return l.isTest ? l.title : l.title.replace(/^Lesson\\s+(\\d+)\\s+[—-]\\s*/, '$1 ');
-}}
-
-function nextIndex(all){{
-  let idx = all.findIndex(p => !p.done);
-  if (PREVIEW_AVAILABLE !== null && (idx === -1 || idx >= PREVIEW_AVAILABLE)) idx = Math.min(PREVIEW_AVAILABLE, LESSONS.length) - 1;
-  return idx;
-}}
-
-function renderLessonIndex(){{
-  const root = document.getElementById('lesson-index');
-  const open = readOpen();
-  const all = LESSONS.map(l => lessonProgress(l.id));
-  const nextIdx = nextIndex(all);
-  let html = '<div class="lrow lhead"><span>Section</span><span>Lesson</span><span style="text-align:right">Progress</span></div>';
-
-  GROUPS.forEach((g, gi) => {{
-    const label = String(gi + 1).padStart(2, '0') + ' ' + g.short;
-    const isOpen = open.has(gi);
-    const about = `<button type="button" class="lr-about" data-gi="${{gi}}" aria-expanded="${{isOpen}}">${{isOpen ? 'Hide details' : 'What to expect'}}</button>`;
-    html += `<div class="lr-sechead"><span>${{label}}</span>${{about}}</div>`;
-    for (let idx = g.range[0]; idx < g.range[1]; idx++){{
-      const l = LESSONS[idx], p = all[idx];
-      const first = idx === g.range[0];
-      const last = idx === g.range[1] - 1;
-      const cls = ['lrow'];
-      if (last) cls.push(gi === GROUPS.length - 1 ? 'table-end' : 'group-end');
-      let prog, progCls = 'lr-prog';
-      if (isLocked(idx)){{ prog = 'Locked'; cls.push('locked'); }}
-      else if (p.done){{ prog = 'Done ✓'; progCls += ' done'; }}
-      else if (idx === nextIdx){{ prog = p.attempted ? p.pct + '% · Next' : 'Next'; progCls += ' next'; }}
-      else prog = p.pct + '%';
-      const sec = first ? `<span class="lr-sec"><span>${{label}}</span>${{about}}</span>` : '<span class="lr-sec"></span>';
-      const title = `<span class="lr-title${{l.isTest ? ' is-test' : ''}}">${{rowTitle(l)}}</span>`;
-      const inner = `${{sec}}${{title}}<span class="${{progCls}}">${{prog}}</span>`;
-      html += isLocked(idx)
-        ? `<div class="${{cls.join(' ')}}" data-locked="${{idx}}" role="button" tabindex="0" title="Not included in this preview">${{inner}}</div>`
-        : `<a class="${{cls.join(' ')}}" href="${{withGroup(standaloneFilename(l.id))}}">${{inner}}</a>`;
-      if (first){{
-        html += `<div class="lr-expect${{isOpen ? ' open' : ''}}" id="expect-${{gi}}"><div><p>${{g.desc}}</p><p>${{g.expect}}</p></div></div>`;
-      }}
-    }}
-  }});
-  root.innerHTML = html;
-
-  root.querySelectorAll('[data-locked]').forEach(row => {{
-    const show = () => showLockedNotice(Number(row.dataset.locked));
-    row.addEventListener('click', show);
-    row.addEventListener('keydown', e => {{ if (e.key === 'Enter' || e.key === ' ') {{ e.preventDefault(); show(); }} }});
-  }});
-  if (flaggedIdx !== null) {{ const r = root.querySelector(`[data-locked="${{flaggedIdx}}"]`); if (r) r.classList.add('is-flagged'); }}
-
-  root.querySelectorAll('.lr-about').forEach(btn => btn.addEventListener('click', (e) => {{
-    e.preventDefault(); e.stopPropagation();
-    const gi = Number(btn.dataset.gi);
-    const set = readOpen();
-    if (set.has(gi)) set.delete(gi); else set.add(gi);
-    writeOpen(set);
-    renderLessonIndex();
-  }}));
-
-  renderOverall(all, nextIdx);
-}}
-
-function renderOverall(all, nextIdx){{
-  const counted = PREVIEW_AVAILABLE === null ? all : all.slice(0, PREVIEW_AVAILABLE);
-  const pct = Math.round(counted.reduce((s, p) => s + p.pct, 0) / counted.length);
-  const done = counted.filter(p => p.done).length;
-  document.getElementById('overall-pct').textContent = pct + '%';
-  document.getElementById('overall-title').textContent = done
-    ? `${{done}} of ${{counted.length}} finished`
-    : (pct ? 'In progress' : 'Nothing attempted yet');
-
-  const next = LESSONS[nextIdx];
-  const nextEl = document.getElementById('next-up');
-  nextEl.href = withGroup(standaloneFilename(next.id));
-  document.getElementById('next-title').textContent = next.title;
-  const allDone = counted.every(p => p.done);
-  document.getElementById('next-k').textContent = allDone
-    ? (PREVIEW_AVAILABLE === null ? 'Course complete · revisit' : 'Preview complete · revisit')
-    : (all[nextIdx].attempted ? 'Continue' : 'Up next');
-}}
-
-function showWelcomeBack(name){{
-  const copy = document.getElementById('welcome-copy');
-  copy.innerHTML = '';
-  const b = document.createElement('b'); b.textContent = name;
-  copy.append('Welcome back, ', b, '. Your progress is saved as you go.');
-  const form = document.getElementById('name-form');
-  if (form) form.outerHTML = '<button class="change-name-link" id="change-name-btn" style="align-self:flex-start">Not you? Change name</button>';
-  document.getElementById('change-name-btn').addEventListener('click', () => {{
-    localStorage.removeItem(STUDENT_NAME_KEY);
-    location.reload();
-  }});
-}}
-
-// Pull this student's rows down from Supabase (if connected) so the
-// numbers reflect work done on other devices too, then re-render.
-function syncAndRender(){{
-  if (!localStorage.getItem(STUDENT_NAME_KEY) || !Course.isConnected()) return;
-  (async () => {{
-    for (const l of LESSONS){{ await Course.syncFromSupabase(l.id); }}
-    renderLessonIndex();
-  }})();
-}}
-
-const existingName = localStorage.getItem(STUDENT_NAME_KEY);
-if (existingName){{
-  showWelcomeBack(existingName);
-}} else {{
-  document.getElementById('name-form').addEventListener('submit', (e) => {{
-    e.preventDefault();
-    const val = document.getElementById('name-input').value.trim();
-    if (!val) return;
-    localStorage.setItem(STUDENT_NAME_KEY, val);
-    showWelcomeBack(val);
-    renderLessonIndex();
-    syncAndRender();
-  }});
-}}
-
-// Preview only: a locked lesson (clicked here, or linked from the free
-// englishvoiced.com lesson as ?locked=N) explains it's in the full course.
-let flaggedIdx = null;
-function showLockedNotice(idx){{
-  const box = document.getElementById('locked-notice');
-  const l = LESSONS[idx];
-  if (!box || !l) return;
-  flaggedIdx = idx;
-  box.innerHTML = `<b>${{rowTitle(l)}}</b> is part of the full Workplace EQ course. This free preview includes Lesson 1 only. `
-    + `Want access to the whole course? <a href="https://englishvoiced.com/contact/">Get in touch with Kris</a>.`;
-  box.hidden = false;
-  renderLessonIndex();
-  box.scrollIntoView({{ behavior: 'smooth', block: 'center' }});
-}}
-renderLessonIndex();
-if (PREVIEW_AVAILABLE !== null) {{
-  const n = parseInt(new URLSearchParams(location.search).get('locked'), 10);
-  if (n >= 1 && n <= LESSONS.length && n - 1 >= PREVIEW_AVAILABLE) showLockedNotice(n - 1);
-}}
-syncAndRender();
-
-// Coming back with the browser's Back button can show a cached copy of
-// this page; refresh the numbers whenever it is shown again, and when
-// another tab records progress.
-window.addEventListener('pageshow', (e) => {{ if (e.persisted){{ renderLessonIndex(); syncAndRender(); }} }});
-window.addEventListener('storage', () => renderLessonIndex());
-'''
-
-    html = light_page_shell(title="Course home", body_html=body_html, extra_head=extra_head, page_script=page_script, raw=True)
-    if out_path:
-        with open(out_path, "w", encoding="utf-8") as f:
-            f.write(html)
-        return entries
+    extra_head, body_html, page_script = overview.render({
+        "top_line": R.OVERVIEW_TOP,
+        "labels": R.OVERVIEW_LABELS,
+        "heading": R.INDEX_HEADING,
+        "intro": R.WELCOME_COPY,
+        "hero_art": R.OVERVIEW_ART,
+        "entries": entries,
+        "groups": groups,
+        "lesson_totals": lesson_totals,
+        "name_key": "workplaceeq_student_name",
+        "closed_key": "workplaceeq_index_closed",
+        "file_prefix_re": r"(lesson-\\d+|test-\\d+)",
+        "id_prefix": "weq-",
+    })
+    html = light_page_shell(title="Workplace EQ", body_html=body_html, extra_head=extra_head,
+                            page_script=page_script, raw=True)
     src_path = os.path.join(ROOT, "index.html")
     with open(src_path, "w", encoding="utf-8") as f:
         f.write(html)
     rebuild_standalone(src_path, os.path.join(ROOT, "index-standalone.html"))
-    return entries
+    return [{"id": e["id"], "title": e["title"], "isTest": e["isTest"]} for e in entries]
 
 
 # ==================================================================
@@ -1026,16 +713,18 @@ def _preview_fixups(html):
     html = html.replace("index-standalone.html", "index.html")
     html = html.replace('<span class="eq-nav-links">',
                         '<span class="eq-nav-links"><a href="https://englishvoiced.com/courses/">&larr; All courses</a>', 1)
+    # The overview and lesson chrome read these: lessons after the first
+    # PREVIEW_OPEN_LESSONS are listed but locked; lesson pages get an
+    # "All courses" link.
+    html = re.sub(r"(?m)^<body(\s|>)", f'<body data-preview-open="{PREVIEW_OPEN_LESSONS}" '
+                  'data-preview-contact="https://englishvoiced.com/contact/" data-preview-course="Workplace EQ"\\1', html, count=1)
     return html
 
 
 def build_preview(out_dir, lesson_totals):
     import shutil
     os.makedirs(out_dir, exist_ok=True)
-    tmp_src = os.path.join(ROOT, "_preview-index.html")
-    build_index(lesson_totals, preview_available=PREVIEW_OPEN_LESSONS, out_path=tmp_src)
-    rebuild_standalone(tmp_src, os.path.join(out_dir, "index.html"))
-    os.remove(tmp_src)
+    shutil.copy(os.path.join(ROOT, "index-standalone.html"), os.path.join(out_dir, "index.html"))
     files = ["index.html"]
     for l in ALL_LESSONS[:PREVIEW_OPEN_LESSONS]:
         files.append(lesson_standalone_filename(l["id"]))

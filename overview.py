@@ -1,15 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="noindex">
-<script defer src="/analytics.js"></script>
-<title>Workplace EQ | Workplace EQ</title>
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
-<link rel="stylesheet" href="/fonts/fonts.css">
-<link rel="stylesheet" href="shared/theme.css">
-<style>
+"""
+English+ course overview page (index) — 2026 redesign.
+
+Shared by every English+ course: build.py (or build_index.py) passes the
+course's own data and gets back the three pieces its page shell needs:
+
+    extra_head, body_html, page_script = overview.render(cfg)
+
+cfg keys
+  top_line        mono line at the very top ("English+ … · by Kris Galezewski")
+  labels          [solid chip, outlined chip, level chip] e.g. ["English+", "Function Words I", "B1+/B2"]
+  heading         hero H1
+  intro           hero paragraph (HTML allowed)
+  hero_art        decorative word-chip cluster (HTML), or ""
+  entries         [{id, title, isTest, chips:[[text, kind]]}] in course order; kind: s/o/x/d
+  groups          [{title, color, deep, desc, expect, size}] — size = items in the section
+  lesson_totals   {id: auto-graded exercises}  (a lesson is 100% once this many are attempted)
+  name_key        localStorage key for the student's name (keep the course's existing key!)
+  closed_key      localStorage key for collapsed sections
+  file_prefix_re  JS regex source matching the short file prefix, e.g. "(lesson-\\d+|test-\\d+)"
+  id_prefix       optional id prefix stripped before matching (e.g. "fw1-")
+"""
+import json
+
+
+def _j(x):
+    return json.dumps(x, ensure_ascii=False)
+
+
+EXTRA_HEAD = '''<style>
   /* ---------- Course overview (2026 redesign) ---------- */
   body .shell{max-width:none !important;padding:0 !important}
   .course-attribution{display:none !important}
@@ -98,22 +116,19 @@
     .ov-sec-row h2{font-size:26px}
     .ov-card{padding:20px}
   }
-</style>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
-<script src="shared/supabase-config.js"></script>
-</head>
-<body>
-<div class="ov">
+</style>'''
+
+BODY = '''<div class="ov">
   <div class="ov-hero">
     <div class="ov-top">
-      <div class="ov-topline">English Voiced · Workplace EQ · B2–C1 · by Kris Galezewski</div>
+      <div class="ov-topline">__TOP__</div>
       <a class="rd-pill" id="glossary-link" href="glossary-standalone.html">My glossary&nbsp;·&nbsp;<span id="glossary-count">0</span></a>
     </div>
     <div class="ov-hero-grid">
       <div class="ov-left">
-        <div class="ov-labels"><span class="ov-label s">English Voiced</span><span class="ov-label o">Workplace EQ</span><span class="ov-label">B2–C1</span></div>
-        <h1 id="welcome-heading">Workplace EQ</h1>
-        <p class="ov-intro" id="welcome-copy">The unwritten rules of professional presence, communication, and career velocity. Your grammar can be perfect and you can still sound rude, cold or junior. This course is about the other half: what British colleagues actually mean, what they expect to hear, and how to say it (with notes on US and international norms along the way).</p>
+        <div class="ov-labels">__LABELS__</div>
+        <h1 id="welcome-heading">__HEADING__</h1>
+        <p class="ov-intro" id="welcome-copy">__INTRO__</p>
         <div class="ov-start" id="welcome-start">
           <div class="ov-start-note">Add your name, so that you can track your progress throughout the course.</div>
           <form class="name-form" id="name-form">
@@ -123,24 +138,19 @@
         </div>
       </div>
       <div class="ov-right">
-        <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-end;font-family:'Archivo';font-weight:800">
-          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end"><span style="padding:4px 12px;border-radius:999px;border:1.5px dashed rgba(246,238,221,.7);font-size:18px">“Mr Tom”</span><span style="font-size:18px;opacity:.6">→</span><span style="padding:5px 12px;border-radius:9px;background:#F6EEDD;color:#17614F;font-size:18px">“Tom”</span></div>
-          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end"><span style="padding:4px 12px;border-radius:999px;border:1.5px solid rgba(246,238,221,.7);font-size:18px">small talk</span><span style="padding:5px 12px;border-radius:9px;background:rgba(0,0,0,.2);font-size:18px">register</span></div>
-          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end"><span style="padding:5px 12px;border-radius:9px;background:#3A8597;color:#F6EEDD;font-size:18px">rapport</span></div>
-          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end"><span style="padding:5px 12px;border-radius:9px;background:#7D8B36;color:#F6EEDD;font-size:18px">Lovely to meet you.</span></div>
-        </div>
+        __ART__
         <div class="ov-card">
           <div class="ov-ring-row">
             <div class="ov-ring" id="overall-ring"><span id="overall-pct">0%</span></div>
             <div>
               <div class="ov-ring-t" id="overall-title">Nothing attempted yet</div>
-              <div class="ov-ring-s" id="overall-sub">Your progress across all 8 items.</div>
+              <div class="ov-ring-s" id="overall-sub">Your progress across all __N__ items.</div>
             </div>
           </div>
           <div class="ov-stats">
-            <div><div class="ov-stat-n">3</div><div class="ov-stat-l">Sections</div></div>
-            <div><div class="ov-stat-n">7</div><div class="ov-stat-l">Lessons</div></div>
-            <div><div class="ov-stat-n">1</div><div class="ov-stat-l">Tests</div></div>
+            <div><div class="ov-stat-n">__NSEC__</div><div class="ov-stat-l">Sections</div></div>
+            <div><div class="ov-stat-n">__NLES__</div><div class="ov-stat-l">Lessons</div></div>
+            <div><div class="ov-stat-n">__NTEST__</div><div class="ov-stat-l">Tests</div></div>
           </div>
           <a class="ov-next" id="next-up" href="#">
             <span><span class="ov-next-k" id="next-kicker">Up next</span><span class="ov-next-t" id="next-title"></span></span>
@@ -151,167 +161,10 @@
     </div>
   </div>
   <div class="ov-secs" id="lesson-index"></div>
-</div>
+</div>'''
 
-<script src="shared/course-engine.js"></script>
-<script>
-
-const OV = {
- "entries": [
-  {
-   "id": "weq-lesson-01-first-impressions",
-   "title": "Lesson 1 — First Impressions & Small Talk",
-   "isTest": false,
-   "chips": [
-    [
-     "Mr Tom",
-     "o"
-    ],
-    [
-     "Tom",
-     "s"
-    ]
-   ]
-  },
-  {
-   "id": "weq-lesson-02-politeness-register",
-   "title": "Lesson 2 — Politeness & Register",
-   "isTest": false,
-   "chips": [
-    [
-     "Could you…?",
-     "s"
-    ],
-    [
-     "Do it.",
-     "d"
-    ]
-   ]
-  },
-  {
-   "id": "weq-lesson-03-emails-messaging",
-   "title": "Lesson 3 — Emails & Messaging",
-   "isTest": false,
-   "chips": [
-    [
-     "Hi Tom,",
-     "s"
-    ],
-    [
-     "Best,",
-     "o"
-    ]
-   ]
-  },
-  {
-   "id": "weq-lesson-04-meetings-calls",
-   "title": "Lesson 4 — Meetings & Calls",
-   "isTest": false,
-   "chips": [
-    [
-     "Can I just come in here?",
-     "s"
-    ]
-   ]
-  },
-  {
-   "id": "weq-lesson-05-difficult-conversations",
-   "title": "Lesson 5 — Difficult Conversations",
-   "isTest": false,
-   "chips": [
-    [
-     "I hear you, but…",
-     "s"
-    ]
-   ]
-  },
-  {
-   "id": "weq-lesson-06-visibility-self-advocacy",
-   "title": "Lesson 6 — Visibility & Self-Advocacy",
-   "isTest": false,
-   "chips": [
-    [
-     "I led",
-     "s"
-    ],
-    [
-     "we",
-     "o"
-    ]
-   ]
-  },
-  {
-   "id": "weq-lesson-07-capstone-week-in-london",
-   "title": "Lesson 7 — Capstone: A Week in London",
-   "isTest": false,
-   "chips": [
-    [
-     "Mon",
-     "o"
-    ],
-    [
-     "Wed",
-     "d"
-    ],
-    [
-     "Fri",
-     "s"
-    ]
-   ]
-  },
-  {
-   "id": "weq-test-01",
-   "title": "Final Test: Workplace EQ",
-   "isTest": true,
-   "chips": [
-    [
-     "24 Q",
-     "o"
-    ]
-   ]
-  }
- ],
- "groups": [
-  {
-   "title": "Professional Presence",
-   "color": "#17614F",
-   "deep": "#0C3E33",
-   "desc": "First impressions, introductions and small talk, then the core skill behind everything else in the course: choosing the right level of politeness and directness for the person in front of you.",
-   "expect": "You'll compare three versions of the same line (too blunt, too stiff, just right) and learn why British listeners hear them so differently. Expect situational choices, rewriting blunt lines politely, and short speaking tasks where you introduce yourself and keep a conversation going.",
-   "size": 2
-  },
-  {
-   "title": "Communication That Lands",
-   "color": "#1D6475",
-   "deep": "#113F4A",
-   "desc": "Emails and chat messages, meetings and video calls, and the conversations most people avoid: saying no, apologising, giving feedback and delivering bad news.",
-   "expect": "Most of the work here is rewriting: turning a clumsy email into one that gets a reply, softening a disagreement without losing the point, and spotting the faux pas in a message before it's sent. Speaking tasks are short role-plays.",
-   "size": 3
-  },
-  {
-   "title": "Career Velocity",
-   "color": "#5E6B1F",
-   "deep": "#3B4412",
-   "desc": "Being visible without bragging, managing up, asking for what you want, and networking that actually leads somewhere, then a capstone week-at-work simulation that pulls the whole course together.",
-   "expect": "You'll practise the language of self-advocacy (taking credit gracefully, asking for a raise or a stretch project) and then work through a full scenario, from a client dinner to a tricky follow-up email. The final test mixes all seven lessons.",
-   "size": 3
-  }
- ],
- "lessonTotals": {
-  "weq-lesson-01-first-impressions": 39,
-  "weq-lesson-02-politeness-register": 39,
-  "weq-lesson-03-emails-messaging": 39,
-  "weq-lesson-04-meetings-calls": 39,
-  "weq-lesson-05-difficult-conversations": 39,
-  "weq-lesson-06-visibility-self-advocacy": 39,
-  "weq-lesson-07-capstone-week-in-london": 39,
-  "weq-test-01": 24
- },
- "nameKey": "workplaceeq_student_name",
- "closedKey": "workplaceeq_index_closed",
- "filePrefixRe": "(lesson-\\\\d+|test-\\\\d+)",
- "idPrefix": "weq-"
-};
+SCRIPT = r'''
+const OV = __CFG__;
 // Free preview (englishvoiced.com/courses/): build_preview.py sets
 // data-preview-open / -contact / -course on <body>. Only the first N
 // lessons ship; the rest are listed, faded and locked.
@@ -516,7 +369,34 @@ syncIndexFromSupabase();
 
 window.addEventListener('pageshow', (e) => { if (e.persisted){ renderLessonIndex(); syncIndexFromSupabase(); } });
 window.addEventListener('storage', () => renderLessonIndex());
+'''
 
-</script>
-</body>
-</html>
+
+def render(cfg):
+    labels = cfg["labels"]
+    labels_html = (f'<span class="ov-label s">{labels[0]}</span>'
+                   f'<span class="ov-label o">{labels[1]}</span>'
+                   f'<span class="ov-label">{labels[2]}</span>')
+    entries = cfg["entries"]
+    n_tests = sum(1 for e in entries if e["isTest"])
+    body = (BODY.replace("__TOP__", cfg["top_line"])
+                .replace("__LABELS__", labels_html)
+                .replace("__HEADING__", cfg["heading"])
+                .replace("__INTRO__", cfg["intro"])
+                .replace("__ART__", cfg.get("hero_art") or "")
+                .replace("__N__", str(len(entries)))
+                .replace("__NSEC__", str(len(cfg["groups"])))
+                .replace("__NLES__", str(len(entries) - n_tests))
+                .replace("__NTEST__", str(n_tests)))
+    js_cfg = {
+        "entries": [{"id": e["id"], "title": e["title"], "isTest": bool(e["isTest"]), "chips": e.get("chips", [])} for e in entries],
+        "groups": cfg["groups"],
+        "lessonTotals": cfg["lesson_totals"],
+        "nameKey": cfg["name_key"],
+        "closedKey": cfg["closed_key"],
+        "filePrefixRe": cfg["file_prefix_re"],
+        "idPrefix": cfg.get("id_prefix", ""),
+    }
+    assert sum(g["size"] for g in cfg["groups"]) == len(entries), "group sizes must add up to the entries"
+    script = SCRIPT.replace("__CFG__", json.dumps(js_cfg, ensure_ascii=False, indent=1))
+    return EXTRA_HEAD, body, script
