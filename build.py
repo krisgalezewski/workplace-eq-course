@@ -211,7 +211,7 @@ def build_index(lesson_totals):
         "lesson_totals": lesson_totals,
         "name_key": "workplaceeq_student_name",
         "closed_key": "workplaceeq_index_closed",
-        "file_prefix_re": r"(lesson-\\d+|test-\\d+)",
+        "file_prefix_re": r"(lesson-\d+|test-\d+)",
         "id_prefix": "weq-",
     })
     html = light_page_shell(title="Workplace EQ", body_html=body_html, extra_head=extra_head,
